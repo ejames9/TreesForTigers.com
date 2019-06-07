@@ -139,7 +139,7 @@ const LevelTwo =({height})=>
         <Row id='row'>
           <Col className='left'>
             <Card style={{width: '75%', height: '100%', border: 'none'}}>
-              <Card.Img id='cub' variant="top" src="/assets/images/amurTigerCub01Round.jpg" />
+              <Card.Img id='cub' variant="top" src="./assets/images/amurTigerCub01Round.jpg" />
               <Card.Body>
                 <h3>Our Vision</h3>
                 <Card.Subtitle>Tiger Cubs Running Free!</Card.Subtitle>
@@ -152,7 +152,7 @@ const LevelTwo =({height})=>
             </Card>
           </Col>
           <Col className='middle'>
-            <Card.Img style={{visibility: 'hidden'}} variant="top" src="/assets/images/amurTigerCub01Round.jpg" />
+            <Card.Img style={{visibility: 'hidden'}} variant="top" src="./assets/images/amurTigerCub01Round.jpg" />
             <Card style={{width: '100%', border: 'none'}}>
               <Card.Body>
                 <h1>Trees for Tigers</h1>
@@ -168,7 +168,7 @@ const LevelTwo =({height})=>
           <Col className='right'>
           <Card style={{width: '75%', border: 'none'}}>
             <div>
-              <Card.Img id='chopsticks' variant="top" src="/TreesForTigers.com/assets/images/chopsticks/chopsticks02.jpg" />
+              <Card.Img id='chopsticks' variant="top" src="./assets/images/chopsticks/chopsticks02.jpg" />
               <div id="ban"></div>
             </div>
             <Card.Body>
