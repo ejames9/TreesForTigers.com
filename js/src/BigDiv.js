@@ -139,7 +139,7 @@ const LevelTwo =({height})=>
         <Row id='row'>
           <Col className='left'>
             <Card style={{width: '75%', height: '100%', border: 'none'}}>
-              <Card.Img id='cub' variant="top" src="/assets/images/amurTigerCub01Round.jpg" />
+              <Card.Img id='cub' variant="top" src="/styles/assets/images/amurTigerCub01Round.jpg" />
               <Card.Body>
                 <h3>Our Vision</h3>
                 <Card.Subtitle>Tiger Cubs Running Free!</Card.Subtitle>

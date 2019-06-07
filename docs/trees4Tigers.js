@@ -38768,7 +38768,7 @@ var LevelTwo = function LevelTwo(_ref) {
   }, _react.default.createElement(_Card.default.Img, {
     id: "cub",
     variant: "top",
-    src: "/assets/images/amurTigerCub01Round.jpg"
+    src: "/styles/assets/images/amurTigerCub01Round.jpg"
   }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement(_Card.default.Subtitle, null, "Tiger Cubs Running Free!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
     variant: "primary"
   }, "Vision")))), _react.default.createElement(_Col.default, {
