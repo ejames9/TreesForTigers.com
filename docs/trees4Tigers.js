@@ -38765,7 +38765,7 @@ var LevelTwo = function LevelTwo(_ref) {
       height: '100%',
       border: 'none'
     }
-  }, _react.default.createElement(_Card.default.Img, {
+  }, _react.default.createElement("img", {
     id: "cub",
     variant: "top",
     src: "./assets/images/amurTigerCub01Round.jpg"
