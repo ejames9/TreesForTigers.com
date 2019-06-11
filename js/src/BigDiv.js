@@ -19,17 +19,31 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Carousel from 'react-bootstrap/Carousel'
+// My components...
+import NoChopsticks from './NoChopsticks'
 
 
 // Component for holding level two layout...
 const BigDiv = styled.div`
-  position: relative;
-  height: ${props=> props.height}px;
+  position: absolute;
+  top: 100%;
+  height: auto;
   width: 100%;
   background: #797979;
+  overflow: hidden;
 
   div {
     background: #797979;
+  }
+
+  .card {
+    height: 100%;
+    width: 75%;
+    border: none;
+  }
+
+  .card .card-mid {
+    width: 100%;
   }
 
   .container-fluid .row .left {
@@ -45,6 +59,11 @@ const BigDiv = styled.div`
         color: #a1a1a1;
       }
     }
+
+    #cub {
+      border-radius: 5%;
+      border: .7rem solid #a1a1a1;
+    }
   }
 
   .container-fluid .row .middle {
@@ -53,7 +72,7 @@ const BigDiv = styled.div`
 
     .card-body {
       position: relative;
-      top: .5rem;
+      top: -3.5rem;
       padding-top: 0;
 
       .card-subtitle {
@@ -61,7 +80,10 @@ const BigDiv = styled.div`
         font-weight: 400;
         color: #a1a1a1;
       }
+    }
 
+    #logo {
+      visibility: visible;
     }
   }
 
@@ -73,6 +95,7 @@ const BigDiv = styled.div`
       position: relative;
       top: -.5rem;
       padding-top: 0;
+      margin-top: 1.3rem;
 
       .card-subtitle {
         font-size: 1.2rem;
@@ -93,55 +116,519 @@ const BigDiv = styled.div`
   .container-fluid .row .right,
   .container-fluid .row .middle {
     background: #797979;
-    padding-top: 5rem;
+    padding: 5rem 1rem 0;
 
     .card-body {
       font-family: telex, -apple-system;
     }
   }
 
-  #cub {
-    border-radius: 5%;
-    border: .7rem solid #a1a1a1;
+/********* Target iphone5/SE ********/
+  @media (min-width: 300px) {
+    .container-fluid .row .left,
+    .container-fluid .row .right,
+    .container-fluid .row .middle {
+      div.card {
+        transform: scale(.9)
+      }
+
+      .card-body {
+        width: 130%;
+      }
+    }
+
+    .container-fluid .row .right {
+      .card-body {
+        margin-top: .5rem;
+      }
+    }
+
+    .container-fluid .row .middle {
+      .card-title {
+        font-size: 1.7rem;
+      }
+      .card-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+/********* Target iPhone 6/7/8 ********/
+  @media (min-width: 360px) {
+    .container-fluid .row .left,
+    .container-fluid .row .right,
+    .container-fluid .row .middle {
+      div.card {
+        transform: scale(1)
+      }
+
+      .card-body {
+        width: 100%;
+      }
+    }
+    .container-fluid .row .middle {
+      div.card {
+        margin: 0 auto;
+        .card-body {
+          margin-top: 2.5rem;
+        }
+      }
+    }
+    .container-fluid .row .right {
+      div.card {
+        position: relative;
+        bottom: 3rem;
+      }
+    }
   }
 
-  #chopsticks {
-    border-radius: 50%;
-    border: 1.5rem solid #dd3d32;
-    box-shadow: 0px 0px 0px .12rem black;
+/********* Target iPhone X ********/
+  @media (min-width: 360px) and (min-height: 675px){
+    .container-fluid .row .left,
+    .container-fluid .row .right,
+    .container-fluid .row .middle {
+      height: 100%
+    }
+    .container-fluid .row .middle {
+      .card-body {
+        margin-top: 3rem;
+      }
+    }
   }
 
-  #ban {
-    position: relative;
-    top: -12.0rem;
-    left: 1rem;
-    height: 2.5rem;
-    width: 18.75rem;
-    background: #dd3d32;
-    transform: rotate(45deg);
+/********* Target iPhone 6/7/8 plus ********/
+  @media (min-width: 410px)
+    and (orientation: portrait) {
+    .container-fluid .row .left {
+      bottom: 1rem;
+    }
+    .container-fluid .row .right {
+      bottom: 1.3rem;
+    }
+    .container-fluid .row .middle {
+      bottom: 2.3rem;
+    }
+  }
+/* *** Target iPhone SE LandScape *** */
+  @media (min-width: 560px)
+    and (orientation: landscape) {
+    .container-fluid .row .left,
+    .container-fluid .row .middle,
+    .container-fluid .row .right {
+      height: 100%;
+      width: 100%;
+
+      div.card {
+        width: 100%;
+        margin: 0 .5rem;
+        padding-top: 1rem;
+        padding-right: 0;
+        margin-right: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+
+        .card-body {
+          flex: 1 1 2;
+        }
+        p.card-text {
+          margin-bottom: .5rem;
+        }
+      }
+    }
+    .container-fluid .row .left {
+      div.card {
+        #cub {
+          height: 40%;
+          width: 40%;
+          flex: 1;
+        }
+      }
+    }
+    .container-fluid .row .middle {
+      #logo {
+        position: relative;
+        bottom: 4.3rem;
+        height: 50%;
+        width: 50%;
+        flex: 1;
+      }
+      .card-body {
+        max-width: 50%;
+      }
+    }
+    .container-fluid .row .right {
+      .card-body {
+        margin-left: 1.2rem;
+      }
+    }
+
   }
 
-  #carousel {
-    width: 100%;
+/* Media Queries */
+  @media (min-width: 576px) {
+    .container-fluid .row .left,
+    .container-fluid .row .middle,
+    .container-fluid .row .right {
+      padding-top: 7rem;
+
+      .card-body {
+        padding: 0;
+      }
+      .card-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    .container-fluid .row .middle {
+      padding-top: 14rem;
+
+      /* #logo {
+        visibility: hidden;
+      } */
+      .card-body {
+        .card-subtitle {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .container-fluid .row .left {
+      .card-body {
+        padding-top: 2rem;
+      }
+    }
+  }
+/* *** Target iPhone 6/7/8 LandScape *** */
+  @media (min-width: 660px)
+    and (orientation: landscape) {
+      .container-fluid .row .left {
+        div.card {
+          .card-body {
+            margin-left: 1.5rem;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        div.card {
+          #logo {
+            order: 2;
+          }
+          .card-body {
+            order: 1;
+            left: 1rem;
+          }
+        }
+      }
   }
 
-  #carousel img {
-    height: 100%;
-    width: 100%;
+/* *** Target iPhone 6/7/8 plus LandScape *** */
+  @media (min-width: 735px) {
+    /** Noting Yet **/
+  }
+
+  @media (min-width: 735px) {
+    .container-fluid .row .left,
+    .container-fluid .row .right {
+      padding-top: 5.7rem;
+    }
+    .container-fluid .row .middle {
+      .card-body {
+        top: -5rem;
+      }
+    }
+  }
+
+/* *** Targeting iPad *** */
+  @media (min-width: 760px)
+    and (orientation: portrait) {
+      .container-fluid .row .left,
+      .container-fluid .row .middle,
+      .container-fluid .row .right {
+        height: 100%;
+        width: 100%;
+
+        div.card {
+          width: 100%;
+          margin: 0 .5rem;
+          padding-top: 1rem;
+          padding-right: 0;
+          margin-right: 0;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+
+          .card-body {
+            flex: 1 1 2;
+          }
+          /* p.card-text {
+            margin-bottom: .5rem;
+          } */
+        }
+      }
+      .container-fluid .row .left {
+        div.card {
+          #cub {
+            height: 40%;
+            width: 40%;
+            flex: 1;
+          }
+          .card-body {
+            margin-left: 2rem;
+            align-self: center;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        margin-top: 2rem;
+        padding-top: 2rem;
+
+        div.card {
+          #logo {
+            position: relative;
+            bottom: 4.3rem;
+            height: 50%;
+            width: 50%;
+            flex: 1;
+            order: 2;
+          }
+          .card-body {
+            max-width: 50%;
+            align-self: center;
+            order: 1;
+          }
+        }
+      }
+      .container-fluid .row .right {
+        padding-top: 0;
+
+        div.card {
+          #cub {
+            margin-bottom: 2rem;
+          }
+          .card-body {
+            margin-left: 1.2rem;
+          }
+        }
+
+      }
+
+    }
+  }
+
+/* *** Target iPhone X LandScape *** */
+  @media (min-width: 800px)
+    and (orientation: landscape) {
+      .container-fluid .row .left {
+        div.card {
+          #cub {
+            height: 30%;
+            width: 30%;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        div.card {
+          #logo {
+            transform: scale(.8);
+          }
+          .card-body {
+            top: -1rem;
+          }
+        }
+      }
+  }
+
+  @media (min-width: 800px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -6.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 910px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -5.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 950px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -6.5rem;
+      }
+    }
+  }
+
+/* Change to single row level two */
+  @media (min-width: 992px) {
+    height: ${props=> props.divHeight}px;
+  }
+
+  @media (min-width: 1000px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -7.5rem;
+      }
+    }
+  }
+
+/* *** Targeting iPad *** */
+  @media (min-width: 1020px)
+    and (orientation: landscape) {
+      .container-fluid .row .left,
+      .container-fluid .row .middle,
+      .container-fluid .row .right {
+        height: 100%;
+        background: transparent;
+
+        div.card {
+          display: block;
+
+          .card-body {
+
+          }
+        }
+      }
+      .container-fluid .row .left {
+        width: 75%;
+        padding-top: 3.3rem;
+
+        div.card {
+          #cub {
+            width: 90%;
+          }
+          .card-body {
+            max-width: 100%;
+          }
+        }
+      }
+      .container-fluid .row .right {
+        width: 75%;
+
+        div.card {
+          position: relative;
+          top: .5rem;
+
+          .card-body {
+            margin-top: -2rem;
+            max-width: 90%;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        width: 100%;
+        padding-top: 2rem;
+
+        div.card {
+          position: relative;
+          bottom: 1.5rem;
+          #logo {
+            position: relative;
+            width: 150%;
+            right: 5.5rem;
+            visibility: hidden;
+          }
+          .card-body {
+            position: relative;
+            bottom: 8rem;
+            margin-top: -5.5rem;
+            min-width: 100%;
+          }
+        }
+      }
+  }
+
+  @media (min-width: 1075px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -8.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 1130px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -10rem;
+      }
+    }
+  }
+
+  @media (min-width: 1215px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -11rem;
+      }
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .container-fluid .row .left,
+    .container-fluid .row .middle,
+    .container-fluid .row .right {
+      .card-title {
+        font-size: 2rem;
+      }
+      .card-body {
+        .card-subtitle {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .container-fluid .row .left,
+    .container-fluid .row .right {
+      padding-top: 3.7rem;
+    }
+    .container-fluid .row .middle {
+      .card-body {
+        top: -11.8rem;
+      }
+    }
+  }
+
+  @media (min-width: 1330px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -12.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 1360px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -13.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 1410px) {
+    .container-fluid .row .middle {
+      .card-body {
+        top: -10.5rem;
+      }
+    }
+    .container-fluid .row .left,
+    .container-fluid .row .right {
+      padding-top: 7rem;
+    }
   }
 `
 
 // Level two markup....
-const LevelTwo =({height})=>
+const LevelTwo =({divHeight})=>
   <React.Fragment>
-    <BigDiv height={height}>
+    <BigDiv id='levelTwo' divHeight={divHeight}>
       <Container fluid>
         <Row id='row'>
-          <Col className='left'>
-            <Card style={{width: '75%', height: '100%', border: 'none'}}>
+          <Col className='left' lg='4'>
+            <Card>
               <Card.Img id='cub' variant="top" src="./assets/images/amurTigerCub01Round.jpg" />
               <Card.Body>
-                <h3>Our Vision</h3>
+                <h3 className='card-title'>Our Vision</h3>
                 <Card.Subtitle>Tiger Cubs Running Free!</Card.Subtitle>
                 <Card.Text>
                   Some quick example text to build on the card title and make up the bulk of
@@ -151,11 +638,11 @@ const LevelTwo =({height})=>
               </Card.Body>
             </Card>
           </Col>
-          <Col className='middle'>
-            <Card.Img style={{visibility: 'hidden'}} variant="top" src="./assets/images/amurTigerCub01Round.jpg" />
-            <Card style={{width: '100%', border: 'none'}}>
+          <Col className='middle' lg='4'>
+            <Card className='card-mid'>
+              <Card.Img id='logo' variant="top" src="./assets/images/trees4TigersLogo.svg" />
               <Card.Body>
-                <h1>Trees for Tigers</h1>
+                <h1 className='card-title'>Trees for Tigers</h1>
                 <Card.Subtitle>Join our Solution!</Card.Subtitle>
                 <Card.Text>
                   Some quick example text to build on the card title and make up the bulk of
@@ -165,14 +652,11 @@ const LevelTwo =({height})=>
               </Card.Body>
             </Card>
           </Col>
-          <Col className='right'>
-          <Card style={{width: '75%', border: 'none'}}>
-            <div>
-              <Card.Img id='chopsticks' variant="top" src="./assets/images/chopsticks02.jpg" />
-              <div id="ban"></div>
-            </div>
+          <Col className='right' lg='4'>
+          <Card>
+            <NoChopsticks id='noChopsticks'/>
             <Card.Body>
-              <h3>The Challenge</h3>
+              <h3 className='card-title'>The Challenge</h3>
               <Card.Subtitle>Disposable Chopsticks!</Card.Subtitle>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of

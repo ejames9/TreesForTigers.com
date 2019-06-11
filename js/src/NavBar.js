@@ -10,7 +10,7 @@
 // Get React...
 import React from 'react'
 // Get sc component styling...
-import styled from 'styled-components'
+import css, {createGlobalStyle} from 'styled-components'
 // Get react-bootstrap....
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -21,18 +21,14 @@ import Nav from 'react-bootstrap/Nav'
 const trees4TigersLogo = './assets/images/trees4TigersLogo.svg'
 
 // Component styling...
-const NavbarContainer = styled.nav`
-  height: auto;
-  width: 100%;
-  position: fixed;
-  z-index: 999;
-
+const NavbarStyles = createGlobalStyle`
   .navbar {
     background: transparent;
     backdrop-filter: blur(8px) saturate(150%);
     border-bottom: .0625rem solid #dedede;
     padding-top: 0;
     padding-bottom: 0;
+    z-index: 999;
   }
 
   .navbar-collapse {
@@ -47,17 +43,77 @@ const NavbarContainer = styled.nav`
     padding-right: 1rem;
     margin-right: 2rem;
   }
-
+/* Navbar Links */
   a.nav-link {
-    color: #dedede !important;
+    color: black !important;
+    text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;
+    opacity: .6;
+  }
+  a.nav-link:hover {
+    opacity: 1;
   }
 
   a.navbar-brand {
-    font-family: Sacramento, just another hand, covered by your grace;
-    font-size: 2.2rem;
+    height: 5rem;
+    width: 5rem;
     padding: 0;
-    color: #dedede;
+/* Logo Text */
+    span {
+      font-family: Sacramento, just another hand, covered by your grace;
+      font-size: 2.2rem;
+      color: black;
+      text-shadow: 0 -6px 10px white, 0 6px 10px white, 6px 0 10px white, -6px 0 10px white;
+    }
+    span:hover {
+      color: #dedede;
+      /* text-shadow: 0 -6px 10px black, 0 6px 10px black, 6px 0 10px black, -6px 0 10px black; */
+    }
   }
+/* ***** Targeting iPhone 5/SE ***** */
+  @media (min-width: 300px) {
+    padding-right: 0rem;
+    padding-left: 0rem;
+
+    a.navbar-brand {
+      position: relative;
+      top: 1rem;
+      span {
+        font-size: 1.7rem;
+      }
+      #navLogo {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+  }
+/* ***** Targeting iPhone 6/7/8 and plus ***** */
+  @media (min-width: 360px) {
+    a.navbar-brand {
+      align-self: center;
+      top: 0.3rem;
+
+      #navLogo {
+        height: 4.5rem;
+        width: 4.5rem;
+      }
+    }
+  }
+/* ***** Targeting iPad ***** */
+  @media (min-width: 760px) {
+      a.navbar-brand {
+        align-self: center;
+        top: 0rem;
+
+        span {
+          font-size: 2.2rem
+        }
+
+        #navLogo {
+          height: 5rem;
+          width: 5rem;
+        }
+      }
+    }
 `
 
 
@@ -76,16 +132,16 @@ class NavBar extends React.Component {
 // Render method...
   render() {
     return (
-      <NavbarContainer>
-        <Navbar expand='md'>
+      <React.Fragment>
+        <NavbarStyles/>
+        <Navbar expand='xl' fixed='top'>
           <Navbar.Brand href='#home'>
             <img
+              id='navLogo'
               src={trees4TigersLogo}
-              height='90'
-              width='90'
               alt='Trees 4 tigers logo.'
             />
-            {' Trees For Tigers'}
+            <span> Trees For Tigers</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
@@ -104,7 +160,7 @@ class NavBar extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </NavbarContainer>
+      </React.Fragment>
     )
   }
 }

@@ -31581,7 +31581,285 @@ DecoratedCarousel.Item = _CarouselItem.default;
 var _default = DecoratedCarousel;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard.js","@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../../node_modules/@babel/runtime/helpers/inheritsLoose.js","classnames":"../../node_modules/classnames/index.js","dom-helpers/style":"../../node_modules/dom-helpers/style/index.js","dom-helpers/transition":"../../node_modules/dom-helpers/transition/index.js","react":"../../node_modules/react/index.js","uncontrollable":"../../node_modules/uncontrollable/index.js","./CarouselCaption":"../../node_modules/react-bootstrap/CarouselCaption.js","./CarouselItem":"../../node_modules/react-bootstrap/CarouselItem.js","./SafeAnchor":"../../node_modules/react-bootstrap/SafeAnchor.js","./utils/ElementChildren":"../../node_modules/react-bootstrap/utils/ElementChildren.js","./utils/triggerBrowserReflow":"../../node_modules/react-bootstrap/utils/triggerBrowserReflow.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js"}],"T4TLogo.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard.js","@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../../node_modules/@babel/runtime/helpers/inheritsLoose.js","classnames":"../../node_modules/classnames/index.js","dom-helpers/style":"../../node_modules/dom-helpers/style/index.js","dom-helpers/transition":"../../node_modules/dom-helpers/transition/index.js","react":"../../node_modules/react/index.js","uncontrollable":"../../node_modules/uncontrollable/index.js","./CarouselCaption":"../../node_modules/react-bootstrap/CarouselCaption.js","./CarouselItem":"../../node_modules/react-bootstrap/CarouselItem.js","./SafeAnchor":"../../node_modules/react-bootstrap/SafeAnchor.js","./utils/ElementChildren":"../../node_modules/react-bootstrap/utils/ElementChildren.js","./utils/triggerBrowserReflow":"../../node_modules/react-bootstrap/utils/triggerBrowserReflow.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js"}],"../../node_modules/clivi/index.js":[function(require,module,exports) {
+"use strict";
+
+var names = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
+var namesBright = names.map(function(name) { return name + 'Bright'; });
+var namesStyle = ['bold', 'dim', 'underline', 'blink', null, 'invert', 'hidden'];
+
+var RESET = '\x1b[0m';
+
+var Colors = {
+	fg: {},
+	bg: {},
+	style: {},
+};
+
+// generate foreground normal colors
+for (var i in names) {
+	Colors.fg[names[i]] = +i + 30;
+}
+// generate foreground bright colors
+for (var i in namesBright) {
+	Colors.fg[namesBright[i]] = +i + 90;
+}
+
+// generate background normal colors
+for (var i in names) {
+	Colors.bg[names[i]] = +i + 40;
+}
+// generate background bright colors
+for (var i in namesBright) {
+	Colors.bg[namesBright[i]] = +i + 100;
+}
+
+// generate style attributes
+for (var i in namesStyle) {
+	if (!namesStyle[i])
+		continue;
+	Colors.style[namesStyle[i]] = +i + 1;
+}
+
+function formatColor(color) {
+	color = color || {};
+	var fg = Colors.fg[color.fg] || 39;
+	var bg = Colors.bg[color.bg] || 49;
+	var style = Colors.style[color.style] || 0;
+
+//	var code = '\x1b';
+
+	return '\x1b[' + style + ';' + fg + ';' + bg + 'm';
+}
+
+function colorize(str, colors) {
+	if (!str || typeof colors !== 'object')
+		return str;
+
+	return formatColor(colors) + str + RESET;
+}
+module.exports = colorize;
+module.exports.colors = Colors;
+module.exports.names = names.concat(namesBright);
+module.exports.styles = namesStyle.filter(function (name) { return !!name; });
+
+},{}],"utils/Loggers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.dir = exports.err = exports.error = exports.warn = exports.info = exports.log = void 0;
+
+var _clivi = _interopRequireDefault(require("clivi"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+Logger.js
+
+This file contains the code for the various logging functions
+of the library.
+
+Author: Eric James Foster
+License: ISC
+*/
+//Console.log alias function.
+var log = function log(text, style, tyme) {
+  var colr = Array.isArray(style) ? style[0] : style,
+      styl = Array.isArray(style) ? style[1] : null,
+      tym = tyme || false;
+  var time = new Date(),
+      hours = time.getHours(),
+      mins = time.getMinutes(),
+      secs = time.getSeconds();
+
+  if (secs <= 9) {
+    secs = '0' + String(secs);
+  }
+
+  if (mins <= 9) {
+    mins = '0' + String(mins);
+  }
+
+  var abbr = hours >= 12 ? 'pm' : 'am';
+  var stan = hours >= 13 ? hours - 12 : hours;
+
+  if (stan === 0) {
+    hours = stan + 12;
+  } else {
+    hours = stan;
+  }
+
+  time = hours + ':' + mins + ':' + secs + abbr;
+  var t = tym ? time : '';
+
+  if (typeof document === 'undefined') {
+    return console.log((0, _clivi.default)(text, {
+      fg: colr,
+      style: styl
+    }) + '   '.repeat(10) + t);
+  } else {
+    var color = colr,
+        bgColor = styl,
+        css = 'background: ' + bgColor + '; color: ' + color;
+    return console.log('%c' + text + '%s', css, '   '.repeat(10) + t);
+  }
+}; //Console.error alias function.
+
+
+exports.log = log;
+
+var err = function err(text, tyme) {
+  var colr = 'red',
+      styl = 'bold',
+      tym = tyme || false;
+  var time = new Date(),
+      hours = time.getHours(),
+      mins = time.getMinutes(),
+      secs = time.getSeconds();
+
+  if (secs <= 9) {
+    secs = '0' + String(secs);
+  }
+
+  if (mins <= 9) {
+    mins = '0' + String(mins);
+  }
+
+  var abbr = hours >= 12 ? 'pm' : 'am';
+  var stan = hours >= 13 ? hours - 12 : hours;
+
+  if (stan === 0) {
+    hours = stan + 12;
+  } else {
+    hours = stan;
+  }
+
+  time = hours + ':' + mins + ':' + secs + abbr;
+  var t = tym ? time : '';
+
+  if (typeof document === 'undefined') {
+    return console.log((0, _clivi.default)(text, {
+      fg: colr,
+      style: styl
+    }) + '   '.repeat(10) + t);
+  } else {
+    var color = colr,
+        bgColor = '',
+        css = 'background: ' + bgColor + '; color: ' + color;
+    return console.error('%c' + text + '%s', css, '   '.repeat(10) + t);
+  }
+}; //Console.error alias function.
+
+
+exports.err = err;
+
+var error = function error(text) {
+  return console.error(text);
+}; //Console.info alias function.
+
+
+exports.error = error;
+
+var info = function info(text, tyme) {
+  var colr = '#008cff',
+      styl = 'bold',
+      tym = tyme || false;
+  var time = new Date(),
+      hours = time.getHours(),
+      mins = time.getMinutes(),
+      secs = time.getSeconds();
+
+  if (secs <= 9) {
+    secs = '0' + String(secs);
+  }
+
+  if (mins <= 9) {
+    mins = '0' + String(mins);
+  }
+
+  var abbr = hours >= 12 ? 'pm' : 'am';
+  var stan = hours >= 13 ? hours - 12 : hours;
+
+  if (stan === 0) {
+    hours = stan + 12;
+  } else {
+    hours = stan;
+  }
+
+  time = hours + ':' + mins + ':' + secs + abbr;
+  var t = tym ? time : '';
+
+  if (typeof document === 'undefined') {
+    colr = 'blueBright';
+    return console.log((0, _clivi.default)(text, {
+      fg: colr,
+      style: styl
+    }) + '   '.repeat(10) + t);
+  } else {
+    var color = colr,
+        bgColor = '',
+        css = 'background: ' + bgColor + '; color: ' + color;
+    return console.info('%c' + text + '%s', css, '   '.repeat(10) + t);
+  }
+}; //Console.warn alias function.
+
+
+exports.info = info;
+
+var warn = function warn(text, tyme) {
+  var colr = 'orange',
+      styl = 'bold',
+      tym = tyme || false;
+  var time = new Date(),
+      hours = time.getHours(),
+      mins = time.getMinutes(),
+      secs = time.getSeconds();
+
+  if (secs <= 9) {
+    secs = '0' + String(secs);
+  }
+
+  if (mins <= 9) {
+    mins = '0' + String(mins);
+  }
+
+  var abbr = hours >= 12 ? 'pm' : 'am';
+  var stan = hours >= 13 ? hours - 12 : hours;
+
+  if (stan === 0) {
+    hours = stan + 12;
+  } else {
+    hours = stan;
+  }
+
+  time = hours + ':' + mins + ':' + secs + abbr;
+  var t = tym ? time : '';
+
+  if (typeof document === 'undefined') {
+    colr = 'yellow';
+    colr = 'blueBright';
+    return console.log((0, _clivi.default)(text, {
+      fg: colr,
+      style: styl
+    }) + '   '.repeat(10) + t);
+  } else {
+    var color = colr,
+        bgColor = '',
+        css = 'background: ' + bgColor + '; color: ' + color;
+    return console.warn('%c' + text + '%s', css, '   '.repeat(10) + t);
+  }
+};
+
+exports.warn = warn;
+
+var dir = function dir(obj) {
+  return console.dir(obj);
+};
+
+exports.dir = dir;
+},{"clivi":"../../node_modules/clivi/index.js"}],"T4TLogo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31591,50 +31869,87 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Loggers = require("./utils/Loggers");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
-** T4TLogo.js
-**
-** T4TLogo.js is an SVG logo for the Trees4Tigers site, wrapped in
-** a react component....
-**
-** Eric James Foster, Fostware LLC, MIT License.
-***/
-var styles = {
-  position: 'fixed',
-  top: '12%',
-  right: 0,
-  left: 0,
-  margin: '0 auto',
-  height: '35rem',
-  width: '35rem',
-  opacity: .3,
-  backdropFilter: 'blur(10px)',
-  zIndex: 1
-};
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  svg {\n    display: none;\n    position: fixed;\n    top: 18%;\n    right: 0;\n    left: 0;\n    margin: 0 auto;\n    height: 50%;\n    width: 50%;\n    opacity: .3;\n    z-index: 1;\n  }\n\n  path {\n    fill: #dedede;\n  }\n\n  &.bottom path {\n    fill: black;\n  }\n\n  &.bottom svg {\n    filter: url(#shadow);\n  }\n\n  @media (min-width: 576px)\n    and (orientation: portrait) {\n    svg {\n      display: block;\n    }\n  }\n\n/* *** Target iPhone 6/7/8 LandScape *** */\n  @media (min-width: 660px)\n    and (orientation: landscape) {\n      svg {\n        display: none;\n      }\n  }\n\n/* ***** Targeting iPad ***** */\n  @media (min-width: 760px)\n    and (orientation: portrait) {\n      svg {\n        display: none;\n      }\n  }\n\n  @media (min-width: 910px) {\n    svg {\n      top: 16%;\n      height: 60%;\n      width: 60%;\n    }\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 1020px)\n    and (orientation: landscape) {\n      svg {\n        display: block;\n        top: 11.5%;\n        height: 57%;\n        width: 57%;\n      }\n  }\n\n  @media (min-width: 1300px) {\n    svg {\n      top: 12%;\n      height: 70%;\n      width: 70%;\n    }\n  }\n"]);
 
-var T4TLogo = function T4TLogo() {
-  return _react.default.createElement("div", null, _react.default.createElement("svg", {
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var LogoContainer = _styledComponents.default.div(_templateObject());
+
+var T4TLogo = function T4TLogo(_ref) {
+  var logoNode = _ref.logoNode;
+
+  // Create
+  var logo = _react.default.createRef(); // Send logo to App...
+
+
+  logoNode(logo);
+  (0, _Loggers.log)('#####################################-bottom-########################################', ['', '']);
+  (0, _Loggers.dir)(logo.current);
+  return _react.default.createElement(LogoContainer, {
+    ref: logo
+  }, _react.default.createElement("svg", {
     id: "tigerLogo",
-    style: styles,
     xmlns: "http://www.w3.org/2000/svg",
     xmlnsXlink: "http://www.w3.org/1999/xlink",
     viewBox: "0, 0, 400,419.44444444444446"
-  }, _react.default.createElement("g", {
+  }, _react.default.createElement("filter", {
+    id: "shadow",
+    x: "0",
+    y: "0",
+    width: "200%",
+    height: "200%"
+  }, _react.default.createElement("feDropShadow", {
+    dx: "5",
+    dy: "0",
+    stdDeviation: "5",
+    floodColor: "white",
+    floodOpacity: "2"
+  }), _react.default.createElement("feDropShadow", {
+    dx: "-5",
+    dy: "0",
+    stdDeviation: "5",
+    floodColor: "white",
+    floodOpacity: "2"
+  }), _react.default.createElement("feDropShadow", {
+    dx: "0",
+    dy: "5",
+    stdDeviation: "5",
+    floodColor: "white",
+    floodOpacity: "2"
+  }), _react.default.createElement("feDropShadow", {
+    dx: "0",
+    dy: "-5",
+    stdDeviation: "5",
+    floodColor: "white",
+    floodOpacity: "2"
+  })), _react.default.createElement("g", {
     id: "g"
   }, _react.default.createElement("path", {
     id: "path",
     d: "M176.998 32.901 C 172.653 34.617,173.221 35.990,181.673 44.181 C 186.965 49.310,192.782 57.096,194.599 61.483 L 197.902 69.459 205.475 57.646 C 209.640 51.149,215.708 43.479,218.959 40.601 C 222.209 37.723,224.200 34.286,223.382 32.962 C 220.284 27.950,211.051 30.862,205.277 38.672 L 199.276 46.788 192.447 38.672 C 185.191 30.049,184.689 29.862,176.998 32.901 M144.856 41.354 C 141.853 43.257,142.177 44.500,146.475 47.561 C 159.760 57.023,189.054 105.231,195.480 128.206 C 197.047 133.808,198.334 132.200,204.656 116.744 C 215.349 90.599,228.376 69.766,242.843 55.672 C 257.219 41.667,258.267 38.889,249.175 38.889 C 239.133 38.889,220.176 60.643,204.747 89.873 L 197.630 103.356 191.491 91.261 C 172.717 54.278,154.770 35.071,144.856 41.354 M57.639 53.000 C 39.083 63.808,42.161 105.556,61.514 105.556 C 67.019 105.556,67.017 105.488,61.313 98.237 C 47.905 81.191,58.205 56.672,75.166 65.261 C 121.531 88.740,124.302 124.425,81.449 146.176 C 50.564 161.853,38.854 174.214,39.018 190.969 L 39.148 204.167 45.836 191.325 C 54.132 175.400,64.227 166.756,87.216 155.894 C 114.622 142.946,124.742 126.485,120.929 101.059 C 117.063 75.277,74.665 43.083,57.639 53.000 M261.212 63.045 C 224.677 104.551,211.338 166.111,227.323 219.444 C 237.172 252.305,237.239 255.642,228.013 253.797 C 223.170 252.828,216.048 254.129,209.700 257.141 C 200.608 261.456,198.231 261.601,190.629 258.311 C 185.852 256.244,177.257 254.526,171.528 254.495 C 159.137 254.426,158.809 252.683,166.422 227.376 C 178.698 186.576,180.004 170.689,173.579 140.357 C 164.278 96.447,127.940 42.430,115.841 54.529 C 114.878 55.492,120.186 63.119,127.636 71.479 C 143.783 89.595,156.576 114.482,162.363 139.036 C 169.105 167.637,167.879 181.788,154.227 232.974 C 146.532 261.824,153.723 278.376,179.983 292.260 C 201.000 303.371,191.108 318.056,162.605 318.056 C 115.399 318.056,113.871 289.697,155.673 189.453 C 164.950 167.205,137.960 145.560,119.540 160.475 C 109.218 168.834,125.463 196.859,136.629 189.958 C 143.003 186.019,140.456 199.049,128.966 229.167 C 104.659 292.879,107.200 310.632,143.038 327.478 C 149.923 330.714,155.556 334.509,155.556 335.912 C 155.556 341.679,171.459 356.759,182.860 361.802 C 205.580 371.852,232.806 362.728,245.734 340.730 C 249.565 334.212,256.290 327.519,261.149 325.390 C 288.893 313.233,291.034 285.650,268.574 229.751 L 253.183 191.447 261.119 189.859 C 276.633 186.757,286.424 169.758,277.715 161.048 C 269.542 152.875,256.711 153.973,247.009 163.675 C 235.899 174.784,236.370 177.971,256.944 230.969 C 275.900 279.797,276.812 283.746,272.037 296.347 C 262.561 321.358,226.609 329.771,209.586 310.960 C 202.972 303.652,205.990 298.382,222.229 288.885 C 246.339 274.784,250.523 257.475,238.807 220.296 C 222.040 167.089,233.791 110.373,269.728 71.052 C 282.958 56.576,285.061 50.000,276.461 50.000 C 274.389 50.000,267.527 55.870,261.212 63.045 M311.111 57.114 C 263.183 84.674,261.893 129.374,308.333 153.367 C 329.654 164.382,344.399 177.681,354.064 194.614 L 359.517 204.167 360.527 196.229 C 362.825 178.183,347.431 160.540,316.010 145.208 C 278.306 126.810,275.338 98.403,308.345 71.853 C 333.238 51.828,352.805 69.197,336.142 96.528 C 329.203 107.908,335.395 109.302,345.960 98.737 C 369.637 75.060,340.475 40.228,311.111 57.114 M312.500 83.911 C 299.092 91.600,295.271 111.526,305.440 120.729 C 309.664 124.551,351.155 144.444,354.904 144.444 C 363.057 144.444,343.932 127.011,329.929 121.678 C 308.921 113.677,304.903 103.177,317.883 90.198 C 328.010 80.071,325.107 76.680,312.500 83.911 M72.222 84.579 C 72.222 85.264,75.406 89.261,79.298 93.460 C 90.647 105.705,87.811 113.702,68.916 122.740 C 54.715 129.533,47.222 136.791,47.222 143.754 C 47.222 149.511,92.949 123.535,95.479 116.340 C 98.776 106.965,95.923 96.038,88.331 88.966 C 83.046 84.041,72.222 81.094,72.222 84.579 M143.104 171.279 C 147.377 175.551,147.380 176.080,143.153 178.445 C 137.880 181.396,123.769 173.683,126.464 169.322 C 129.041 165.153,138.036 166.210,143.104 171.279 M269.444 170.736 C 269.444 175.963,260.034 181.034,254.368 178.860 C 249.136 176.852,248.858 174.475,253.333 170.000 C 258.065 165.268,269.444 165.788,269.444 170.736 M301.852 174.074 C 297.744 178.181,300.564 182.968,311.583 190.594 C 325.808 200.440,340.464 222.731,345.569 242.287 C 349.497 257.333,350.961 256.470,353.958 237.337 C 356.624 220.324,310.997 164.929,301.852 174.074 M72.470 190.276 C 54.107 209.692,46.126 226.960,48.640 241.839 C 51.363 257.952,54.107 257.186,57.805 239.282 C 61.713 220.362,73.393 200.849,87.043 190.438 C 93.016 185.882,96.293 181.367,95.371 178.963 C 92.686 171.966,87.244 174.654,72.470 190.276 M86.834 221.549 C 70.630 245.325,63.718 271.044,69.890 284.592 C 74.802 295.371,77.771 293.086,77.844 278.472 C 77.920 263.194,87.176 238.850,98.608 223.863 C 105.147 215.289,105.851 213.000,102.582 210.932 C 96.681 207.197,96.559 207.279,86.834 221.549 M298.173 212.641 C 297.244 215.060,299.029 219.629,302.243 223.058 C 311.518 232.958,321.963 258.486,323.960 276.136 C 326.156 295.543,333.388 291.550,333.267 270.997 C 333.116 245.092,304.182 196.981,298.173 212.641 M184.559 268.144 C 191.584 273.458,200.319 273.305,212.153 267.661 C 222.977 262.500,233.211 264.287,228.100 270.445 C 222.402 277.310,197.381 291.394,195.704 288.680 C 194.795 287.209,187.890 282.883,180.359 279.067 C 172.828 275.251,166.667 271.108,166.667 269.861 C 166.667 262.990,176.497 262.047,184.559 268.144 M224.306 330.682 C 238.364 334.886,238.674 336.239,227.696 345.476 C 211.825 358.830,188.894 357.580,173.855 342.542 C 165.453 334.140,164.764 330.573,171.528 330.510 C 174.201 330.485,181.389 327.569,187.500 324.031 C 198.165 317.857,198.890 317.790,205.556 322.375 C 209.375 325.001,217.812 328.740,224.306 330.682 ",
     stroke: "none",
-    fill: "#ffffff",
+    fill: "black",
     fillRule: "evenodd"
   }))));
 };
 
 var _default = T4TLogo;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js"}],"../../node_modules/react-bootstrap/NavbarBrand.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils/Loggers":"utils/Loggers.js"}],"../../node_modules/react-bootstrap/NavbarBrand.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -38594,13 +38909,15 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Navbar = _interopRequireDefault(require("react-bootstrap/Navbar"));
 
 var _NavDropdown = _interopRequireDefault(require("react-bootstrap/NavDropdown"));
 
 var _Nav = _interopRequireDefault(require("react-bootstrap/Nav"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38623,7 +38940,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  height: auto;\n  width: 100%;\n  position: fixed;\n  z-index: 999;\n\n  .navbar {\n    background: transparent;\n    backdrop-filter: blur(8px) saturate(150%);\n    border-bottom: .0625rem solid #dedede;\n    padding-top: 0;\n    padding-bottom: 0;\n  }\n\n  .navbar-collapse {\n    display: flex;\n    justify-content: flex-end;\n    margin-left: 4rem;\n  }\n\n  a {\n    font-size: 1.35rem;\n    font-family: telex, reem kufi;\n    padding-right: 1rem;\n    margin-right: 2rem;\n  }\n\n  a.nav-link {\n    color: #dedede !important;\n  }\n\n  a.navbar-brand {\n    font-family: Sacramento, just another hand, covered by your grace;\n    font-size: 2.2rem;\n    padding: 0;\n    color: #dedede;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  .navbar {\n    background: transparent;\n    backdrop-filter: blur(8px) saturate(150%);\n    border-bottom: .0625rem solid #dedede;\n    padding-top: 0;\n    padding-bottom: 0;\n    z-index: 999;\n  }\n\n  .navbar-collapse {\n    display: flex;\n    justify-content: flex-end;\n    margin-left: 4rem;\n  }\n\n  a {\n    font-size: 1.35rem;\n    font-family: telex, reem kufi;\n    padding-right: 1rem;\n    margin-right: 2rem;\n  }\n/* Navbar Links */\n  a.nav-link {\n    color: black !important;\n    text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;\n    opacity: .6;\n  }\n  a.nav-link:hover {\n    opacity: 1;\n  }\n\n  a.navbar-brand {\n    height: 5rem;\n    width: 5rem;\n    padding: 0;\n/* Logo Text */\n    span {\n      font-family: Sacramento, just another hand, covered by your grace;\n      font-size: 2.2rem;\n      color: black;\n      text-shadow: 0 -6px 10px white, 0 6px 10px white, 6px 0 10px white, -6px 0 10px white;\n    }\n    span:hover {\n      color: #dedede;\n      /* text-shadow: 0 -6px 10px black, 0 6px 10px black, 6px 0 10px black, -6px 0 10px black; */\n    }\n  }\n/* ***** Targeting iPhone 5/SE ***** */\n  @media (min-width: 300px) {\n    padding-right: 0rem;\n    padding-left: 0rem;\n\n    a.navbar-brand {\n      position: relative;\n      top: 1rem;\n      span {\n        font-size: 1.7rem;\n      }\n      #navLogo {\n        height: 3rem;\n        width: 3rem;\n      }\n    }\n  }\n/* ***** Targeting iPhone 6/7/8 and plus ***** */\n  @media (min-width: 360px) {\n    a.navbar-brand {\n      align-self: center;\n      top: 0.3rem;\n\n      #navLogo {\n        height: 4.5rem;\n        width: 4.5rem;\n      }\n    }\n  }\n/* ***** Targeting iPad ***** */\n  @media (min-width: 760px) {\n      a.navbar-brand {\n        align-self: center;\n        top: 0rem;\n\n        span {\n          font-size: 2.2rem\n        }\n\n        #navLogo {\n          height: 5rem;\n          width: 5rem;\n        }\n      }\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -38637,8 +38954,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 // T4T Logo ....
 var trees4TigersLogo = './assets/images/trees4TigersLogo.svg'; // Component styling...
 
-var NavbarContainer = _styledComponents.default.nav(_templateObject()); // Component definition....
-
+var NavbarStyles = (0, _styledComponents.createGlobalStyle)(_templateObject()); // Component definition....
 
 var NavBar =
 /*#__PURE__*/
@@ -38660,16 +38976,16 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(NavbarContainer, null, _react.default.createElement(_Navbar.default, {
-        expand: "md"
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(NavbarStyles, null), _react.default.createElement(_Navbar.default, {
+        expand: "xl",
+        fixed: "top"
       }, _react.default.createElement(_Navbar.default.Brand, {
         href: "#home"
       }, _react.default.createElement("img", {
+        id: "navLogo",
         src: trees4TigersLogo,
-        height: "90",
-        width: "90",
         alt: "Trees 4 tigers logo."
-      }), ' Trees For Tigers'), _react.default.createElement(_Navbar.default.Toggle, {
+      }), _react.default.createElement("span", null, " Trees For Tigers")), _react.default.createElement(_Navbar.default.Toggle, {
         "aria-controls": "basic-navbar-nav"
       }), _react.default.createElement(_Navbar.default.Collapse, {
         id: "basic-navbar-nav"
@@ -38703,7 +39019,51 @@ function (_React$Component) {
 
 var _default = NavBar;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Navbar":"../../node_modules/react-bootstrap/Navbar.js","react-bootstrap/NavDropdown":"../../node_modules/react-bootstrap/NavDropdown.js","react-bootstrap/Nav":"../../node_modules/react-bootstrap/Nav.js"}],"BigDiv.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Navbar":"../../node_modules/react-bootstrap/Navbar.js","react-bootstrap/NavDropdown":"../../node_modules/react-bootstrap/NavDropdown.js","react-bootstrap/Nav":"../../node_modules/react-bootstrap/Nav.js"}],"NoChopsticks.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  #chopsticks {\n    border-radius: 50%;\n    border: .9rem solid #dd3d32;\n    box-shadow: 0px 0px 0px .12rem black;\n  }\n\n  #ban {\n    position: relative;\n    top: -7.5rem;\n    right: 0;\n    left: 0;\n    margin: 0 auto;\n    height: .9rem;\n    width: 12.4rem;\n    background: #dd3d32;\n    transform: rotate(45deg);\n  }\n\n/********* Target iPhone 6/7/8 ********/\n  @media (min-width: 360px) {\n    #ban {\n      width: 14.5rem;\n      height: 1.2rem;\n      top: -8.7rem;\n    }\n  }\n\n/********* Target iPhone 6/7/8 ********/\n  @media (min-width: 410px) {\n    #ban {\n      top: -9.5rem;\n      width: 17.3rem;\n    }\n  }\n\n  @media (min-width: 520px) {\n    #ban {\n      width: 22rem;\n    }\n  }\n\n  @media (min-width: 533px) {\n    #ban {\n      top: -13rem;\n    }\n  }\n\n  @media (min-width: 550px) {\n    #ban {\n      top: -14rem;\n      width: 22.5rem\n    }\n  }\n/* *** Targeting iPhone 5/SE Landscape *** */\n  @media (min-width: 560px) and (max-height: 350px) {\n    height: 55%;\n    width: 55%;\n\n    #ban {\n      top: -6.5rem;\n      width: 10.8rem;\n    }\n  }\n\n  @media (min-width: 576px) {\n    #chopsticks {\n      border: .5rem solid #dd3d32;\n    }\n    #ban {\n      top: -4.0rem;\n      left: 0rem;\n      height: .5rem;\n      width: 7.5rem;\n    }\n  }\n\n  @media (min-width: 600px) {\n    #chopsticks {\n      border: .5rem solid #dd3d32;\n    }\n    #ban {\n      top: -4.3rem;\n      height: .5rem;\n      width: 7.6rem;\n    }\n  }\n\n  @media (min-width: 628px) {\n    #chopsticks {\n      border: .5rem solid #dd3d32;\n    }\n    #ban {\n      top: -4.7rem;\n      height: .5rem;\n      width: 8rem;\n    }\n  }\n\n/* *** Target iPhone 6/7/8 LandScape *** */\n  @media (min-width: 660px)\n    and (orientation: landscape) {\n      position: relative;\n      bottom: 3rem;\n      height: 40%;\n      width: 40%;\n\n      #chopsticks {\n        border: .8rem solid #dd3d32;\n      }\n      #ban {\n        top: -7.4rem;\n        height: .9rem;\n        width: 13.8rem;\n      }\n  }\n\n  @media (min-width: 665px)\n    and (orientation: portrait) {\n    #ban {\n      top: -5rem;\n      width: 8.7rem;\n    }\n  }\n\n  @media (min-width: 708px) {\n    #ban {\n      top: -5.3rem;\n      width: 8.9rem;\n    }\n  }\n\n  @media (min-width: 718px) {\n    #chopsticks {\n      border: .7rem solid #dd3d32;\n    }\n    #ban {\n      top: -5.3rem;\n      width: 9.5rem;\n      height: .7rem;\n    }\n  }\n\n/* *** Target iPhone 6/7/8 plus LandScape *** */\n  @media (min-width: 735px)\n    and (orientation: landscape) {\n      #chopsticks {\n        border: .7rem solid #dd3d32;\n      }\n      #ban {\n        top: -6.7rem;\n        width: 12.5rem;\n        height: .9rem;\n      }\n  }\n\n  @media (min-width: 756px) {\n    #ban {\n      top: -5.6rem;\n      width: 10rem;\n    }\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 760px)\n    and (orientation: portrait) {\n      position: relative;\n      bottom: 4rem;\n      height: 70%;\n      width: 70%;\n\n      #chopsticks {\n        border: 1.1rem solid #dd3d32;\n      }\n      #ban {\n        top: -10rem;\n        width: 18rem;\n        height: 1.3rem;\n      }\n  }\n\n  @media (min-width: 790px) {\n    #ban {\n      top: -5.8rem;\n      width: 10.7rem;\n    }\n  }\n\n  @media (min-width: 835px) {\n    #ban {\n      top: -6.2rem;\n      width: 11.5rem;\n    }\n  }\n\n  @media (min-width: 889px) {\n    #ban {\n      top: -6.6rem;\n      width: 12.5rem;\n    }\n  }\n\n  @media (min-width: 943px) {\n    #ban {\n      top: -7rem;\n      width: 13.5rem;\n    }\n  }\n\n  @media (min-width: 1007px) {\n    #chopsticks {\n      border: .9rem solid #dd3d32;\n    }\n    #ban {\n      top: -7.5rem;\n      width: 14.4rem;\n      height: .9rem;\n    }\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 1020px)\n    and (orientation: landscape) {\n      height: 90%;\n      width: 90%;\n\n      #chopsticks {\n      border: 1rem solid #dd3d32;\n      }\n      #ban {\n        top: -9.5rem;\n        width: 16.5rem;\n        height: 1.2rem;\n      }\n  }\n\n  @media (min-width: 1076px) {\n    #ban {\n      top: -8rem;\n      width: 15.4rem;\n    }\n  }\n\n  @media (min-width: 1141px) {\n    #chopsticks {\n      border: 1.2rem solid #dd3d32;\n    }\n    #ban {\n      top: -8.7rem;\n      width: 16.3rem;\n      height: 1.2rem;\n    }\n  }\n\n  @media (min-width: 1227px) {\n    #ban {\n      top: -9.6rem;\n      width: 17.7rem;\n    }\n  }\n\n  @media (min-width: 1325px) {\n    #chopsticks {\n      border: 1.4rem solid #dd3d32;\n    }\n    #ban {\n      top: -10.7rem;\n      width: 18.9rem;\n      height: 1.6rem;\n    }\n  }\n\n  @media (min-width: 1425px) {\n    #ban {\n      top: -11.2rem;\n      width: 19.5rem;\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// Component styles...
+var Container = _styledComponents.default.div(_templateObject()); // The component...
+
+
+var NoChopsticks = function NoChopsticks() {
+  return _react.default.createElement(Container, null, _react.default.createElement(_Card.default.Img, {
+    id: "chopsticks",
+    variant: "top",
+    src: "./assets/images/chopsticks02.jpg"
+  }), _react.default.createElement("div", {
+    id: "ban"
+  }));
+};
+
+var _default = NoChopsticks;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js"}],"BigDiv.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38729,10 +39089,12 @@ var _Image = _interopRequireDefault(require("react-bootstrap/Image"));
 
 var _Carousel = _interopRequireDefault(require("react-bootstrap/Carousel"));
 
+var _NoChopsticks = _interopRequireDefault(require("./NoChopsticks"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: ", "px;\n  width: 100%;\n  background: #797979;\n\n  div {\n    background: #797979;\n  }\n\n  .container-fluid .row .left {\n    padding-left: 1.5rem;\n    padding-right: 2rem;\n\n    .card-body {\n      padding-top: 2rem;\n\n      .card-subtitle {\n        font-size: 1.2rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n    }\n  }\n\n  .container-fluid .row .middle {\n    padding-left: 1.5rem;\n    padding-right: 2rem;\n\n    .card-body {\n      position: relative;\n      top: .5rem;\n      padding-top: 0;\n\n      .card-subtitle {\n        font-size: 1.4rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n\n    }\n  }\n\n  .container-fluid .row .right {\n    padding-right: 1.5rem;\n    padding-left: 2rem;\n\n    .card-body {\n      position: relative;\n      top: -.5rem;\n      padding-top: 0;\n\n      .card-subtitle {\n        font-size: 1.2rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n    }\n  }\n\n  .container-fluid .row .left,\n  .container-fluid .row .right {\n    div.card {\n      margin: 0 auto;\n    }\n  }\n\n  .container-fluid .row .left,\n  .container-fluid .row .right,\n  .container-fluid .row .middle {\n    background: #797979;\n    padding-top: 5rem;\n\n    .card-body {\n      font-family: telex, -apple-system;\n    }\n  }\n\n  #cub {\n    border-radius: 5%;\n    border: .7rem solid #a1a1a1;\n  }\n\n  #chopsticks {\n    border-radius: 50%;\n    border: 1.5rem solid #dd3d32;\n    box-shadow: 0px 0px 0px .12rem black;\n  }\n\n  #ban {\n    position: relative;\n    top: -12.0rem;\n    left: 1rem;\n    height: 2.5rem;\n    width: 18.75rem;\n    background: #dd3d32;\n    transform: rotate(45deg);\n  }\n\n  #carousel {\n    width: 100%;\n  }\n\n  #carousel img {\n    height: 100%;\n    width: 100%;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 100%;\n  height: auto;\n  width: 100%;\n  background: #797979;\n  overflow: hidden;\n\n  div {\n    background: #797979;\n  }\n\n  .card {\n    height: 100%;\n    width: 75%;\n    border: none;\n  }\n\n  .card .card-mid {\n    width: 100%;\n  }\n\n  .container-fluid .row .left {\n    padding-left: 1.5rem;\n    padding-right: 2rem;\n\n    .card-body {\n      padding-top: 2rem;\n\n      .card-subtitle {\n        font-size: 1.2rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n    }\n\n    #cub {\n      border-radius: 5%;\n      border: .7rem solid #a1a1a1;\n    }\n  }\n\n  .container-fluid .row .middle {\n    padding-left: 1.5rem;\n    padding-right: 2rem;\n\n    .card-body {\n      position: relative;\n      top: -3.5rem;\n      padding-top: 0;\n\n      .card-subtitle {\n        font-size: 1.4rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n    }\n\n    #logo {\n      visibility: visible;\n    }\n  }\n\n  .container-fluid .row .right {\n    padding-right: 1.5rem;\n    padding-left: 2rem;\n\n    .card-body {\n      position: relative;\n      top: -.5rem;\n      padding-top: 0;\n      margin-top: 1.3rem;\n\n      .card-subtitle {\n        font-size: 1.2rem;\n        font-weight: 400;\n        color: #a1a1a1;\n      }\n    }\n  }\n\n  .container-fluid .row .left,\n  .container-fluid .row .right {\n    div.card {\n      margin: 0 auto;\n    }\n  }\n\n  .container-fluid .row .left,\n  .container-fluid .row .right,\n  .container-fluid .row .middle {\n    background: #797979;\n    padding: 5rem 1rem 0;\n\n    .card-body {\n      font-family: telex, -apple-system;\n    }\n  }\n\n/********* Target iphone5/SE ********/\n  @media (min-width: 300px) {\n    .container-fluid .row .left,\n    .container-fluid .row .right,\n    .container-fluid .row .middle {\n      div.card {\n        transform: scale(.9)\n      }\n\n      .card-body {\n        width: 130%;\n      }\n    }\n\n    .container-fluid .row .right {\n      .card-body {\n        margin-top: .5rem;\n      }\n    }\n\n    .container-fluid .row .middle {\n      .card-title {\n        font-size: 1.7rem;\n      }\n      .card-subtitle {\n        font-size: 1rem;\n      }\n    }\n  }\n/********* Target iPhone 6/7/8 ********/\n  @media (min-width: 360px) {\n    .container-fluid .row .left,\n    .container-fluid .row .right,\n    .container-fluid .row .middle {\n      div.card {\n        transform: scale(1)\n      }\n\n      .card-body {\n        width: 100%;\n      }\n    }\n    .container-fluid .row .middle {\n      div.card {\n        margin: 0 auto;\n        .card-body {\n          margin-top: 2.5rem;\n        }\n      }\n    }\n    .container-fluid .row .right {\n      div.card {\n        position: relative;\n        bottom: 3rem;\n      }\n    }\n  }\n\n/********* Target iPhone X ********/\n  @media (min-width: 360px) and (min-height: 675px){\n    .container-fluid .row .left,\n    .container-fluid .row .right,\n    .container-fluid .row .middle {\n      height: 100%\n    }\n    .container-fluid .row .middle {\n      .card-body {\n        margin-top: 3rem;\n      }\n    }\n  }\n\n/********* Target iPhone 6/7/8 plus ********/\n  @media (min-width: 410px)\n    and (orientation: portrait) {\n    .container-fluid .row .left {\n      bottom: 1rem;\n    }\n    .container-fluid .row .right {\n      bottom: 1.3rem;\n    }\n    .container-fluid .row .middle {\n      bottom: 2.3rem;\n    }\n  }\n/* *** Target iPhone SE LandScape *** */\n  @media (min-width: 560px)\n    and (orientation: landscape) {\n    .container-fluid .row .left,\n    .container-fluid .row .middle,\n    .container-fluid .row .right {\n      height: 100%;\n      width: 100%;\n\n      div.card {\n        width: 100%;\n        margin: 0 .5rem;\n        padding-top: 1rem;\n        padding-right: 0;\n        margin-right: 0;\n        display: flex;\n        flex-wrap: nowrap;\n        flex-direction: row;\n\n        .card-body {\n          flex: 1 1 2;\n        }\n        p.card-text {\n          margin-bottom: .5rem;\n        }\n      }\n    }\n    .container-fluid .row .left {\n      div.card {\n        #cub {\n          height: 40%;\n          width: 40%;\n          flex: 1;\n        }\n      }\n    }\n    .container-fluid .row .middle {\n      #logo {\n        position: relative;\n        bottom: 4.3rem;\n        height: 50%;\n        width: 50%;\n        flex: 1;\n      }\n      .card-body {\n        max-width: 50%;\n      }\n    }\n    .container-fluid .row .right {\n      .card-body {\n        margin-left: 1.2rem;\n      }\n    }\n\n  }\n\n/* Media Queries */\n  @media (min-width: 576px) {\n    .container-fluid .row .left,\n    .container-fluid .row .middle,\n    .container-fluid .row .right {\n      padding-top: 7rem;\n\n      .card-body {\n        padding: 0;\n      }\n      .card-title {\n        font-size: 1.5rem;\n      }\n    }\n\n    .container-fluid .row .middle {\n      padding-top: 14rem;\n\n      /* #logo {\n        visibility: hidden;\n      } */\n      .card-body {\n        .card-subtitle {\n          font-size: 1.1rem;\n        }\n      }\n    }\n\n    .container-fluid .row .left {\n      .card-body {\n        padding-top: 2rem;\n      }\n    }\n  }\n/* *** Target iPhone 6/7/8 LandScape *** */\n  @media (min-width: 660px)\n    and (orientation: landscape) {\n      .container-fluid .row .left {\n        div.card {\n          .card-body {\n            margin-left: 1.5rem;\n          }\n        }\n      }\n      .container-fluid .row .middle {\n        div.card {\n          #logo {\n            order: 2;\n          }\n          .card-body {\n            order: 1;\n            left: 1rem;\n          }\n        }\n      }\n  }\n\n/* *** Target iPhone 6/7/8 plus LandScape *** */\n  @media (min-width: 735px) {\n    /** Noting Yet **/\n  }\n\n  @media (min-width: 735px) {\n    .container-fluid .row .left,\n    .container-fluid .row .right {\n      padding-top: 5.7rem;\n    }\n    .container-fluid .row .middle {\n      .card-body {\n        top: -5rem;\n      }\n    }\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 760px)\n    and (orientation: portrait) {\n      .container-fluid .row .left,\n      .container-fluid .row .middle,\n      .container-fluid .row .right {\n        height: 100%;\n        width: 100%;\n\n        div.card {\n          width: 100%;\n          margin: 0 .5rem;\n          padding-top: 1rem;\n          padding-right: 0;\n          margin-right: 0;\n          display: flex;\n          flex-wrap: nowrap;\n          flex-direction: row;\n\n          .card-body {\n            flex: 1 1 2;\n          }\n          /* p.card-text {\n            margin-bottom: .5rem;\n          } */\n        }\n      }\n      .container-fluid .row .left {\n        div.card {\n          #cub {\n            height: 40%;\n            width: 40%;\n            flex: 1;\n          }\n          .card-body {\n            margin-left: 2rem;\n            align-self: center;\n          }\n        }\n      }\n      .container-fluid .row .middle {\n        margin-top: 2rem;\n        padding-top: 2rem;\n\n        div.card {\n          #logo {\n            position: relative;\n            bottom: 4.3rem;\n            height: 50%;\n            width: 50%;\n            flex: 1;\n            order: 2;\n          }\n          .card-body {\n            max-width: 50%;\n            align-self: center;\n            order: 1;\n          }\n        }\n      }\n      .container-fluid .row .right {\n        padding-top: 0;\n\n        div.card {\n          #cub {\n            margin-bottom: 2rem;\n          }\n          .card-body {\n            margin-left: 1.2rem;\n          }\n        }\n\n      }\n\n    }\n  }\n\n/* *** Target iPhone X LandScape *** */\n  @media (min-width: 800px)\n    and (orientation: landscape) {\n      .container-fluid .row .left {\n        div.card {\n          #cub {\n            height: 30%;\n            width: 30%;\n          }\n        }\n      }\n      .container-fluid .row .middle {\n        div.card {\n          #logo {\n            transform: scale(.8);\n          }\n          .card-body {\n            top: -1rem;\n          }\n        }\n      }\n  }\n\n  @media (min-width: 800px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -6.5rem;\n      }\n    }\n  }\n\n  @media (min-width: 910px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -5.5rem;\n      }\n    }\n  }\n\n  @media (min-width: 950px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -6.5rem;\n      }\n    }\n  }\n\n/* Change to single row level two */\n  @media (min-width: 992px) {\n    height: ", "px;\n  }\n\n  @media (min-width: 1000px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -7.5rem;\n      }\n    }\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 1020px)\n    and (orientation: landscape) {\n      .container-fluid .row .left,\n      .container-fluid .row .middle,\n      .container-fluid .row .right {\n        height: 100%;\n        background: transparent;\n\n        div.card {\n          display: block;\n\n          .card-body {\n\n          }\n        }\n      }\n      .container-fluid .row .left {\n        width: 75%;\n        padding-top: 3.3rem;\n\n        div.card {\n          #cub {\n            width: 90%;\n          }\n          .card-body {\n            max-width: 100%;\n          }\n        }\n      }\n      .container-fluid .row .right {\n        width: 75%;\n\n        div.card {\n          position: relative;\n          top: .5rem;\n\n          .card-body {\n            margin-top: -2rem;\n            max-width: 90%;\n          }\n        }\n      }\n      .container-fluid .row .middle {\n        width: 100%;\n        padding-top: 2rem;\n\n        div.card {\n          position: relative;\n          bottom: 1.5rem;\n          #logo {\n            position: relative;\n            width: 150%;\n            right: 5.5rem;\n            visibility: hidden;\n          }\n          .card-body {\n            position: relative;\n            bottom: 8rem;\n            margin-top: -5.5rem;\n            min-width: 100%;\n          }\n        }\n      }\n  }\n\n  @media (min-width: 1075px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -8.5rem;\n      }\n    }\n  }\n\n  @media (min-width: 1130px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -10rem;\n      }\n    }\n  }\n\n  @media (min-width: 1215px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -11rem;\n      }\n    }\n  }\n\n  @media (min-width: 1300px) {\n    .container-fluid .row .left,\n    .container-fluid .row .middle,\n    .container-fluid .row .right {\n      .card-title {\n        font-size: 2rem;\n      }\n      .card-body {\n        .card-subtitle {\n          font-size: 1.5rem;\n        }\n      }\n    }\n    .container-fluid .row .left,\n    .container-fluid .row .right {\n      padding-top: 3.7rem;\n    }\n    .container-fluid .row .middle {\n      .card-body {\n        top: -11.8rem;\n      }\n    }\n  }\n\n  @media (min-width: 1330px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -12.5rem;\n      }\n    }\n  }\n\n  @media (min-width: 1360px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -13.5rem;\n      }\n    }\n  }\n\n  @media (min-width: 1410px) {\n    .container-fluid .row .middle {\n      .card-body {\n        top: -10.5rem;\n      }\n    }\n    .container-fluid .row .left,\n    .container-fluid .row .right {\n      padding-top: 7rem;\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -38745,61 +39107,51 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 // Component for holding level two layout...
 var BigDiv = _styledComponents.default.div(_templateObject(), function (props) {
-  return props.height;
+  return props.divHeight;
 }); // Level two markup....
 
 
 var LevelTwo = function LevelTwo(_ref) {
-  var height = _ref.height;
+  var divHeight = _ref.divHeight;
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(BigDiv, {
-    height: height
+    id: "levelTwo",
+    divHeight: divHeight
   }, _react.default.createElement(_Container.default, {
     fluid: true
   }, _react.default.createElement(_Row.default, {
     id: "row"
   }, _react.default.createElement(_Col.default, {
-    className: "left"
-  }, _react.default.createElement(_Card.default, {
-    style: {
-      width: '75%',
-      height: '100%',
-      border: 'none'
-    }
-  }, _react.default.createElement(_Card.default.Img, {
+    className: "left",
+    lg: "4"
+  }, _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Img, {
     id: "cub",
     variant: "top",
     src: "./assets/images/amurTigerCub01Round.jpg"
-  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement(_Card.default.Subtitle, null, "Tiger Cubs Running Free!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h3", {
+    className: "card-title"
+  }, "Our Vision"), _react.default.createElement(_Card.default.Subtitle, null, "Tiger Cubs Running Free!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
     variant: "primary"
   }, "Vision")))), _react.default.createElement(_Col.default, {
-    className: "middle"
+    className: "middle",
+    lg: "4"
+  }, _react.default.createElement(_Card.default, {
+    className: "card-mid"
   }, _react.default.createElement(_Card.default.Img, {
-    style: {
-      visibility: 'hidden'
-    },
+    id: "logo",
     variant: "top",
-    src: "./assets/images/amurTigerCub01Round.jpg"
-  }), _react.default.createElement(_Card.default, {
-    style: {
-      width: '100%',
-      border: 'none'
-    }
-  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", null, "Trees for Tigers"), _react.default.createElement(_Card.default.Subtitle, null, "Join our Solution!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
+    src: "./assets/images/trees4TigersLogo.svg"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
+    className: "card-title"
+  }, "Trees for Tigers"), _react.default.createElement(_Card.default.Subtitle, null, "Join our Solution!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
     variant: "success"
   }, "Solution")))), _react.default.createElement(_Col.default, {
-    className: "right"
-  }, _react.default.createElement(_Card.default, {
-    style: {
-      width: '75%',
-      border: 'none'
-    }
-  }, _react.default.createElement("div", null, _react.default.createElement(_Card.default.Img, {
-    id: "chopsticks",
-    variant: "top",
-    src: "./assets/images/chopsticks02.jpg"
-  }), _react.default.createElement("div", {
-    id: "ban"
-  })), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h3", null, "The Challenge"), _react.default.createElement(_Card.default.Subtitle, null, "Disposable Chopsticks!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
+    className: "right",
+    lg: "4"
+  }, _react.default.createElement(_Card.default, null, _react.default.createElement(_NoChopsticks.default, {
+    id: "noChopsticks"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h3", {
+    className: "card-title"
+  }, "The Challenge"), _react.default.createElement(_Card.default.Subtitle, null, "Disposable Chopsticks!"), _react.default.createElement(_Card.default.Text, null, "Some quick example text to build on the card title and make up the bulk of the card's content."), _react.default.createElement(_Button.default, {
     variant: "danger",
     style: {
       background: '#dd3d32'
@@ -38809,7 +39161,7 @@ var LevelTwo = function LevelTwo(_ref) {
 
 var _default = LevelTwo;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Image":"../../node_modules/react-bootstrap/Image.js","react-bootstrap/Carousel":"../../node_modules/react-bootstrap/Carousel.js"}],"utils/DOM/el.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Image":"../../node_modules/react-bootstrap/Image.js","react-bootstrap/Carousel":"../../node_modules/react-bootstrap/Carousel.js","./NoChopsticks":"NoChopsticks.js"}],"utils/DOM/el.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38885,291 +39237,19 @@ function queryDOM(el) {
     return el;
   }
 }
-},{}],"../../node_modules/clivi/index.js":[function(require,module,exports) {
-"use strict";
-
-var names = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
-var namesBright = names.map(function(name) { return name + 'Bright'; });
-var namesStyle = ['bold', 'dim', 'underline', 'blink', null, 'invert', 'hidden'];
-
-var RESET = '\x1b[0m';
-
-var Colors = {
-	fg: {},
-	bg: {},
-	style: {},
-};
-
-// generate foreground normal colors
-for (var i in names) {
-	Colors.fg[names[i]] = +i + 30;
-}
-// generate foreground bright colors
-for (var i in namesBright) {
-	Colors.fg[namesBright[i]] = +i + 90;
-}
-
-// generate background normal colors
-for (var i in names) {
-	Colors.bg[names[i]] = +i + 40;
-}
-// generate background bright colors
-for (var i in namesBright) {
-	Colors.bg[namesBright[i]] = +i + 100;
-}
-
-// generate style attributes
-for (var i in namesStyle) {
-	if (!namesStyle[i])
-		continue;
-	Colors.style[namesStyle[i]] = +i + 1;
-}
-
-function formatColor(color) {
-	color = color || {};
-	var fg = Colors.fg[color.fg] || 39;
-	var bg = Colors.bg[color.bg] || 49;
-	var style = Colors.style[color.style] || 0;
-
-//	var code = '\x1b';
-
-	return '\x1b[' + style + ';' + fg + ';' + bg + 'm';
-}
-
-function colorize(str, colors) {
-	if (!str || typeof colors !== 'object')
-		return str;
-
-	return formatColor(colors) + str + RESET;
-}
-module.exports = colorize;
-module.exports.colors = Colors;
-module.exports.names = names.concat(namesBright);
-module.exports.styles = namesStyle.filter(function (name) { return !!name; });
-
-},{}],"utils/Loggers.js":[function(require,module,exports) {
+},{}],"utils/Is.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dir = exports.err = exports.error = exports.warn = exports.info = exports.log = void 0;
+exports.isBottom = exports.isOffscreen = exports.isKin = exports.isArray = exports.isComponent = exports.isClass = exports.isBoolean = exports.isSymbol = exports.isFunc = exports.isFunction = exports.isString = exports.isNumber = exports.isObject = exports.isUndefined = exports.Is = void 0;
 
-var _clivi = _interopRequireDefault(require("clivi"));
+var _Loggers = require("./Loggers");
+
+var _el = _interopRequireDefault(require("./DOM/el"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*
-Logger.js
-
-This file contains the code for the various logging functions
-of the library.
-
-Author: Eric James Foster
-License: ISC
-*/
-//Console.log alias function.
-var log = function log(text, style, tyme) {
-  var colr = Array.isArray(style) ? style[0] : style,
-      styl = Array.isArray(style) ? style[1] : null,
-      tym = tyme || false;
-  var time = new Date(),
-      hours = time.getHours(),
-      mins = time.getMinutes(),
-      secs = time.getSeconds();
-
-  if (secs <= 9) {
-    secs = '0' + String(secs);
-  }
-
-  if (mins <= 9) {
-    mins = '0' + String(mins);
-  }
-
-  var abbr = hours >= 12 ? 'pm' : 'am';
-  var stan = hours >= 13 ? hours - 12 : hours;
-
-  if (stan === 0) {
-    hours = stan + 12;
-  } else {
-    hours = stan;
-  }
-
-  time = hours + ':' + mins + ':' + secs + abbr;
-  var t = tym ? time : '';
-
-  if (typeof document === 'undefined') {
-    return console.log((0, _clivi.default)(text, {
-      fg: colr,
-      style: styl
-    }) + '   '.repeat(10) + t);
-  } else {
-    var color = colr,
-        bgColor = styl,
-        css = 'background: ' + bgColor + '; color: ' + color;
-    return console.log('%c' + text + '%s', css, '   '.repeat(10) + t);
-  }
-}; //Console.error alias function.
-
-
-exports.log = log;
-
-var err = function err(text, tyme) {
-  var colr = 'red',
-      styl = 'bold',
-      tym = tyme || false;
-  var time = new Date(),
-      hours = time.getHours(),
-      mins = time.getMinutes(),
-      secs = time.getSeconds();
-
-  if (secs <= 9) {
-    secs = '0' + String(secs);
-  }
-
-  if (mins <= 9) {
-    mins = '0' + String(mins);
-  }
-
-  var abbr = hours >= 12 ? 'pm' : 'am';
-  var stan = hours >= 13 ? hours - 12 : hours;
-
-  if (stan === 0) {
-    hours = stan + 12;
-  } else {
-    hours = stan;
-  }
-
-  time = hours + ':' + mins + ':' + secs + abbr;
-  var t = tym ? time : '';
-
-  if (typeof document === 'undefined') {
-    return console.log((0, _clivi.default)(text, {
-      fg: colr,
-      style: styl
-    }) + '   '.repeat(10) + t);
-  } else {
-    var color = colr,
-        bgColor = '',
-        css = 'background: ' + bgColor + '; color: ' + color;
-    return console.error('%c' + text + '%s', css, '   '.repeat(10) + t);
-  }
-}; //Console.error alias function.
-
-
-exports.err = err;
-
-var error = function error(text) {
-  return console.error(text);
-}; //Console.info alias function.
-
-
-exports.error = error;
-
-var info = function info(text, tyme) {
-  var colr = '#008cff',
-      styl = 'bold',
-      tym = tyme || false;
-  var time = new Date(),
-      hours = time.getHours(),
-      mins = time.getMinutes(),
-      secs = time.getSeconds();
-
-  if (secs <= 9) {
-    secs = '0' + String(secs);
-  }
-
-  if (mins <= 9) {
-    mins = '0' + String(mins);
-  }
-
-  var abbr = hours >= 12 ? 'pm' : 'am';
-  var stan = hours >= 13 ? hours - 12 : hours;
-
-  if (stan === 0) {
-    hours = stan + 12;
-  } else {
-    hours = stan;
-  }
-
-  time = hours + ':' + mins + ':' + secs + abbr;
-  var t = tym ? time : '';
-
-  if (typeof document === 'undefined') {
-    colr = 'blueBright';
-    return console.log((0, _clivi.default)(text, {
-      fg: colr,
-      style: styl
-    }) + '   '.repeat(10) + t);
-  } else {
-    var color = colr,
-        bgColor = '',
-        css = 'background: ' + bgColor + '; color: ' + color;
-    return console.info('%c' + text + '%s', css, '   '.repeat(10) + t);
-  }
-}; //Console.warn alias function.
-
-
-exports.info = info;
-
-var warn = function warn(text, tyme) {
-  var colr = 'orange',
-      styl = 'bold',
-      tym = tyme || false;
-  var time = new Date(),
-      hours = time.getHours(),
-      mins = time.getMinutes(),
-      secs = time.getSeconds();
-
-  if (secs <= 9) {
-    secs = '0' + String(secs);
-  }
-
-  if (mins <= 9) {
-    mins = '0' + String(mins);
-  }
-
-  var abbr = hours >= 12 ? 'pm' : 'am';
-  var stan = hours >= 13 ? hours - 12 : hours;
-
-  if (stan === 0) {
-    hours = stan + 12;
-  } else {
-    hours = stan;
-  }
-
-  time = hours + ':' + mins + ':' + secs + abbr;
-  var t = tym ? time : '';
-
-  if (typeof document === 'undefined') {
-    colr = 'yellow';
-    colr = 'blueBright';
-    return console.log((0, _clivi.default)(text, {
-      fg: colr,
-      style: styl
-    }) + '   '.repeat(10) + t);
-  } else {
-    var color = colr,
-        bgColor = '',
-        css = 'background: ' + bgColor + '; color: ' + color;
-    return console.warn('%c' + text + '%s', css, '   '.repeat(10) + t);
-  }
-};
-
-exports.warn = warn;
-
-var dir = function dir(obj) {
-  return console.dir(obj);
-};
-
-exports.dir = dir;
-},{"clivi":"../../node_modules/clivi/index.js"}],"utils/Is.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.isOffscreen = exports.isKin = exports.isArray = exports.isComponent = exports.isClass = exports.isBoolean = exports.isSymbol = exports.isFunc = exports.isFunction = exports.isString = exports.isNumber = exports.isObject = exports.isUndefined = exports.Is = void 0;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -39179,14 +39259,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-/*
-Is.js
-
-A file containing a small type checking utility library...
-
-Eric James Foster, MIT License.
-*/
-// Get data...
 var Is =
 /*#__PURE__*/
 function () {
@@ -39283,6 +39355,13 @@ function () {
       var rect = el.getBoundingClientRect(); //
 
       return rect.x + rect.width < 0 || rect.y + rect.height < 0 || rect.x > window.innerWidth || rect.y > window.innerHeight;
+    } // A function for determining whether or not a user has scrolled to the bottom of the page...
+
+  }, {
+    key: "bottom",
+    value: function bottom() {
+      var levelTwo = (0, _el.default)('#levelTwo');
+      return window.innerHeight + Math.ceil(window.pageYOffset) >= levelTwo.offsetTop + levelTwo.offsetHeight - 2;
     }
   }]);
 
@@ -39316,7 +39395,29 @@ var isKin = Is.kin;
 exports.isKin = isKin;
 var isOffscreen = Is.offscreen;
 exports.isOffscreen = isOffscreen;
-},{}],"ScrollIndicator.js":[function(require,module,exports) {
+var isBottom = Is.bottom; //
+//
+// log('#####################################-E-########################################', ['', ''])
+// log(`innerHeight: ${window.innerHeight}`)
+// log(`pageYOffset: ${window.pageYOffset}`)
+// log(`doc.body.offsetHeight: ${document.body.offsetHeight}`)
+// log(`Math.ceil: ${Math.ceil(document.body.offsetHeight)}`)
+// log(window.innerHeight + Math.ceil(window.pageYOffset) >= window.offsetHeight -2)
+// log(`Total: ${window.innerHeight + Math.ceil(window.pageYOffset)}`)
+// log(document.body.offsetHeight - 2)
+//
+// log('#####################################-E-########################################', ['', ''])
+// log(`innerHeight: ${window.innerHeight}`)
+// log(`pageYOffset: ${window.pageYOffset}`)
+// log(`doc.body.offsetHeight: ${document.body.offsetHeight}`)
+// log(`Math.ceil: ${Math.ceil(document.body.offsetHeight)}`)
+// log(window.innerHeight + Math.ceil(window.pageYOffset) >= window.offsetHeight -2)
+// log(`Total: ${window.innerHeight + Math.ceil(window.pageYOffset)}`)
+// log(document.body.offsetHeight - 2)
+// dir(el('#levelTwo'))
+
+exports.isBottom = isBottom;
+},{"./Loggers":"utils/Loggers.js","./DOM/el":"utils/DOM/el.js"}],"ScrollIndicator.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39341,7 +39442,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  height: 4rem;\n  width: 3rem;\n  z-index: 1000;\n  position: absolute;\n  bottom: 7rem;\n  margin: 0 auto;\n  right: 0;\n  left: 0;\n  /* background: blue; */\n\n  .scrollIndicator {\n    line-height: 0.2;\n    width: 41px;\n\n    .top {\n      top: 20px;\n      z-index: 18;\n      animation: ", " 3s ease-in-out infinite;\n      /*-webkit-animation-delay: 0.25s;*/\n    }\n\n    .middle {\n      z-index: 17;\n      animation: ", " 3s ease-in-out 250ms infinite;\n      /*-webkit-animation-delay: 0.25s;*/\n    }\n\n    .bottom {\n      bottom: 20px;\n      z-index: 16;\n      animation: ", " 3s ease-in-out 500ms infinite;\n      /*-webkit-animation-delay: 0.5s;*/\n    }\n  }\n\n  .scrollIndicator > .chevron {\n    position: relative;\n    height: 40px;\n    width: 40px;\n    display: block;\n    padding-bottom: 0px;\n    border-left: 2px solid black;\n    border-bottom: 2px solid black;\n    border-top-left-radius: 12px;\n    border-bottom-right-radius: 12px;\n    transform: rotateZ(-45deg);\n    opacity: 0.5;\n    z-index: 15;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  height: 4rem;\n  width: 3rem;\n  z-index: 1000;\n  position: absolute;\n  bottom: 9rem;\n  margin: 0 auto;\n  right: 0;\n  left: 0;\n  /* background: blue; */\n\n  .scrollIndicator {\n    line-height: 0.2;\n    width: 41px;\n\n    .top {\n      top: 20px;\n      z-index: 18;\n      animation: ", " 3s ease-in-out infinite;\n      /*-webkit-animation-delay: 0.25s;*/\n    }\n\n    .middle {\n      z-index: 17;\n      animation: ", " 3s ease-in-out 250ms infinite;\n      /*-webkit-animation-delay: 0.25s;*/\n    }\n\n    .bottom {\n      bottom: 20px;\n      z-index: 16;\n      animation: ", " 3s ease-in-out 500ms infinite;\n      /*-webkit-animation-delay: 0.5s;*/\n    }\n  }\n\n  .scrollIndicator > .chevron {\n    position: relative;\n    height: 40px;\n    width: 40px;\n    display: block;\n    padding-bottom: 0px;\n    border-left: 2px solid black;\n    border-bottom: 2px solid black;\n    border-top-left-radius: 12px;\n    border-bottom-right-radius: 12px;\n    transform: rotateZ(-45deg);\n    opacity: 0.5;\n    z-index: 15;\n  }\n\n  @media (min-width: 300px) {\n    bottom: 5rem;\n  }\n\n/********* Target iPhone X ********/\n  @media (min-width: 360px) and (min-height: 675px){\n    bottom: 8rem;\n  }\n\n/* *** Targeting iPad *** */\n  @media (min-width: 1020px)\n    and (orientation: landscape) {\n      bottom: 13.5rem;\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -39367,64 +39468,13 @@ var scrollIndicatorAnimation = (0, _styledComponents.keyframes)(_templateObject(
 
 var Wrapper = _styledComponents.default.div(_templateObject2(), scrollIndicatorAnimation, scrollIndicatorAnimation, scrollIndicatorAnimation);
 
-function ScrollIndicator() {
-  var scroller = _react.default.createRef(); // scroll control...
+function ScrollIndicator(_ref) {
+  var scrollerNode = _ref.scrollerNode;
+
+  var scroller = _react.default.createRef(); // Send scroller to Mother ship...
 
 
-  window.onscroll = function (e) {
-    if ((0, _Is.isOffscreen)(scroller.current)) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = scroller.current.childNodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var child = _step.value;
-          child.style.animationPlayState = 'paused';
-          (0, _Loggers.log)('Offscreen', ['red', 'black']);
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-    } else {
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = scroller.current.childNodes[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _child = _step2.value;
-          _child.style.animationPlayState = 'running';
-          (0, _Loggers.log)('Onscreen', ['red', 'blue']);
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-    }
-  }; // Component markup...
-
+  scrollerNode(scroller); // Component markup...
 
   return _react.default.createElement(Wrapper, null, _react.default.createElement("div", {
     ref: scroller,
@@ -39457,14 +39507,153 @@ var _default = ScrollIndicator;
 }*/
 
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./utils/DOM/el":"utils/DOM/el.js","./utils/Loggers":"utils/Loggers.js","./utils/Is":"utils/Is.js"}],"trees4Tigers.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./utils/DOM/el":"utils/DOM/el.js","./utils/Loggers":"utils/Loggers.js","./utils/Is":"utils/Is.js"}],"BackDrop.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = BackDrop;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background-image: url(", ");\n  background-size: 240%;\n  background-repeat: no-repeat;\n  background-position: -150px 0px;\n  z-index: 1;\n\n/* *** Targeting iPhone 5/SE 6/7/8 and plus *** */\n  @media (min-width: 300px) {\n    background-size: 300%;\n    background-position: -100px 0px;\n  }\n/* *** Targeting iPhone X *** */\n  @media (min-width: 360px)\n    and (min-height: 675px){\n      background-size: 365%;\n      background-position: -220px 0px;\n  }\n\n/* *** Targeting iPhone 5/SE, 6/7/8 LandScape *** */\n  @media (min-width: 560px)\n    and (orientation: landscape) {\n      background-size: 100%;\n      background-position: 0px 0px;\n  }\n\n/* ***** Targeting iPad ***** */\n  @media (min-width: 760px)\n    and (orientation: portrait) {\n      background-size: 240%;\n      background-position: -240px 0px;\n  }\n\n  @media (min-width: 850px) {\n    background-size: 140%;\n    background-position: -180px 0px;\n  }\n\n  @media (min-width: 1050px) {\n    background-size: 120%;\n    background-position: -130px 0px;\n  }\n\n  @media (min-width: 1200px) {\n    background-size: 100%;\n    background-position: 0px 0px;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// Get react-bootstrap....
+// import Navbar from 'react-bootstrap/Navbar'
+// Cover backdrop
+var coverOverlay = './assets/images/amurTiger01.jpg'; // The cover component....
+
+var Image = _styledComponents.default.div(_templateObject(), coverOverlay);
+
+function BackDrop() {
+  return _react.default.createElement(Image, {
+    id: "backdrop"
+  });
+}
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"GlobalStyles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n// Google fonts...\n  @import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap\");\n// Styles ...\n  html {\n    padding: 0;\n    margin: 0;\n  }\n\n  body {\n    padding: 0;\n    margin: 0;\n    height: 100%;\n  }\n\n  #root {\n    height: auto;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// Global styles....
+var GlobalStyle = (0, _styledComponents.createGlobalStyle)(_templateObject());
+var _default = GlobalStyle;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"utils/mergeData.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = mergeData;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+/*
+** mergeData.js
+**
+** mergeData.js is a helper func for merging two
+** objects....
+**
+** Eric James Foster, Fostware LLC, MIT License.
+***/
+function mergeData(obj1, obj2) {
+  return _extends({}, obj1, obj2);
+}
+},{}],"utils/DOM/classList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.replaceClass = exports.listContains = exports.removeClass = exports.addClass = void 0;
+
+/*
+** classList.js
+**
+** classList.js has a few helper funcs for interacting with an element's
+** classList in a little bit more of a direct way.
+**
+** Eric James Foster, Fostware LLC, MIT License.
+***/
+// Add a class to an el's class list...
+var addClass = function addClass(el, _class) {
+  return el.classList.add(_class);
+}; // Remove a class to an el's class list...
+
+
+exports.addClass = addClass;
+
+var removeClass = function removeClass(el, _class) {
+  return el.classList.remove(_class);
+}; // Confirm the existance of a class in an el's class list....
+
+
+exports.removeClass = removeClass;
+
+var listContains = function listContains(el, _class) {
+  return el.classList.contains(_class);
+}; // Replace a class with a new one in an el's class list...
+
+
+exports.listContains = listContains;
+
+var replaceClass = function replaceClass(el, oldie, newie) {
+  // Remove old...
+  el.classList.remove(oldie); // Add new...
+
+  el.classList.add(newie); // Return the list...
+
+  return el.classList;
+};
+
+exports.replaceClass = replaceClass;
+},{}],"trees4Tigers.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
@@ -39488,13 +39677,19 @@ var _BigDiv = _interopRequireDefault(require("./BigDiv"));
 
 var _ScrollIndicator = _interopRequireDefault(require("./ScrollIndicator"));
 
+var _BackDrop = _interopRequireDefault(require("./BackDrop"));
+
+var _GlobalStyles = _interopRequireDefault(require("./GlobalStyles"));
+
 var _el = _interopRequireDefault(require("./utils/DOM/el"));
 
 var _Loggers = require("./utils/Loggers");
 
 var _Is = require("./utils/Is");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _mergeData = _interopRequireDefault(require("./utils/mergeData"));
+
+var _classList = require("./utils/DOM/classList");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39508,98 +39703,163 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  height: 100%;\n  width: 100%;\n  z-index: -1;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n// Google fonts...\n  @import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap\");\n// Styles ...\n  html {\n    padding: 0;\n    margin: 0;\n    background: black;\n  }\n\n  body {\n    padding: 0;\n    margin: 0;\n    background: black;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-window.isOffscreen = _Is.isOffscreen; // Cover backdrop
-
-var coverOverlay = './assets/images/amurTiger01.jpg'; // Global styles....
-
-var GlobalStyle = (0, _styledComponents.createGlobalStyle)(_templateObject()); // The cover component....
-
-var Cover = _styledComponents.default.img.attrs({
-  src: coverOverlay
-})(_templateObject2());
-
-var CarouselCubs = function CarouselCubs() {
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Carousel.default, {
-    id: "carousel"
-  }, _react.default.createElement(_Carousel.default.Item, null, _react.default.createElement("img", {
-    src: "/assets/images/amurTigerCubs01.jpg"
-  }), _react.default.createElement(_Carousel.default.Caption, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement("p", null, "Tiger cubs running free!"))), _react.default.createElement(_Carousel.default.Item, null, _react.default.createElement("img", {
-    src: "/assets/images/amurTigerCub01.jpg"
-  }), _react.default.createElement(_Carousel.default.Caption, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement("p", null, "Tiger cubs running free!"))), _react.default.createElement(_Carousel.default.Item, null, _react.default.createElement("img", {
-    src: "/assets/images/amurTigerCub03.jpg"
-  }), _react.default.createElement(_Carousel.default.Caption, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement("p", null, "Tiger cubs running free!"))), _react.default.createElement(_Carousel.default.Item, null, _react.default.createElement("img", {
-    src: "/assets/images/tigerAndCub01.jpg"
-  }), _react.default.createElement(_Carousel.default.Caption, null, _react.default.createElement("h3", null, "Our Vision"), _react.default.createElement("p", null, "Tiger cubs running free!")))));
-}; // The app....
-
-
+// The app....
 var App =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(App, _React$Component);
 
   // Ctor ...
-  function App() {
+  function App(props) {
     var _this;
 
     _classCallCheck(this, App);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props)); // An internal state object that will not trigger a render cycle...
+
+    _this._state = {
+      scroller: null,
+      logo: null,
+      atScrollBottom: false // Component state object...
+
+    };
     _this.state = {
+      scrollerPaused: false,
       screenHeight: null,
       screenWidth: null,
-      navBarHeight: null
+      navBar: null // Create ref for navbar...
+
     };
+    _this.navbar = _react.default.createRef(); // Bind Methods...
+
+    _this.getScrollerNode = _this.getScrollerNode.bind(_assertThisInitialized(_this));
+    _this.getLogoNode = _this.getLogoNode.bind(_assertThisInitialized(_this));
+    _this.onScroll = _this.onScroll.bind(_assertThisInitialized(_this));
     return _this;
-  } // Post mount component adjustments ....
+  } // Method for grabbing a reference to the scroller node....
 
 
   _createClass(App, [{
+    key: "getScrollerNode",
+    value: function getScrollerNode(node) {
+      // Store the node....
+      this._state.scroller = node;
+    } /// Method for grabbing a reference to the scroller node....
+
+  }, {
+    key: "getLogoNode",
+    value: function getLogoNode(node) {
+      // Store the node....
+      this._state.logo = node;
+    }
+    /* This method is the app's scroll handler. Places one listener on window,
+    and reacts to various conditions...*/
+
+  }, {
+    key: "onScroll",
+    value: function onScroll(e) {
+      var _this2 = this;
+
+      window.onscroll = function (e) {
+        // Check if scroller is offscreen, if so, disable animation
+        if ((0, _Is.isOffscreen)(_this2._state.scroller.current)) {
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = _this2._state.scroller.current.childNodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var child = _step.value;
+              child.style.animationPlayState = 'paused';
+              (0, _Loggers.log)('Offscreen', ['red', 'black']);
+            } // Otherwise, make sure the animation is running...
+
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+        } else {
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
+
+          try {
+            for (var _iterator2 = _this2._state.scroller.current.childNodes[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var _child = _step2.value;
+              _child.style.animationPlayState = 'paused';
+              (0, _Loggers.log)('Onscreen', ['red', 'blue']);
+            }
+          } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                _iterator2.return();
+              }
+            } finally {
+              if (_didIteratorError2) {
+                throw _iteratorError2;
+              }
+            }
+          }
+        } // Check to see if we've hit bottom...
+
+
+        if ((0, _Is.isBottom)()) {
+          (0, _Loggers.log)('Bottom!!!', ['red', 'blue']);
+          (0, _classList.addClass)(_this2._state.logo.current, 'bottom');
+        } else {
+          (0, _Loggers.log)('NO bottom!!!', ['red', 'purple']);
+          (0, _classList.removeClass)(_this2._state.logo.current, 'bottom');
+        }
+      };
+    } // Post mount component adjustments ....
+
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      // Go ahead and set the sreen dimensions...
+      // Scroll associated operations....
+      this.onScroll(); // Get display dimensions, and height of navbar and store in state obj.....
+
       this.setState({
+        // Go ahead and set the sreen dimensions...
         screenHeight: window.innerHeight,
         screenWidth: window.innerWidth,
-        navBarHeight: (0, _el.default)('.navbar').clientHeight
+        navbarHeight: this.navbar.current._reactInternalFiber.nextEffect.stateNode.parentNode.previousElementSibling.clientHeight
       });
     } // Component markup ...
 
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(GlobalStyle, null), _react.default.createElement(_NavBar.default, null), _react.default.createElement(Cover, null), _react.default.createElement(_ScrollIndicator.default, null), _react.default.createElement(_T4TLogo.default, null), _react.default.createElement(_BigDiv.default, {
-        height: this.state.screenHeight - (this.state.navBarHeight + 1)
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_GlobalStyles.default, null), _react.default.createElement(_BackDrop.default, null), _react.default.createElement(_NavBar.default, {
+        id: "nav",
+        ref: this.navbar
+      }), _react.default.createElement(_ScrollIndicator.default, {
+        scrollerNode: this.getScrollerNode
+      }), _react.default.createElement(_T4TLogo.default, {
+        logoNode: this.getLogoNode
+      }), this.state.navbarHeight && _react.default.createElement(_BigDiv.default, {
+        divHeight: this.state.screenHeight - this.state.navbarHeight
       }));
     }
   }]);
@@ -39608,8 +39868,8 @@ function (_React$Component) {
 }(_react.default.Component); // Application rendering....
 
 
-_reactDom.default.render(_react.default.createElement(App, null), document.getElementById('root'));
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Image":"../../node_modules/react-bootstrap/Image.js","react-bootstrap/Carousel":"../../node_modules/react-bootstrap/Carousel.js","./T4TLogo":"T4TLogo.js","./NavBar":"NavBar.js","./BigDiv":"BigDiv.js","./ScrollIndicator":"ScrollIndicator.js","./utils/DOM/el":"utils/DOM/el.js","./utils/Loggers":"utils/Loggers.js","./utils/Is":"utils/Is.js"}],"../../../../../../.nvm/versions/node/v8.11.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render(_react.default.createElement(App, null), (0, _el.default)('#root'));
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Image":"../../node_modules/react-bootstrap/Image.js","react-bootstrap/Carousel":"../../node_modules/react-bootstrap/Carousel.js","./T4TLogo":"T4TLogo.js","./NavBar":"NavBar.js","./BigDiv":"BigDiv.js","./ScrollIndicator":"ScrollIndicator.js","./BackDrop":"BackDrop.js","./GlobalStyles":"GlobalStyles.js","./utils/DOM/el":"utils/DOM/el.js","./utils/Loggers":"utils/Loggers.js","./utils/Is":"utils/Is.js","./utils/mergeData":"utils/mergeData.js","./utils/DOM/classList":"utils/DOM/classList.js"}],"../../../../../../.nvm/versions/node/v8.11.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -39637,7 +39897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55374" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62085" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

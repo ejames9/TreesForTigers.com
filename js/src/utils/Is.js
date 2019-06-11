@@ -8,6 +8,8 @@ Eric James Foster, MIT License.
 
 // Get data...
 
+import {log, dir} from './Loggers'
+import el from './DOM/el'
 
 class Is {
 // Simple convenience function for determining if a value is
@@ -89,6 +91,14 @@ class Is {
       || (rect.x > window.innerWidth || rect.y > window.innerHeight)
     )
   }
+
+// A function for determining whether or not a user has scrolled to the bottom of the page...
+  static bottom() {
+    let levelTwo = el('#levelTwo')
+    return (
+      window.innerHeight + Math.ceil(window.pageYOffset) >= (levelTwo.offsetTop + levelTwo.offsetHeight) -2
+    )
+  }
 }
 
 
@@ -105,6 +115,7 @@ const isComponent = Is.component
 const isArray = Is.array
 const isKin = Is.kin
 const isOffscreen = Is.offscreen
+const isBottom = Is.bottom
 
 
 export {
@@ -121,5 +132,32 @@ export {
   isComponent,
   isArray,
   isKin,
-  isOffscreen
+  isOffscreen,
+  isBottom
 }
+
+
+
+
+//
+//
+// log('#####################################-E-########################################', ['', ''])
+// log(`innerHeight: ${window.innerHeight}`)
+// log(`pageYOffset: ${window.pageYOffset}`)
+// log(`doc.body.offsetHeight: ${document.body.offsetHeight}`)
+// log(`Math.ceil: ${Math.ceil(document.body.offsetHeight)}`)
+// log(window.innerHeight + Math.ceil(window.pageYOffset) >= window.offsetHeight -2)
+// log(`Total: ${window.innerHeight + Math.ceil(window.pageYOffset)}`)
+// log(document.body.offsetHeight - 2)
+
+
+//
+// log('#####################################-E-########################################', ['', ''])
+// log(`innerHeight: ${window.innerHeight}`)
+// log(`pageYOffset: ${window.pageYOffset}`)
+// log(`doc.body.offsetHeight: ${document.body.offsetHeight}`)
+// log(`Math.ceil: ${Math.ceil(document.body.offsetHeight)}`)
+// log(window.innerHeight + Math.ceil(window.pageYOffset) >= window.offsetHeight -2)
+// log(`Total: ${window.innerHeight + Math.ceil(window.pageYOffset)}`)
+// log(document.body.offsetHeight - 2)
+// dir(el('#levelTwo'))

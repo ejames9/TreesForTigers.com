@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   width: 3rem;
   z-index: 1000;
   position: absolute;
-  bottom: 7rem;
+  bottom: 9rem;
   margin: 0 auto;
   right: 0;
   left: 0;
@@ -90,25 +90,28 @@ const Wrapper = styled.div`
     opacity: 0.5;
     z-index: 15;
   }
+
+  @media (min-width: 300px) {
+    bottom: 5rem;
+  }
+
+/********* Target iPhone X ********/
+  @media (min-width: 360px) and (min-height: 675px){
+    bottom: 8rem;
+  }
+
+/* *** Targeting iPad *** */
+  @media (min-width: 1020px)
+    and (orientation: landscape) {
+      bottom: 13.5rem;
+  }
 `
 
-function ScrollIndicator() {
+function ScrollIndicator({scrollerNode}) {
   let scroller = React.createRef()
 
-// scroll control...
-  window.onscroll =e=> {
-    if (isOffscreen(scroller.current)) {
-      for (let child of scroller.current.childNodes) {
-        child.style.animationPlayState = 'paused'
-        log('Offscreen', ['red', 'black'])
-      }
-    } else {
-      for (let child of scroller.current.childNodes) {
-        child.style.animationPlayState = 'running'
-        log('Onscreen', ['red', 'blue'])
-      }
-    }
-  }
+// Send scroller to Mother ship...
+  scrollerNode(scroller)
 
 // Component markup...
   return (
