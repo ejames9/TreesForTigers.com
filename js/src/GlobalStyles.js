@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     padding: 0;
     margin: 0;
+    background: #555555;
   }
 
   body {

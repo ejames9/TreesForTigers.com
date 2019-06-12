@@ -123,12 +123,17 @@ const BigDiv = styled.div`
     }
   }
 
-/********* Target iphone5/SE ********/
-  @media (min-width: 300px) {
+/********* Target iphone5/SE portrait ********/
+  @media (min-width: 300px)
+    and (orientation: portrait) {
     .container-fluid .row .left,
     .container-fluid .row .right,
     .container-fluid .row .middle {
       div.card {
+        position: relative;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
         transform: scale(.9)
       }
 
@@ -144,14 +149,29 @@ const BigDiv = styled.div`
     }
 
     .container-fluid .row .middle {
-      .card-title {
-        font-size: 1.7rem;
+      div.card {
+        #logo {
+          width: 120%;
+          position: relative;
+          right: 2rem;
+        }
+        .card-body {
+          margin-top: 3rem;
+          position: relative;
+          right: 2rem;
+
+          .card-title {
+            font-size: 1.7rem;
+          }
+          .card-subtitle {
+            font-size: 1rem;
+          }
+        }
       }
-      .card-subtitle {
-        font-size: 1rem;
-      }
+
     }
   }
+
 /********* Target iPhone 6/7/8 ********/
   @media (min-width: 360px) {
     .container-fluid .row .left,
@@ -247,13 +267,17 @@ const BigDiv = styled.div`
     .container-fluid .row .middle {
       #logo {
         position: relative;
-        bottom: 4.3rem;
+        bottom: 2.7rem;
         height: 50%;
         width: 50%;
         flex: 1;
       }
       .card-body {
         max-width: 50%;
+
+        .card-title {
+          font-size: 2rem;
+        }
       }
     }
     .container-fluid .row .right {
@@ -326,14 +350,30 @@ const BigDiv = styled.div`
     /** Noting Yet **/
   }
 
-  @media (min-width: 735px) {
+  @media (min-width: 735px)
+    and (orientation: landscape) {
     .container-fluid .row .left,
     .container-fluid .row .right {
       padding-top: 5.7rem;
     }
     .container-fluid .row .middle {
-      .card-body {
-        top: -5rem;
+      div.card {
+        #logo {
+          bottom: 7rem;
+        }
+        .card-body {
+          top: -5rem;
+        }
+      }
+    }
+    .container-fluid .row .right {
+      div.card {
+        margin-left: 1.5rem;
+
+        .card-body {
+          max-width: 50%;
+          margin-left: 1.5rem;
+        }
       }
     }
   }
@@ -436,6 +476,14 @@ const BigDiv = styled.div`
           }
         }
       }
+      .container-fluid .row .right {
+        div.card {
+          .card-body {
+            margin-left: 0rem;
+            top: 1rem;
+          }
+        }
+      }
   }
 
   @media (min-width: 800px) {
@@ -475,7 +523,79 @@ const BigDiv = styled.div`
     }
   }
 
-/* *** Targeting iPad *** */
+/* *** Targeting iPad Pro portrait *** */
+  @media (min-width: 1020px)
+    and (orientation: portrait) {
+      .container-fluid .row .left,
+      .container-fluid .row .middle,
+      .container-fluid .row .right {
+        height: 100%;
+        background: transparent;
+
+        div.card {
+          position: relative;
+          display: block;
+
+          .card-body {
+            max-width: 80%;
+
+            .card-title {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+      .container-fluid .row .left {
+        width: 75%;
+        padding-top: 3.3rem;
+
+        div.card {
+          top: 5rem;
+
+          #cub {
+            width: 90%;
+          }
+          .card-body {
+
+
+          }
+        }
+      }
+      .container-fluid .row .right {
+        width: 75%;
+        padding-top: 5rem;
+
+        div.card {
+          position: relative;
+          top: 7.5rem;
+
+          .card-body {
+            margin-top: -3rem;
+            max-width: 90%;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        width: 100%;
+        padding-top: 2rem;
+
+        div.card {
+          top: 1.5rem;
+          #logo {
+            position: relative;
+            width: 150%;
+            right: 5.5rem;
+            visibility: hidden;
+          }
+          .card-body {
+            margin-top: 3.5rem;
+            min-width: 100%;
+          }
+        }
+      }
+  }
+
+/* *** Targeting iPad LandScape *** */
   @media (min-width: 1020px)
     and (orientation: landscape) {
       .container-fluid .row .left,
@@ -565,6 +685,43 @@ const BigDiv = styled.div`
     }
   }
 
+/* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 1040px)
+    and (orientation: landscape) {
+      max-width: 1265px;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+
+      .container-fluid .row .left,
+      .container-fluid .row .middle,
+      .container-fluid .row .right {
+        .card-title {
+          font-size: 2rem;
+        }
+        .card-body {
+          .card-subtitle {
+            font-size: 1.5rem;
+          }
+        }
+      }
+      .container-fluid .row .left,
+      .container-fluid .row .right {
+        div.card {
+          top: 3rem;
+        }
+      }
+      .container-fluid .row .middle {
+        #logo {
+          margin-bottom: -1rem;
+        }
+        .card-body {
+          margin-top: -14rem;
+        }
+      }
+  }
+
   @media (min-width: 1300px) {
     .container-fluid .row .left,
     .container-fluid .row .middle,
@@ -605,16 +762,160 @@ const BigDiv = styled.div`
     }
   }
 
-  @media (min-width: 1410px) {
-    .container-fluid .row .middle {
-      .card-body {
-        top: -10.5rem;
+/* *** Targeting iPad Pro LandScape, "1366px X 1024px" *** */
+  @media (min-width: 1360px)
+    and (orientation: landscape)
+    and (min-height: 1000px) {
+      max-width: 1265px;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+
+      .container-fluid .row .left,
+      .container-fluid .row .right,
+      .container-fluid .row .middle {
+        .card-body {
+          .card-title {
+            margin-bottom:.3rem;
+          }
+        }
+      }
+      .container-fluid .row .right,
+      .container-fluid .row .left {
+        div.card {
+          top: 5.5rem;
+          .card-body {
+
+          }
+        }
+      }
+      .container-fluid .row .left {
+        div.card {
+          position: relative;
+          left: 3rem;
+          #cub {
+            position: relative;
+            width: 70%;
+            left: 1rem;
+          }
+          .card-body {
+            max-width: 80%;
+            padding-top: 1.5rem;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        #logo {
+          margin-bottom: -4rem;
+        }
       }
     }
-    .container-fluid .row .left,
-    .container-fluid .row .right {
-      padding-top: 7rem;
+  }
+
+/* *** Targeting Desktop No. 1, "1366px X 768px" *** */
+  @media (min-width: 1360px)
+    and (orientation: landscape)
+    and (max-height: 800px) {
+      .container-fluid .row .left,
+      .container-fluid .row .right,
+      .container-fluid .row .middle {
+        .card-body {
+          .card-title {
+            margin-bottom:.3rem;
+          }
+        }
+      }
+      .container-fluid .row .right,
+      .container-fluid .row .left {
+        div.card {
+          top: 7rem;
+        }
+      }
+      .container-fluid .row .left {
+        div.card {
+          position: relative;
+          left: 3rem;
+          #cub {
+            position: relative;
+            width: 70%;
+            left: 1rem;
+          }
+          .card-body {
+            max-width: 80%;
+            padding-top: 1.5rem;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        #logo {
+          margin-bottom: -1rem;
+        }
+        .card-body {
+
+        }
+      }
     }
+  }
+
+/* *** Targeting Desktop No. 5, "1440px X 900px" *** */
+  @media (min-width: 1440px)
+    and (orientation: landscape) {
+      .container-fluid .row .left {
+        div.card {
+          padding-top: 3rem;
+
+          #cub {
+            width: 82%;
+          }
+        }
+      }
+      .container-fluid .row .right {
+        div.card {
+          padding-top: 4.5rem;
+
+          .card-body {
+            margin-top: 1.3rem;
+          }
+        }
+      }
+      .container-fluid .row .middle {
+        #logo {
+          margin-bottom: -1rem;
+        }
+      }
+  }
+
+/* *** Targeting Desktop No. 6, "1680px X 1050px" *** */
+  @media (min-width: 1665px)
+    and (orientation: landscape) {
+      .container-fluid .row .left,
+      .container-fluid .row .right,
+      .container-fluid .row .middle {
+        .card-body {
+          .card-title {
+            font-size: 2.2rem;
+          }
+          .card-subtitle {
+            font-size: 1.6rem;
+          }
+          .card-text {
+            font-size: 1.15rem;
+          }
+        }
+      }
+      .container-fluid .row .left {
+        div.card {
+          padding-top: 3rem;
+          left: 1.5rem;
+        }
+      }
+      .container-fluid .row .right {
+      }
+      .container-fluid .row .middle {
+        #logo {
+          margin-bottom: 2rem;
+        }
+      }
   }
 `
 

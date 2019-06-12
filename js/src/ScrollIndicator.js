@@ -103,7 +103,19 @@ const Wrapper = styled.div`
 /* *** Targeting iPad *** */
   @media (min-width: 1020px)
     and (orientation: landscape) {
-      bottom: 13.5rem;
+      bottom: 8.5rem;
+  }
+
+/* *** Targeting Desktop No. 5, "1440px X 900px" *** */
+  @media (min-width: 1265px)
+    and (orientation: landscape) {
+      bottom: 8rem;
+  }
+
+/* *** Targeting Desktop No. 1, "1366px X 768px" *** */
+  @media (min-width: 1360px)
+    and (orientation: landscape) {
+      bottom: 8.2rem;
   }
 `
 

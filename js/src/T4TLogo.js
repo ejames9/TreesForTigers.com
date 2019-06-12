@@ -20,8 +20,8 @@ const LogoContainer = styled.div`
     right: 0;
     left: 0;
     margin: 0 auto;
-    height: 50%;
-    width: 50%;
+    /* height: 10rem;
+    width: 10rem; */
     opacity: .3;
     z-index: 1;
   }
@@ -69,23 +69,90 @@ const LogoContainer = styled.div`
     }
   }
 
-/* *** Targeting iPad *** */
+/* *** Targeting iPad Pro portrait*** */
   @media (min-width: 1020px)
-    and (orientation: landscape) {
+    and (orientation: portrait) {
       svg {
         display: block;
-        top: 11.5%;
-        height: 57%;
-        width: 57%;
+        top: 10rem;
+        height: 28rem;
+        width: 28rem;
       }
   }
 
+/* *** Targeting iPad landscape *** */
+  @media (min-width: 1020px)
+    and (orientation: landscape)
+    and (max-height: 800px) {
+      svg {
+        display: block;
+        top: 5.5rem;
+        height: 27rem;
+        width: 27rem;
+      }
+  }
+/*
   @media (min-width: 1300px) {
     svg {
       top: 12%;
       height: 70%;
       width: 70%;
     }
+  } */
+
+/* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 1040px)
+    and (orientation: landscape) {
+      svg {
+        display: block;
+        top: 5rem;
+        height: 34.5rem;
+        width: 34.5rem;
+      }
+  }
+
+/* *** Targeting iPad Pro LandScape, "1366px X 1024px" *** */
+  @media (min-width: 1360px)
+    and (min-height: 1000px)
+    and (orientation: landscape) {
+      svg {
+        display: block;
+        top: 7.7rem;
+        height: 33rem;
+        width: 33rem;
+      }
+  }
+
+/* *** Targeting Desktop No. 1, "1366px X 768px" *** */
+  @media (min-width: 1360px)
+    and (max-height: 800px)
+    and (orientation: landscape) {
+      svg {
+        top: 6rem;
+        height: 32rem;
+        width: 32rem;
+      }
+  }
+
+/* *** Targeting Desktop No. 5, "1440px X 900px" *** */
+  @media (min-width: 1265px)
+    and (orientation: landscape) {
+      svg {
+        top: 9rem;
+        height: 31rem;
+        width: 31rem;
+      }
+  }
+
+/* *** Targeting Desktop No. 6, "1680px X 1050px" *** */
+  @media (min-width: 1670px)
+    and (orientation: landscape) {
+      svg {
+        top: 11.5rem;
+        height: 31rem;
+        width: 31rem;
+      }
   }
 `
 

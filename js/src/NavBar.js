@@ -114,6 +114,24 @@ const NavbarStyles = createGlobalStyle`
         }
       }
     }
+/* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 1040px) {
+    .navbar-collapse {
+      position: relative;
+      left: .3rem;
+    }
+    .nav-link {
+      margin-right: 1.3rem;
+    }
+  }
+
+
+/* *** Targeting Desktop No. 1, "1366px X 768px" *** */
+  @media (min-width: 1360px)
+    and (orientation: landscape) {
+
+  }
 `
 
 
@@ -145,7 +163,7 @@ class NavBar extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='mr-auto'>
+            <Nav>
               <Nav.Link href='#home'>About</Nav.Link>
               <Nav.Link href='#'>Our Vision</Nav.Link>
               <Nav.Link href='#'>The Challenge</Nav.Link>

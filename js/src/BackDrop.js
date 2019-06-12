@@ -64,6 +64,13 @@ const Image = styled.div`
     background-position: -180px 0px;
   }
 
+/* *** Targeting iPad Pro portrait *** */
+  @media (min-width: 1020px)
+    and (orientation: portrait) {
+      background-size: 230%;
+      background-position: -380px 0px;
+  }
+
   @media (min-width: 1050px) {
     background-size: 120%;
     background-position: -130px 0px;
@@ -72,6 +79,29 @@ const Image = styled.div`
   @media (min-width: 1200px) {
     background-size: 100%;
     background-position: 0px 0px;
+  }
+/* *** Targeting Desktop No. 2, "1280px X 800px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 810px)
+    and (orientation: landscape) {
+      background-size: 110%;
+      background-position: -50px 0px;
+  }
+
+/* *** Targeting Desktop No. 4, "1280px X 1024px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 1024px)
+    and (orientation: landscape) {
+      background-size: 135%;
+      background-position: -260px 0px;
+  }
+
+/* *** Targeting iPad Pro Landscape *** */
+  @media (min-width: 1360px)
+    and (min-height: 1000px)
+    and (orientation: landscape) {
+      background-size: 140%;
+      background-position: -300px 0px;
   }
 `
 

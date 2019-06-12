@@ -167,13 +167,15 @@ const Container = styled.div`
 /* *** Target iPhone 6/7/8 plus LandScape *** */
   @media (min-width: 735px)
     and (orientation: landscape) {
+      transform: scale(1);
+
       #chopsticks {
-        border: .7rem solid #dd3d32;
+        border: 1rem solid #dd3d32;
       }
       #ban {
-        top: -6.7rem;
-        width: 12.5rem;
-        height: .9rem;
+        top: -9.2rem;
+        width: 17.5rem;
+        height: 1.1rem;
       }
   }
 
@@ -209,6 +211,21 @@ const Container = styled.div`
     }
   }
 
+/* *** Target iPhone X LandScape *** */
+  @media (min-width: 800px)
+    and (orientation: landscape) {
+      transform: scale(.85);
+
+      #chopsticks {
+        border: 1.2rem solid #dd3d32;
+      }
+      #ban {
+        top: -11rem;
+        width: 18.5rem;
+        height: 1.5rem;
+      }
+  }
+
   @media (min-width: 835px) {
     #ban {
       top: -6.2rem;
@@ -239,6 +256,24 @@ const Container = styled.div`
       width: 14.4rem;
       height: .9rem;
     }
+  }
+
+/* *** Targeting iPad Pro portrait *** */
+  @media (min-width: 1020px)
+    and (orientation: portrait) {
+      position: relative;
+      left: 1rem;
+      height: 90%;
+      width: 90%;
+
+      #chopsticks {
+      border: 1rem solid #dd3d32;
+      }
+      #ban {
+        top: -9.5rem;
+        width: 16.5rem;
+        height: 1.2rem;
+      }
   }
 
 /* *** Targeting iPad *** */
@@ -282,6 +317,20 @@ const Container = styled.div`
     }
   }
 
+/* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
+  @media (min-width: 1265px)
+    and (max-height: 1040px)
+    and (orientation: landscape) {
+      #chopsticks {
+      border: 1.4rem solid #dd3d32;
+      }
+      #ban {
+        top: -12rem;
+        width: 21rem;
+        height: 1.6rem;
+      }
+  }
+
   @media (min-width: 1325px) {
     #chopsticks {
       border: 1.4rem solid #dd3d32;
@@ -293,11 +342,29 @@ const Container = styled.div`
     }
   }
 
-  @media (min-width: 1425px) {
-    #ban {
-      top: -11.2rem;
-      width: 19.5rem;
-    }
+/* *** Targeting Desktop No. 1, "1366px X 768px" *** */
+  @media (min-width: 1360px)
+    and (orientation: landscape) {
+      transform: scale(.83);
+      margin-bottom: -4.5rem;
+
+      #ban {
+        top: -12rem;
+        width: 20.5rem;
+        height: 1.6rem;
+      }
+  }
+
+/* *** Targeting Desktop No. 5, "1440px X 900px" *** */
+  @media (min-width: 1440px)
+    and (orientation: landscape) {
+      transform: scale(.88);
+
+      #ban {
+        top: -12rem;
+        width: 21rem;
+        height: 1.6rem;
+      }
   }
 `
 
