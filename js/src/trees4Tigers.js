@@ -104,7 +104,7 @@ and reacts to various conditions...*/
 // Otherwise, make sure the animation is running...
       } else {
         for (let child of this._state.scroller.current.childNodes) {
-          child.style.animationPlayState = 'paused'
+          child.style.animationPlayState = 'running'
           log('Onscreen', ['red', 'blue'])
         }
       }

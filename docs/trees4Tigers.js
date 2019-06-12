@@ -39802,7 +39802,7 @@ function (_React$Component) {
           try {
             for (var _iterator2 = _this2._state.scroller.current.childNodes[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
               var _child = _step2.value;
-              _child.style.animationPlayState = 'paused';
+              _child.style.animationPlayState = 'running';
               (0, _Loggers.log)('Onscreen', ['red', 'blue']);
             }
           } catch (err) {
