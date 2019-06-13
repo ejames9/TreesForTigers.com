@@ -77,12 +77,16 @@ const Container = styled.div`
   }
 /* *** Targeting iPhone 5/SE Landscape *** */
   @media (min-width: 560px) and (max-height: 350px) {
-    height: 55%;
-    width: 55%;
+    height: 67%;
+    width: 67%;
 
+    #chopsticks {
+      border: .8rem solid #dd3d32;
+    }
     #ban {
-      top: -6.5rem;
-      width: 10.8rem;
+      top: -7rem;
+      width: 12rem;
+      height: 1.1rem;
     }
   }
 
@@ -276,19 +280,19 @@ const Container = styled.div`
       }
   }
 
-/* *** Targeting iPad *** */
+/* *** Targeting iPad landscape *** */
   @media (min-width: 1020px)
     and (orientation: landscape) {
-      height: 90%;
-      width: 90%;
+      height: 110%;
+      width: 110%;
 
       #chopsticks {
-      border: 1rem solid #dd3d32;
+      border: 1.3rem solid #dd3d32;
       }
       #ban {
-        top: -9.5rem;
-        width: 16.5rem;
-        height: 1.2rem;
+        top: -11.6rem;
+        width: 21rem;
+        height: 1.5rem;
       }
   }
 
@@ -321,12 +325,15 @@ const Container = styled.div`
   @media (min-width: 1265px)
     and (max-height: 1040px)
     and (orientation: landscape) {
+      transform: scale(.85);
+      margin-bottom: 1rem;
+
       #chopsticks {
       border: 1.4rem solid #dd3d32;
       }
       #ban {
-        top: -12rem;
-        width: 21rem;
+        top: -14rem;
+        width: 25rem;
         height: 1.6rem;
       }
   }
@@ -345,12 +352,27 @@ const Container = styled.div`
 /* *** Targeting Desktop No. 1, "1366px X 768px" *** */
   @media (min-width: 1360px)
     and (orientation: landscape) {
-      transform: scale(.83);
-      margin-bottom: -4.5rem;
+      transform: scale(.7);
+      margin-bottom: -3.5rem;
+      margin-right: 2rem;
 
       #ban {
-        top: -12rem;
-        width: 20.5rem;
+        top: -14.3rem;
+        width: 24.6rem;
+        height: 1.6rem;
+      }
+  }
+
+/* *** Targeting iPad Pro landscape, "1366px X 1024px" *** */
+  @media (min-width: 1360px)
+    and (min-height: 1000px)
+    and (orientation: landscape) {
+      transform: scale(.7);
+      margin-bottom: -5rem;
+
+      #ban {
+        top: -14.3rem;
+        width: 24rem;
         height: 1.6rem;
       }
   }
@@ -358,13 +380,8 @@ const Container = styled.div`
 /* *** Targeting Desktop No. 5, "1440px X 900px" *** */
   @media (min-width: 1440px)
     and (orientation: landscape) {
-      transform: scale(.88);
-
-      #ban {
-        top: -12rem;
-        width: 21rem;
-        height: 1.6rem;
-      }
+      transform: scale(.77);
+      margin-bottom: -8rem;
   }
 `
 

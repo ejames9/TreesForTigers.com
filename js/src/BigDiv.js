@@ -123,6 +123,21 @@ const BigDiv = styled.div`
     }
   }
 
+/* *** Changing order of Cards for proper story telling order
+resumes after 992px breakpoint for cover animation... *** */
+  @media (min-width: 300px)
+    and (max-width: 992px) {
+      .container-fluid .row .left {
+        order: 1;
+      }
+      .container-fluid .row .middle {
+        order: 3;
+      }
+      .container-fluid .row .right {
+        order: 2;
+      }
+  }
+
 /********* Target iphone5/SE portrait ********/
   @media (min-width: 300px)
     and (orientation: portrait) {
@@ -143,12 +158,16 @@ const BigDiv = styled.div`
     }
 
     .container-fluid .row .right {
+      padding-top: 0;
+
       .card-body {
         margin-top: .5rem;
       }
     }
 
     .container-fluid .row .middle {
+      padding-top: 0;
+
       div.card {
         #logo {
           width: 120%;
@@ -172,7 +191,7 @@ const BigDiv = styled.div`
     }
   }
 
-/********* Target iPhone 6/7/8 ********/
+/********* Target iPhone 6/7/8 portrait ********/
   @media (min-width: 360px) {
     .container-fluid .row .left,
     .container-fluid .row .right,
@@ -190,10 +209,13 @@ const BigDiv = styled.div`
         margin: 0 auto;
         .card-body {
           margin-top: 2.5rem;
+          left: .2rem;
         }
       }
     }
     .container-fluid .row .right {
+      padding-top: 5rem;
+
       div.card {
         position: relative;
         bottom: 3rem;
@@ -208,6 +230,9 @@ const BigDiv = styled.div`
     .container-fluid .row .middle {
       height: 100%
     }
+    .container-fluid .row .left {
+      margin-bottom: 4rem;
+    }
     .container-fluid .row .middle {
       .card-body {
         margin-top: 3rem;
@@ -215,19 +240,22 @@ const BigDiv = styled.div`
     }
   }
 
-/********* Target iPhone 6/7/8 plus ********/
+/********* Target iPhone 6/7/8 plus portrait ********/
   @media (min-width: 410px)
     and (orientation: portrait) {
     .container-fluid .row .left {
+      padding-top: 5rem;
       bottom: 1rem;
     }
     .container-fluid .row .right {
-      bottom: 1.3rem;
+      margin-top: 5rem;
+      bottom: 3.3rem;
     }
     .container-fluid .row .middle {
       bottom: 2.3rem;
     }
   }
+
 /* *** Target iPhone SE LandScape *** */
   @media (min-width: 560px)
     and (orientation: landscape) {
@@ -265,6 +293,8 @@ const BigDiv = styled.div`
       }
     }
     .container-fluid .row .middle {
+      padding-top: 0;
+
       #logo {
         position: relative;
         bottom: 2.7rem;
@@ -285,7 +315,6 @@ const BigDiv = styled.div`
         margin-left: 1.2rem;
       }
     }
-
   }
 
 /* Media Queries */
@@ -322,34 +351,56 @@ const BigDiv = styled.div`
       }
     }
   }
+
 /* *** Target iPhone 6/7/8 LandScape *** */
-  @media (min-width: 660px)
-    and (orientation: landscape) {
+@media (min-width: 660px)
+  and (orientation: landscape) {
       .container-fluid .row .left {
+        padding-top: 5rem;
+
+        div.card {
+          #cub {
+            order: 2;
+            margin-right: 1rem;
+          }
+          .card-body {
+            order: 1;
+            max-width: 70%;
+          }
+        }
+      }
+      .container-fluid .row .right {
+        padding-top: 10rem;
+
         div.card {
           .card-body {
-            margin-left: 1.5rem;
+            left: 1rem;
           }
         }
       }
       .container-fluid .row .middle {
+        padding-top: 0;
+
         div.card {
+          left: -1rem;
+
           #logo {
             order: 2;
           }
           .card-body {
             order: 1;
-            left: 1rem;
+            margin-left: 1.5rem;
+            top: -1.5rem;
           }
         }
       }
   }
 
-/* *** Target iPhone 6/7/8 plus LandScape *** */
   @media (min-width: 735px) {
     /** Noting Yet **/
   }
 
+/* *** Target iPhone 6/7/8 plus LandScape *** */
   @media (min-width: 735px)
     and (orientation: landscape) {
     .container-fluid .row .left,
@@ -357,6 +408,8 @@ const BigDiv = styled.div`
       padding-top: 5.7rem;
     }
     .container-fluid .row .middle {
+      margin-top: 4.3rem;
+
       div.card {
         #logo {
           bottom: 7rem;
@@ -367,6 +420,8 @@ const BigDiv = styled.div`
       }
     }
     .container-fluid .row .right {
+      padding-top: 10rem;
+
       div.card {
         margin-left: 1.5rem;
 
@@ -378,12 +433,13 @@ const BigDiv = styled.div`
     }
   }
 
-/* *** Targeting iPad *** */
+/* *** Targeting iPad portrait *** */
   @media (min-width: 760px)
     and (orientation: portrait) {
       .container-fluid .row .left,
       .container-fluid .row .middle,
       .container-fluid .row .right {
+        background: transparent;
         height: 100%;
         width: 100%;
 
@@ -410,11 +466,15 @@ const BigDiv = styled.div`
           #cub {
             height: 40%;
             width: 40%;
+            margin-bottom: 5rem;
+            margin-right: 1.5rem;
             flex: 1;
+            order: 2;
           }
           .card-body {
             margin-left: 2rem;
             align-self: center;
+            order: 1;
           }
         }
       }
@@ -423,6 +483,7 @@ const BigDiv = styled.div`
         padding-top: 2rem;
 
         div.card {
+          margin-top: -6rem;
           #logo {
             position: relative;
             bottom: 4.3rem;
@@ -430,10 +491,13 @@ const BigDiv = styled.div`
             width: 50%;
             flex: 1;
             order: 2;
+            visibility: visible;
           }
           .card-body {
             max-width: 50%;
-            align-self: center;
+            margin-top: 5rem;
+            margin-right: 1.5rem;
+            flex: 1;
             order: 1;
           }
         }
@@ -442,9 +506,6 @@ const BigDiv = styled.div`
         padding-top: 0;
 
         div.card {
-          #cub {
-            margin-bottom: 2rem;
-          }
           .card-body {
             margin-left: 1.2rem;
           }
@@ -547,17 +608,16 @@ const BigDiv = styled.div`
       }
       .container-fluid .row .left {
         width: 75%;
-        padding-top: 3.3rem;
+        padding-top: 6rem;
 
         div.card {
           top: 5rem;
 
           #cub {
             width: 90%;
+            margin-bottom: -.5rem;
           }
           .card-body {
-
-
           }
         }
       }
@@ -588,7 +648,7 @@ const BigDiv = styled.div`
             visibility: hidden;
           }
           .card-body {
-            margin-top: 3.5rem;
+            margin-top: 9.5rem;
             min-width: 100%;
           }
         }
@@ -608,7 +668,9 @@ const BigDiv = styled.div`
           display: block;
 
           .card-body {
-
+            .card-title {
+              font-size: 2.1rem;
+            }
           }
         }
       }
@@ -617,11 +679,14 @@ const BigDiv = styled.div`
         padding-top: 3.3rem;
 
         div.card {
+          top: 2rem;
+
           #cub {
             width: 90%;
           }
           .card-body {
             max-width: 100%;
+
           }
         }
       }
@@ -630,10 +695,18 @@ const BigDiv = styled.div`
 
         div.card {
           position: relative;
-          top: .5rem;
+          top: -4rem;
+          right: 0;
+          left: 0;
+          margin: 0 auto;
 
+          #noChopsticks {
+            position: relative;
+            right: 1rem;
+            margin-right: 2rem;
+          }
           .card-body {
-            margin-top: -2rem;
+            margin-top: -4.9rem;
             max-width: 90%;
           }
         }
@@ -653,8 +726,7 @@ const BigDiv = styled.div`
           }
           .card-body {
             position: relative;
-            bottom: 8rem;
-            margin-top: -5.5rem;
+            margin-top: -9.5rem;
             min-width: 100%;
           }
         }
@@ -713,11 +785,20 @@ const BigDiv = styled.div`
         }
       }
       .container-fluid .row .middle {
-        #logo {
-          margin-bottom: -1rem;
+        div.card {
+          #logo {
+            margin-bottom: -1rem;
+          }
         }
-        .card-body {
-          margin-top: -14rem;
+      }
+      .container-fluid .row .right {
+        div.card {
+          top: -3rem;
+          left: -1rem;
+
+          .card-body {
+            top: -1rem;
+          }
         }
       }
   }
@@ -792,11 +873,12 @@ const BigDiv = styled.div`
       .container-fluid .row .left {
         div.card {
           position: relative;
-          left: 3rem;
+          left: 2rem;
+          top: 8.5rem;
+
           #cub {
             position: relative;
             width: 70%;
-            left: 1rem;
           }
           .card-body {
             max-width: 80%;
@@ -805,8 +887,14 @@ const BigDiv = styled.div`
         }
       }
       .container-fluid .row .middle {
-        #logo {
-          margin-bottom: -4rem;
+        div.card {
+          .card-body {
+            margin-top: -8rem;
+          }
+        }
+      }
+      .container-fluid .row .right {
+        div.card {
         }
       }
     }
@@ -828,17 +916,18 @@ const BigDiv = styled.div`
       .container-fluid .row .right,
       .container-fluid .row .left {
         div.card {
-          top: 7rem;
+          top: 4rem;
         }
       }
       .container-fluid .row .left {
         div.card {
           position: relative;
           left: 3rem;
+          top: 5rem;
+
           #cub {
             position: relative;
             width: 70%;
-            left: 1rem;
           }
           .card-body {
             max-width: 80%;
@@ -847,11 +936,26 @@ const BigDiv = styled.div`
         }
       }
       .container-fluid .row .middle {
-        #logo {
-          margin-bottom: -1rem;
-        }
-        .card-body {
+        div.card {
+          #logo {
+            margin-bottom: -3rem;
+          }
 
+        }
+      }
+      .container-fluid .row .right {
+        div.card {
+          position: relative;
+          top: 3rem;
+          left: -1.5rem;
+          margin-right: 6rem;
+
+          .card-body {
+            position: relative;
+            left: 4rem;
+            margin-top: -6rem;
+            max-width: 85%;
+          }
         }
       }
     }
@@ -862,19 +966,28 @@ const BigDiv = styled.div`
     and (orientation: landscape) {
       .container-fluid .row .left {
         div.card {
+          position: relative;
+          left: 1.5rem;
           padding-top: 3rem;
 
           #cub {
             width: 82%;
           }
+          .card-body {
+            max-width: 90%;
+          }
         }
       }
       .container-fluid .row .right {
         div.card {
-          padding-top: 4.5rem;
+          position: relative;
+          left: -2rem;
+          padding-top: 8.5rem;
 
           .card-body {
-            margin-top: 1.3rem;
+            position: relative;
+            left: 3rem;
+            top: 2.5rem;
           }
         }
       }
@@ -885,7 +998,7 @@ const BigDiv = styled.div`
       }
   }
 
-/* *** Targeting Desktop No. 6, "1680px X 1050px" *** */
+/* *** Targeting Desktop No. 6 and above, "1680px X 1050px" *** */
   @media (min-width: 1665px)
     and (orientation: landscape) {
       .container-fluid .row .left,
@@ -905,15 +1018,26 @@ const BigDiv = styled.div`
       }
       .container-fluid .row .left {
         div.card {
-          padding-top: 3rem;
+          padding-top: 1rem;
           left: 1.5rem;
         }
       }
       .container-fluid .row .right {
+        div.card {
+          position: relative;
+          left: -1rem;
+          padding-top: 3rem;
+
+          .card-body {
+            position: relative;
+            left: 3rem;
+            margin-top: -1rem;
+          }
+        }
       }
       .container-fluid .row .middle {
         #logo {
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
         }
       }
   }

@@ -38,6 +38,12 @@ const LogoContainer = styled.div`
     filter: url(#shadow);
   }
 
+/* *** Targeting iPhone 5/SE LandScape *** */
+  @media (min-width: 560px)
+    and (orientation: landscape) {
+    
+  }
+
   @media (min-width: 576px)
     and (orientation: portrait) {
     svg {
@@ -136,7 +142,7 @@ const LogoContainer = styled.div`
   }
 
 /* *** Targeting Desktop No. 5, "1440px X 900px" *** */
-  @media (min-width: 1265px)
+  @media (min-width: 1440px)
     and (orientation: landscape) {
       svg {
         top: 9rem;

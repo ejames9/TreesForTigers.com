@@ -96,12 +96,27 @@ const Image = styled.div`
       background-position: -260px 0px;
   }
 
+/* *** Targeting Desktop No. 1 and above *** */
+  @media (min-width: 1366px)
+    and (orientation: landscape) {
+      background-size: 100%;
+      background-position: 0px 0px;
+  }
+
 /* *** Targeting iPad Pro Landscape *** */
   @media (min-width: 1360px)
     and (min-height: 1000px)
+    and (max-height: 1050px)
     and (orientation: landscape) {
       background-size: 140%;
       background-position: -300px 0px;
+  }
+
+/* *** Targeting Desktop No. 1 and above *** */
+  @media (min-width: 1440px)
+    and (orientation: landscape) {
+      background-size: 110%;
+      background-position: -50px 0px;
   }
 `
 

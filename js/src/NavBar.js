@@ -33,8 +33,13 @@ const NavbarStyles = createGlobalStyle`
 
   .navbar-collapse {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-left: 4rem;
+    overflow: scroll;
+
+    .navbar-nav {
+      overflow: scroll;
+    }
   }
 
   a {
@@ -43,6 +48,7 @@ const NavbarStyles = createGlobalStyle`
     padding-right: 1rem;
     margin-right: 2rem;
   }
+
 /* Navbar Links */
   a.nav-link {
     color: black !important;
@@ -57,6 +63,7 @@ const NavbarStyles = createGlobalStyle`
     height: 5rem;
     width: 5rem;
     padding: 0;
+
 /* Logo Text */
     span {
       font-family: Sacramento, just another hand, covered by your grace;
@@ -69,6 +76,7 @@ const NavbarStyles = createGlobalStyle`
       /* text-shadow: 0 -6px 10px black, 0 6px 10px black, 6px 0 10px black, -6px 0 10px black; */
     }
   }
+
 /* ***** Targeting iPhone 5/SE ***** */
   @media (min-width: 300px) {
     padding-right: 0rem;
@@ -86,6 +94,7 @@ const NavbarStyles = createGlobalStyle`
       }
     }
   }
+
 /* ***** Targeting iPhone 6/7/8 and plus ***** */
   @media (min-width: 360px) {
     a.navbar-brand {
@@ -98,6 +107,7 @@ const NavbarStyles = createGlobalStyle`
       }
     }
   }
+
 /* ***** Targeting iPad ***** */
   @media (min-width: 760px) {
       a.navbar-brand {
@@ -114,11 +124,13 @@ const NavbarStyles = createGlobalStyle`
         }
       }
     }
+
 /* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
   @media (min-width: 1265px)
     and (max-height: 1040px) {
     .navbar-collapse {
       position: relative;
+      justify-content: flex-end;
       left: .3rem;
     }
     .nav-link {
@@ -130,7 +142,15 @@ const NavbarStyles = createGlobalStyle`
 /* *** Targeting Desktop No. 1, "1366px X 768px" *** */
   @media (min-width: 1360px)
     and (orientation: landscape) {
+      .navbar-collapse {
+        position: relative;
+        justify-content: flex-end;
+        left: .3rem;
 
+        .nav-link {
+          margin-right: 2rem;
+        }
+    }
   }
 `
 
