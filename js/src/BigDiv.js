@@ -434,7 +434,7 @@ resumes after 992px breakpoint for cover animation... *** */
   }
 
 /* *** Targeting iPad portrait *** */
-  @media (min-width: 760px)
+  @media (min-width: 670px)
     and (orientation: portrait) {
       .container-fluid .row .left,
       .container-fluid .row .middle,

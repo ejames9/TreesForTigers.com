@@ -53,6 +53,13 @@ const Image = styled.div`
   }
 
 /* ***** Targeting iPad ***** */
+  @media (min-width: 670px)
+    and (orientation: portrait) {
+      background-size: 255%;
+      background-position: -255px 0px;
+  }
+
+/* ***** Targeting iPad ***** */
   @media (min-width: 760px)
     and (orientation: portrait) {
       background-size: 240%;

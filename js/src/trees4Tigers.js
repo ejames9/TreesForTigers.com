@@ -104,7 +104,7 @@ and reacts to various conditions...*/
 // Otherwise, make sure the animation is running...
       } else {
         for (let child of this._state.scroller.current.childNodes) {
-          child.style.animationPlayState = 'paused'
+          child.style.animationPlayState = 'running'
           log('Onscreen', ['red', 'blue'])
         }
       }
@@ -122,6 +122,15 @@ and reacts to various conditions...*/
           this._state.logo.current,
           'bottom'
         )
+      }
+    }
+  }
+
+// On resize adjustments...
+  onResize() {
+    window.onresize=e=> {
+      if (this.state.screenWidth > 992) {
+        el('#levelTwo').style.height = this.state.screenHeight - this.state.navbarHeight
       }
     }
   }

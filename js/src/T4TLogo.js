@@ -41,7 +41,7 @@ const LogoContainer = styled.div`
 /* *** Targeting iPhone 5/SE LandScape *** */
   @media (min-width: 560px)
     and (orientation: landscape) {
-    
+
   }
 
   @media (min-width: 576px)
@@ -60,7 +60,7 @@ const LogoContainer = styled.div`
   }
 
 /* ***** Targeting iPad ***** */
-  @media (min-width: 760px)
+  @media (min-width: 670px)
     and (orientation: portrait) {
       svg {
         display: none;
@@ -177,7 +177,7 @@ const T4TLogo =({logoNode})=> {
   return (
     <LogoContainer ref={logo}>
       <svg id="tigerLogo" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0, 0, 400,419.44444444444446">
-        <filter id="shadow" x="0" y="0" width="200%" height="200%">
+        <filter id="shadow" x="-.2" y="-.2" width="200%" height="200%">
           <feDropShadow dx="5" dy="0" stdDeviation="5" floodColor="white" floodOpacity="2" />
           <feDropShadow dx="-5" dy="0" stdDeviation="5" floodColor="white" floodOpacity="2" />
           <feDropShadow dx="0" dy="5" stdDeviation="5" floodColor="white" floodOpacity="2" />

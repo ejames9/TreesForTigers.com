@@ -150,7 +150,25 @@ const Container = styled.div`
     }
   }
 
-  @media (min-width: 708px) {
+/* *** Targeting iPad and iPad Air actual portrait *** */
+  @media (min-width: 670px)
+    and (orientation: portrait) {
+      position: relative;
+      bottom: 4rem;
+      height: 70%;
+      width: 70%;
+
+      #chopsticks {
+        border: 1.1rem solid #dd3d32;
+      }
+      #ban {
+        top: -10rem;
+        width: 19rem;
+        height: 1.3rem;
+      }
+  }
+
+  /* @media (min-width: 708px) {
     #ban {
       top: -5.3rem;
       width: 8.9rem;
@@ -166,7 +184,7 @@ const Container = styled.div`
       width: 9.5rem;
       height: .7rem;
     }
-  }
+  } */
 
 /* *** Target iPhone 6/7/8 plus LandScape *** */
   @media (min-width: 735px)
@@ -182,31 +200,13 @@ const Container = styled.div`
         height: 1.1rem;
       }
   }
-
+/*
   @media (min-width: 756px) {
     #ban {
       top: -5.6rem;
       width: 10rem;
     }
-  }
-
-/* *** Targeting iPad *** */
-  @media (min-width: 760px)
-    and (orientation: portrait) {
-      position: relative;
-      bottom: 4rem;
-      height: 70%;
-      width: 70%;
-
-      #chopsticks {
-        border: 1.1rem solid #dd3d32;
-      }
-      #ban {
-        top: -10rem;
-        width: 18rem;
-        height: 1.3rem;
-      }
-  }
+  } */
 
   @media (min-width: 790px) {
     #ban {
