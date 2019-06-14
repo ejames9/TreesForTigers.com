@@ -14,7 +14,7 @@
 //: fIXME [x] Fix Logo sizing, responsively....
 //: fIXME [x] Fix Navbar
 //: fIXME [x] Chopsticks ban...
-//: fIXME [] Mover scroller...
+//: fIXME [x] Mover scroller...
 //: fIXME [x] Adjust 2nd Level start for collapsed state ...
 //: fIXME [x] fix bottom sensor....
 
@@ -111,13 +111,13 @@ and reacts to various conditions...*/
 
 // Check to see if we've hit bottom...
       if (isBottom()) {
-        log('Bottom!!!', ['red', 'blue'])
+        // log('Bottom!!!', ['red', 'blue'])
         addClass(
           this._state.logo.current,
           'bottom'
         )
       } else {
-        log('NO bottom!!!', ['red', 'purple'])
+        // log('NO bottom!!!', ['red', 'purple'])
         removeClass(
           this._state.logo.current,
           'bottom'
@@ -128,7 +128,7 @@ and reacts to various conditions...*/
 
 // On resize adjustments...
   onResize() {
-    window.onresize=e=> {
+    document.body.onresize=e=> {
 // Get an updated screen width...
       let screenWidth = window.innerHeight
 // If we're above the 992 breakpoint, ...

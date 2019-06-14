@@ -39823,10 +39823,10 @@ function (_React$Component) {
 
 
         if ((0, _Is.isBottom)()) {
-          (0, _Loggers.log)('Bottom!!!', ['red', 'blue']);
+          // log('Bottom!!!', ['red', 'blue'])
           (0, _classList.addClass)(_this2._state.logo.current, 'bottom');
         } else {
-          (0, _Loggers.log)('NO bottom!!!', ['red', 'purple']);
+          // log('NO bottom!!!', ['red', 'purple'])
           (0, _classList.removeClass)(_this2._state.logo.current, 'bottom');
         }
       };
@@ -39837,7 +39837,7 @@ function (_React$Component) {
     value: function onResize() {
       var _this3 = this;
 
-      window.onresize = function (e) {
+      document.body.onresize = function (e) {
         // Get an updated screen width...
         var screenWidth = window.innerHeight; // If we're above the 992 breakpoint, ...
 
