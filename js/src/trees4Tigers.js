@@ -129,8 +129,12 @@ and reacts to various conditions...*/
 // On resize adjustments...
   onResize() {
     window.onresize=e=> {
-      if (this.state.screenWidth > 992) {
-        el('#levelTwo').style.height = this.state.screenHeight - this.state.navbarHeight
+// Get an updated screen width...
+      let screenWidth = window.innerHeight
+// If we're above the 992 breakpoint, ...
+      if (screenWidth > 992) {
+// Reset level two height...
+        el('#levelTwo').style.height = `${screenWidth - this.state.navbarHeight}px`
       }
     }
   }

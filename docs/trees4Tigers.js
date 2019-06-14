@@ -39838,8 +39838,12 @@ function (_React$Component) {
       var _this3 = this;
 
       window.onresize = function (e) {
-        if (_this3.state.screenWidth > 992) {
-          (0, _el.default)('#levelTwo').style.height = _this3.state.screenHeight - _this3.state.navbarHeight;
+        // Get an updated screen width...
+        var screenWidth = window.innerHeight; // If we're above the 992 breakpoint, ...
+
+        if (screenWidth > 992) {
+          // Reset level two height...
+          (0, _el.default)('#levelTwo').style.height = "".concat(screenWidth - _this3.state.navbarHeight, "px");
         }
       };
     } // Post mount component adjustments ....
