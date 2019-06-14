@@ -59,7 +59,8 @@ class App extends React.Component {
     this._state = {
       scroller: null,
       logo: null,
-      atScrollBottom: false
+      atScrollBottom: false,
+      screenHeight: null
     }
 
 // Component state object...
@@ -130,12 +131,21 @@ and reacts to various conditions...*/
   onResize() {
     document.body.onresize=e=> {
 // Get an updated screen width...
-      let screenWidth = window.innerHeight
+      let screenWidth = window.innerWidth,
+      screenHeight = window.innerHeight
 // If we're above the 992 breakpoint, ...
       if (screenWidth > 992) {
 // Reset level two height...
-        el('#levelTwo').style.height = `${screenWidth - this.state.navbarHeight}px`
+        el('#levelTwo').style.height = `${screenHeight - this.state.navbarHeight}px`
       }
+    }
+  }
+
+// Orientation change adjustments...
+  onOrientationChange() {
+// Reload on o-change....
+    window.onorientationchange=e=> {
+      location.reload()
     }
   }
 
@@ -145,6 +155,8 @@ and reacts to various conditions...*/
     this.onScroll()
 // Resize ops...
     this.onResize()
+// Orientation change listener/callback...
+    this.onOrientationChange()
 
 // Get display dimensions, and height of navbar and store in state obj.....
     this.setState({
@@ -174,6 +186,14 @@ and reacts to various conditions...*/
 }
 
 // Application rendering....
-reactDOM.render(
-  <App/>, el('#root')
-)
+function render() {
+// React rendering...
+  reactDOM.render(
+   <App/>, el('#root')
+  )
+}
+
+// Render when dom is ready....
+document.addEventListener('DOMContentLoaded', ()=> {
+  render()
+})

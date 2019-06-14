@@ -39726,7 +39726,8 @@ function (_React$Component) {
     _this._state = {
       scroller: null,
       logo: null,
-      atScrollBottom: false // Component state object...
+      atScrollBottom: false,
+      screenHeight: null // Component state object...
 
     };
     _this.state = {
@@ -39839,12 +39840,22 @@ function (_React$Component) {
 
       document.body.onresize = function (e) {
         // Get an updated screen width...
-        var screenWidth = window.innerHeight; // If we're above the 992 breakpoint, ...
+        var screenWidth = window.innerWidth,
+            screenHeight = window.innerHeight; // If we're above the 992 breakpoint, ...
 
         if (screenWidth > 992) {
           // Reset level two height...
-          (0, _el.default)('#levelTwo').style.height = "".concat(screenWidth - _this3.state.navbarHeight, "px");
+          (0, _el.default)('#levelTwo').style.height = "".concat(screenHeight - _this3.state.navbarHeight, "px");
         }
+      };
+    } // Orientation change adjustments...
+
+  }, {
+    key: "onOrientationChange",
+    value: function onOrientationChange() {
+      // Reload on o-change....
+      window.onorientationchange = function (e) {
+        location.reload();
       };
     } // Post mount component adjustments ....
 
@@ -39854,7 +39865,9 @@ function (_React$Component) {
       // Scroll associated operations....
       this.onScroll(); // Resize ops...
 
-      this.onResize(); // Get display dimensions, and height of navbar and store in state obj.....
+      this.onResize(); // Orientation change listener/callback...
+
+      this.onOrientationChange(); // Get display dimensions, and height of navbar and store in state obj.....
 
       this.setState({
         // Go ahead and set the sreen dimensions...
@@ -39884,7 +39897,15 @@ function (_React$Component) {
 }(_react.default.Component); // Application rendering....
 
 
-_reactDom.default.render(_react.default.createElement(App, null), (0, _el.default)('#root'));
+function render() {
+  // React rendering...
+  _reactDom.default.render(_react.default.createElement(App, null), (0, _el.default)('#root'));
+} // Render when dom is ready....
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  render();
+});
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Image":"../../node_modules/react-bootstrap/Image.js","react-bootstrap/Carousel":"../../node_modules/react-bootstrap/Carousel.js","./T4TLogo":"T4TLogo.js","./NavBar":"NavBar.js","./BigDiv":"BigDiv.js","./ScrollIndicator":"ScrollIndicator.js","./BackDrop":"BackDrop.js","./GlobalStyles":"GlobalStyles.js","./utils/DOM/el":"utils/DOM/el.js","./utils/Loggers":"utils/Loggers.js","./utils/Is":"utils/Is.js","./utils/mergeData":"utils/mergeData.js","./utils/DOM/classList":"utils/DOM/classList.js"}],"../../../../../../.nvm/versions/node/v8.11.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
