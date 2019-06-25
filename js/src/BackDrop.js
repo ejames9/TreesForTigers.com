@@ -20,7 +20,7 @@ const coverOverlay = './assets/images/amurTiger01.jpg'
 
 // The cover component....
 const Image = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,7 +28,7 @@ const Image = styled.div`
   background-image: url(${coverOverlay});
   background-size: 240%;
   background-repeat: no-repeat;
-  background-position: -150px 0px;
+  background-position: -150px 0px; */
 
   z-index: 1;
 
