@@ -15,10 +15,13 @@ import css, {createGlobalStyle} from 'styled-components'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Nav from 'react-bootstrap/Nav'
+// get Heart svg..
+import Heart from './Heart'
 
 
 // T4T Logo ....
 const trees4TigersLogo = './assets/images/trees4TigersLogo.svg'
+const heart = './assets/images/heart.svg'
 
 // Component styling...
 const NavbarStyles = createGlobalStyle`
@@ -35,10 +38,33 @@ const NavbarStyles = createGlobalStyle`
     display: flex;
     justify-content: flex-start;
     margin-left: 4rem;
-    overflow: scroll;
+    // overflow: scroll;
 
+    .travel {
+      display: flex;
+
+      > a {
+        align-self: center;
+      }
+    }
+
+    .dropdown-menu {
+      background: #555555;
+
+      a {
+        color: #1d1d1d;
+      }
+      a:hover {
+        background: #797979;
+      }
+    }
     .navbar-nav {
-      overflow: scroll;
+      // > #heartLink {
+      //   > #heart {
+      //     position: relative;
+      //     top: 50px;
+      //   }
+      // }
     }
   }
 
@@ -52,9 +78,16 @@ const NavbarStyles = createGlobalStyle`
 /* Navbar Links */
   a.nav-link {
     color: black !important;
+    line-height: 1.5rem;
+    align-self: center;
     text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;
     opacity: .6;
   }
+
+  a. dropdown-toggle {
+    align-self: center;
+  }
+
   a.nav-link:hover {
     opacity: 1;
   }
@@ -63,6 +96,11 @@ const NavbarStyles = createGlobalStyle`
     height: 5rem;
     width: 5rem;
     padding: 0;
+
+
+  div.nav-item {
+    align-self: center;
+  }
 
 /* Logo Text */
     span {
@@ -126,7 +164,7 @@ const NavbarStyles = createGlobalStyle`
     }
 
 /* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
-  @media (min-width: 1265px)
+  @media (min-width: 1200px)
     and (max-height: 1040px) {
     .navbar-collapse {
       position: relative;
@@ -188,13 +226,14 @@ class NavBar extends React.Component {
               <Nav.Link href='#'>Our Vision</Nav.Link>
               <Nav.Link href='#'>The Challenge</Nav.Link>
               <Nav.Link href='#'>The Trees</Nav.Link>
-              <NavDropdown title='Travel' id='basic-nav-dropdown'>
+              <Nav.Link id='heartLink' href='#'>
+                <Heart className='heart'/>
+              </Nav.Link>
+              <NavDropdown className='travel' title='Travel' id='basic-nav-dropdown'>
                 <NavDropdown.Item href='#'>Eastern Russia</NavDropdown.Item>
                 <NavDropdown.Item href='#'>Durmiskoye</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href='#'>Donate</Nav.Link>
               <Nav.Link href='#'>Contact</Nav.Link>
-
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -204,3 +243,14 @@ class NavBar extends React.Component {
 }
 
 export default NavBar
+
+
+
+
+// <Navbar.Brand className='heart' href='#home'>
+//     <img
+//       id='donateHeart'
+//       src={heart}
+//       alt='Donate'
+//     />
+// </Navbar.Brand>

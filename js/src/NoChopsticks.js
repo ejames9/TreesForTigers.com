@@ -168,24 +168,6 @@ const Container = styled.div`
       }
   }
 
-  /* @media (min-width: 708px) {
-    #ban {
-      top: -5.3rem;
-      width: 8.9rem;
-    }
-  }
-
-  @media (min-width: 718px) {
-    #chopsticks {
-      border: .7rem solid #dd3d32;
-    }
-    #ban {
-      top: -5.3rem;
-      width: 9.5rem;
-      height: .7rem;
-    }
-  } */
-
 /* *** Target iPhone 6/7/8 plus LandScape *** */
   @media (min-width: 735px)
     and (orientation: landscape) {
@@ -230,40 +212,29 @@ const Container = styled.div`
       }
   }
 
-  @media (min-width: 835px) {
+  @media (min-width: 860px) {
     #ban {
-      top: -6.2rem;
-      width: 11.5rem;
+        top: -11.5rem;
+        width: 20rem;
+      }
+  }
+
+  @media (min-width: 910px) {
+    #ban {
+      top: -12rem;
+      width: 21rem;
     }
   }
 
-  @media (min-width: 889px) {
+  @media (min-width: 950px) {
     #ban {
-      top: -6.6rem;
-      width: 12.5rem;
-    }
-  }
-
-  @media (min-width: 943px) {
-    #ban {
-      top: -7rem;
-      width: 13.5rem;
-    }
-  }
-
-  @media (min-width: 1007px) {
-    #chopsticks {
-      border: .9rem solid #dd3d32;
-    }
-    #ban {
-      top: -7.5rem;
-      width: 14.4rem;
-      height: .9rem;
+      top: -13rem;
+      width: 22rem;
     }
   }
 
 /* *** Targeting iPad Pro portrait *** */
-  @media (min-width: 1020px)
+  @media (min-width: 992px)
     and (orientation: portrait) {
       position: relative;
       left: 1rem;
@@ -281,7 +252,7 @@ const Container = styled.div`
   }
 
 /* *** Targeting iPad landscape *** */
-  @media (min-width: 1020px)
+  @media (min-width: 992px)
     and (orientation: landscape) {
       height: 110%;
       width: 110%;
@@ -291,35 +262,11 @@ const Container = styled.div`
       }
       #ban {
         top: -11.6rem;
-        width: 21rem;
+        width: 20.4rem;
         height: 1.5rem;
       }
   }
 
-  @media (min-width: 1076px) {
-    #ban {
-      top: -8rem;
-      width: 15.4rem;
-    }
-  }
-
-  @media (min-width: 1141px) {
-    #chopsticks {
-      border: 1.2rem solid #dd3d32;
-    }
-    #ban {
-      top: -8.7rem;
-      width: 16.3rem;
-      height: 1.2rem;
-    }
-  }
-
-  @media (min-width: 1227px) {
-    #ban {
-      top: -9.6rem;
-      width: 17.7rem;
-    }
-  }
 
 /* *** Targeting Desktops No. 2 & 4, "1280px X 800px & 1024px" *** */
   @media (min-width: 1265px)

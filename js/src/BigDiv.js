@@ -529,6 +529,10 @@ resumes after 992px breakpoint for cover animation... *** */
       }
       .container-fluid .row .middle {
         div.card {
+          position: relative;
+          top: -6rem;
+          z-index: 4;
+
           #logo {
             transform: scale(.8);
           }
@@ -539,6 +543,8 @@ resumes after 992px breakpoint for cover animation... *** */
       }
       .container-fluid .row .right {
         div.card {
+          z-index: 3;
+
           .card-body {
             margin-left: 0rem;
             top: 1rem;
@@ -547,7 +553,7 @@ resumes after 992px breakpoint for cover animation... *** */
       }
   }
 
-  @media (min-width: 800px) {
+  /* @media (min-width: 800px) {
     .container-fluid .row .middle {
       .card-body {
         top: -6.5rem;
@@ -569,23 +575,25 @@ resumes after 992px breakpoint for cover animation... *** */
         top: -6.5rem;
       }
     }
-  }
+  } */
 
 /* Change to single row level two */
   @media (min-width: 992px) {
     height: ${props=> props.divHeight}px;
-  }
 
-  @media (min-width: 1000px) {
     .container-fluid .row .middle {
-      .card-body {
-        top: -7.5rem;
+      div.card {
+        top: 4.5rem;
+
+        .card-body {
+          top: -7.5rem;
+        }
       }
     }
   }
 
 /* *** Targeting iPad Pro portrait *** */
-  @media (min-width: 1020px)
+  @media (min-width: 992px)
     and (orientation: portrait) {
       .container-fluid .row .left,
       .container-fluid .row .middle,
@@ -656,7 +664,7 @@ resumes after 992px breakpoint for cover animation... *** */
   }
 
 /* *** Targeting iPad LandScape *** */
-  @media (min-width: 1020px)
+  @media (min-width: 992px)
     and (orientation: landscape) {
       .container-fluid .row .left,
       .container-fluid .row .middle,
@@ -1056,8 +1064,8 @@ const LevelTwo =({divHeight})=>
                 <h3 className='card-title'>Our Vision</h3>
                 <Card.Subtitle>Tiger Cubs Running Free!</Card.Subtitle>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                Some quick example text to build on the card title and make up the bulk of
+              the card's content.
                 </Card.Text>
                 <Button variant="primary">Vision</Button>
               </Card.Body>

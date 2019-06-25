@@ -106,7 +106,7 @@ const Wrapper = styled.div`
       bottom: 8.5rem;
   }
 
-/* *** Targeting Desktop No. 5, "1440px X 900px" *** */
+/* *** Targeting Desktop No. 2, "1280px X 800px" *** */
   @media (min-width: 1265px)
     and (orientation: landscape) {
       bottom: 8rem;
@@ -115,7 +115,7 @@ const Wrapper = styled.div`
 /* *** Targeting Desktop No. 1, "1366px X 768px" *** */
   @media (min-width: 1360px)
     and (orientation: landscape) {
-      bottom: 8.2rem;
+      bottom: 9rem;
   }
 `
 

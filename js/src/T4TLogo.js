@@ -23,7 +23,7 @@ const LogoContainer = styled.div`
     /* height: 10rem;
     width: 10rem; */
     opacity: .3;
-    z-index: 1;
+    z-index: 5;
   }
 
   path {
@@ -44,12 +44,6 @@ const LogoContainer = styled.div`
 
   }
 
-  @media (min-width: 576px)
-    and (orientation: portrait) {
-    svg {
-      display: block;
-    }
-  }
 
 /* *** Target iPhone 6/7/8 LandScape *** */
   @media (min-width: 660px)

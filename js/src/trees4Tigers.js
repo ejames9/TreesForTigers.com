@@ -1,5 +1,5 @@
 /*
-** tress4Tigers.js
+** trees4Tigers.js
 **
 ** tress4Tigers.js is the index file for the Trees4Tigers.com nonprofit
 ** information and donation web site....
@@ -46,7 +46,6 @@ import {log, dir} from './utils/Loggers'
 import {isOffscreen, isBottom} from './utils/Is'
 import mergeData from './utils/mergeData'
 import {addClass, removeClass} from './utils/DOM/classList'
-
 
 
 
@@ -105,7 +104,7 @@ and reacts to various conditions...*/
 // Otherwise, make sure the animation is running...
       } else {
         for (let child of this._state.scroller.current.childNodes) {
-          child.style.animationPlayState = 'running'
+          child.style.animationPlayState = 'paused'
           log('Onscreen', ['red', 'blue'])
         }
       }
@@ -151,6 +150,9 @@ and reacts to various conditions...*/
 
 // Post mount component adjustments ....
   componentDidMount() {
+/*
+Event Listeners.....>>>
+*/
 // Scroll associated operations....
     this.onScroll()
 // Resize ops...
@@ -188,9 +190,7 @@ and reacts to various conditions...*/
 // Application rendering....
 function render() {
 // React rendering...
-  reactDOM.render(
-   <App/>, el('#root')
-  )
+  return reactDOM.render(<App/>, el('#root'))
 }
 
 // Render when dom is ready....

@@ -31,8 +31,14 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  #root {
-    height: auto;
+  // #root {
+  //   height: auto;
+  //   background: #555555;
+  // }
+
+  .donate {
+    font-family: telex;
+    font-size: 5rem;
   }
 `
 

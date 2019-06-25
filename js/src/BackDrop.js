@@ -12,8 +12,6 @@
 import React from 'react'
 // Get sc component styling...
 import styled from 'styled-components'
-// Get react-bootstrap....
-// import Navbar from 'react-bootstrap/Navbar'
 
 
 // Cover backdrop
@@ -25,19 +23,25 @@ const Image = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
+  height: 100%;
   background-image: url(${coverOverlay});
   background-size: 240%;
   background-repeat: no-repeat;
   background-position: -150px 0px;
+
   z-index: 1;
+
+  /* > img {
+    width: 100%;
+  } */
 
 /* *** Targeting iPhone 5/SE 6/7/8 and plus *** */
   @media (min-width: 300px) {
     background-size: 300%;
     background-position: -100px 0px;
   }
+
 /* *** Targeting iPhone X *** */
   @media (min-width: 360px)
     and (min-height: 675px){
@@ -50,6 +54,11 @@ const Image = styled.div`
     and (orientation: landscape) {
       background-size: 100%;
       background-position: 0px 0px;
+  }
+
+  @media (min-width: 560px)
+    and (orientation: portrait) {
+
   }
 
 /* ***** Targeting iPad ***** */
@@ -129,6 +138,6 @@ const Image = styled.div`
 
 export default function BackDrop() {
   return (
-    <Image id='backdrop'/>
+    <Image/>
   )
 }
