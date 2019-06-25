@@ -34,10 +34,10 @@ const HeartContainer = styled.div`
     }
 
     .cls-1, .cls-2 {
-      fill: tomato;
+      fill: purple;
     }
     .cls-1, .cls-3 {
-      stroke: tomato;
+      stroke: purple;
       stroke-miterlimit: 10;
     }
     .cls-3 {

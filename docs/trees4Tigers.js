@@ -38916,7 +38916,7 @@ var _Loggers = require("./utils/Loggers");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  max-width: 70px;\n  min-height: 70px;\n\n  svg {\n    position: relative;\n    top: 5px;\n    width: 70px;\n    overflow: visible;\n\n    #donate {\n      font-size: 6.5rem;\n      font-family: telex, reem kufi;\n      text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;\n      fill: #1d1d1d;\n    }\n\n    .cls-1, .cls-2 {\n      fill: tomato;\n    }\n    .cls-1, .cls-3 {\n      stroke: tomato;\n      stroke-miterlimit: 10;\n    }\n    .cls-3 {\n      fill: none;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  max-width: 70px;\n  min-height: 70px;\n\n  svg {\n    position: relative;\n    top: 5px;\n    width: 70px;\n    overflow: visible;\n\n    #donate {\n      font-size: 6.5rem;\n      font-family: telex, reem kufi;\n      text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;\n      fill: #1d1d1d;\n    }\n\n    .cls-1, .cls-2 {\n      fill: purple;\n    }\n    .cls-1, .cls-3 {\n      stroke: purple;\n      stroke-miterlimit: 10;\n    }\n    .cls-3 {\n      fill: none;\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
