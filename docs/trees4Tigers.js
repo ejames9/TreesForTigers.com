@@ -39085,207 +39085,7 @@ function Landing() {
     href: ""
   }, _react.default.createElement(_Heart.default, null)))));
 }
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","./Heart":"Heart.jsx"}],"BottomLanding.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = BottomLanding;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Heart = _interopRequireDefault(require("./Heart"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  width: 100%;\n  height: auto;\n  min-height: 35rem;\n  padding: 15rem 0;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url(", ");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-// Cover backdrop
-var bottomOverlay = './assets/images/bottomOverlay.jpg'; // The cover component....
-
-var Image = _styledComponents.default.header(_templateObject(), bottomOverlay);
-
-function BottomLanding() {
-  return _react.default.createElement(Image, null);
-}
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","./Heart":"Heart.jsx"}],"GlobalStyles.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n// Google fonts...\n  @import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nunito|Varela+Round|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap\");\n// Styles ...\n  html {\n    padding: 0;\n    margin: 0;\n    background: #555555;\n  }\n\n  body {\n    padding: 0;\n    margin: 0;\n    height: 100%;\n    font-family: nunito;\n  }\n\n  // #root {\n  //   height: auto;\n  //   background: #555555;\n  // }\n\n  .donate {\n    font-family: telex;\n    font-size: 5rem;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-// Global styles....
-var GlobalStyle = (0, _styledComponents.createGlobalStyle)(_templateObject());
-var _default = GlobalStyle;
-exports.default = _default;
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Challenge.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Challenge;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
-
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
-
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  top: -1px;\n  height: auto;\n  width: 100%;\n  background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%);\n  color: white;\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n\n    &.survive {\n      padding-top: 10rem;\n    }\n\n    &.disposable-chops {\n      align-self: center;\n    }\n  }\n\n  .chopsticks {\n    display: flex;\n    flex-direction: row;\n    padding-top: 5rem;\n\n    .chops-img {\n      img {\n        width: 40rem;\n      }\n    }\n\n    .chops-text {\n      display: flex;\n      justify-content: center;\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-// My components...
-// import  from './'
-// Component styles...
-var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
-
-
-function Challenge() {
-  return _react.default.createElement(Section, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, null, _react.default.createElement(_Col.default, null, _react.default.createElement(_Card.default, {
-    className: "survive text-center"
-  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
-    className: "card-title"
-  }, "The Challenge to Survive."), _react.default.createElement(_Card.default.Text, null, "One-hundred years ago, there were an estimated 100,000 tigers in the wild. There are now fewer than 3200 tigers of all tiger species in the wild. Tigers have lost 93% of their habitat in the last century. Despite a long history of concern for tigers, wild tiger numbers are at a historic low."), _react.default.createElement(_Button.default, {
-    variant: "dark"
-  }, "Learn More"))))), _react.default.createElement(_Row.default, {
-    className: "chopsticks"
-  }, _react.default.createElement(_Col.default, {
-    className: "chops-img",
-    xs: "8",
-    md: "6"
-  }, _react.default.createElement("img", {
-    src: "./assets/images/handChopsticks2.png"
-  })), _react.default.createElement(_Col.default, {
-    className: "chops-text",
-    xs: "12",
-    md: "6"
-  }, _react.default.createElement(_Card.default, {
-    className: "disposable-chops text-center"
-  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
-    className: "card-title"
-  }, "Disposable Chopsticks!"), _react.default.createElement(_Card.default.Subtitle, null, "The Biggest Threat to Tigers in Eastern Russia...."), _react.default.createElement(_Card.default.Text, null, "Deforrestation and habitat destruction due to the insatiable demand for this product, are currently the biggest threat to tigers in the wild."), _react.default.createElement(_Button.default, {
-    variant: "outline-light"
-  }, "The Challenge")))))));
-}
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js"}],"Vision.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Vision;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
-
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
-
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  background: white;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n\n  .vision {\n    padding-top: 12rem;\n    padding-bottom: 5rem;\n\n    .cubs-img-col {\n      display: flex;\n      justify-content: flex-end;\n      padding-right: 0;\n\n      img {\n        width: 100%;\n      }\n    }\n\n    .vision-text-col {\n      display: flex;\n      padding-left: 0;\n\n      .card {\n        align-self: center;\n        border-left: .7rem solid #161616;\n        border-radius: 0 !important;\n\n        .card-body {\n          border-radius: none !important;\n        }\n      }\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-// My components...
-// import  from './'
-// Component styles...
-var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
-
-
-function Vision() {
-  return _react.default.createElement(Section, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, {
-    className: "vision"
-  }, _react.default.createElement(_Col.default, {
-    className: "cubs-img-col",
-    xs: "12",
-    md: "8"
-  }, _react.default.createElement("img", {
-    src: "./assets/images/cubs.jpg"
-  })), _react.default.createElement(_Col.default, {
-    className: "vision-text-col",
-    xs: "12",
-    md: "4"
-  }, _react.default.createElement(_Card.default, {
-    className: "text text-left"
-  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
-    className: "card-title"
-  }, "Our Vision"), _react.default.createElement(_Card.default.Subtitle, null, "Saving Tigers, One Tree at a Time.."), _react.default.createElement(_Card.default.Text, null, "With every tree that we plant, we come a step closer to our goal of providing thriving habititat for the tigers of Eastern Russia."), _react.default.createElement(_Button.default, {
-    variant: "outline-dark"
-  }, "Vision")))))));
-}
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js"}],"../../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","./Heart":"Heart.jsx"}],"../../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -48869,7 +48669,294 @@ var _iconsCache = {
   faYinYang: faYinYang
 };
 exports.fas = _iconsCache;
-},{}],"Values.jsx":[function(require,module,exports) {
+},{}],"Cast.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Cast;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
+var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+require("@fortawesome/free-solid-svg-icons");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  background: transparent;\n  margin-bottom: 1rem;\n  padding-top: 0;\n  overflow: hidden;\n\n  .cast-card {\n    background: transparent;\n    border: none;\n\n    > .card-body {\n      > .card-title {\n        font-size: 3rem;\n        font-weight: 700;\n        margin-bottom: 2rem;\n      }\n    }\n  }\n\n  .cast-row {\n    justify-content: center;\n\n    .card {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      background: transparent;\n      border: none;\n\n      .card-title {\n        color: #dedede;\n      }\n      .card-subtitle {\n        color: #898989;\n      }\n    }\n\n    img {\n      width: 75%;\n      border-radius: 50%;\n      border: .5rem solid #161616;\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// My components...
+// import  from './'
+// Component styles...
+var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
+
+
+function Cast() {
+  return _react.default.createElement(Section, null, _react.default.createElement(_Card.default, {
+    className: "cast-card text-center"
+  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Trees For Tigers"), _react.default.createElement(_Container.default, {
+    fluid: true
+  }, _react.default.createElement(_Row.default, {
+    className: "cast-row"
+  }, _react.default.createElement(_Col.default, {
+    xs: "12",
+    sm: "6",
+    md: "auto"
+  }, _react.default.createElement(_Card.default, {
+    className: "text-center"
+  }, _react.default.createElement(_Card.default.Img, {
+    src: "./assets/images/KimVoyle.jpg"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Kim Voyle"), _react.default.createElement(_Card.default.Subtitle, null, "President")))), _react.default.createElement(_Col.default, {
+    xs: "12",
+    sm: "6",
+    md: "auto"
+  }, _react.default.createElement(_Card.default, {
+    className: "text-center"
+  }, _react.default.createElement(_Card.default.Img, {
+    src: "./assets/images/MartinRoyle.jpg"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Martin Royle"), _react.default.createElement(_Card.default.Subtitle, null, "Vice President, UK & Europe")))), _react.default.createElement(_Col.default, {
+    xs: "12",
+    sm: "6",
+    md: "auto"
+  }, _react.default.createElement(_Card.default, {
+    className: "text-center"
+  }, _react.default.createElement(_Card.default.Img, {
+    src: "./assets/images/AlexanderBatalov.jpg"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Alexander Batalov"), _react.default.createElement(_Card.default.Subtitle, null, "Vice President, Russia")))), _react.default.createElement(_Col.default, {
+    xs: "12",
+    sm: "6",
+    md: "auto"
+  }, _react.default.createElement(_Card.default, {
+    className: "text-center"
+  }, _react.default.createElement(_Card.default.Img, {
+    src: "./assets/images/RobVoyle.jpg"
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Rob Voyle"), _react.default.createElement(_Card.default.Subtitle, null, "President's Hubby")))))))));
+}
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","@fortawesome/react-fontawesome":"../../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons":"../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js"}],"BottomLanding.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = BottomLanding;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Cast = _interopRequireDefault(require("./Cast"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  width: 100%;\n  height: auto;\n  min-height: 35rem;\n  padding: 1rem 0 5rem;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url(", ");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// Cover backdrop
+var bottomOverlay = './assets/images/bottomOverlay.jpg'; // The cover component....
+
+var Image = _styledComponents.default.footer(_templateObject(), bottomOverlay);
+
+function BottomLanding() {
+  return _react.default.createElement(Image, null, _react.default.createElement(_Cast.default, null));
+}
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","./Cast":"Cast.jsx"}],"GlobalStyles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n// Google fonts...\n  @import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nunito|Varela+Round|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap\");\n// Styles ...\n  html {\n    padding: 0;\n    margin: 0;\n    background: #555555;\n  }\n\n  body {\n    padding: 0;\n    margin: 0;\n    height: 100%;\n    font-family: nunito;\n  }\n\n  // #root {\n  //   height: auto;\n  //   background: #555555;\n  // }\n\n  .donate {\n    font-family: telex;\n    font-size: 5rem;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// Global styles....
+var GlobalStyle = (0, _styledComponents.createGlobalStyle)(_templateObject());
+var _default = GlobalStyle;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Challenge.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Challenge;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
+var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  top: -1px;\n  height: auto;\n  width: 100%;\n  background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%);\n  color: white;\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n\n    &.survive {\n      padding-top: 10rem;\n    }\n\n    &.disposable-chops {\n      align-self: center;\n    }\n  }\n\n  .chopsticks {\n    display: flex;\n    flex-direction: row;\n    padding-top: 5rem;\n\n    .chops-img {\n      img {\n        width: 40rem;\n      }\n    }\n\n    .chops-text {\n      display: flex;\n      justify-content: center;\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// My components...
+// import  from './'
+// Component styles...
+var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
+
+
+function Challenge() {
+  return _react.default.createElement(Section, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, null, _react.default.createElement(_Col.default, null, _react.default.createElement(_Card.default, {
+    className: "survive text-center"
+  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
+    className: "card-title"
+  }, "The Challenge to Survive."), _react.default.createElement(_Card.default.Text, null, "One-hundred years ago, there were an estimated 100,000 tigers in the wild. There are now fewer than 3200 tigers of all tiger species in the wild. Tigers have lost 93% of their habitat in the last century. Despite a long history of concern for tigers, wild tiger numbers are at a historic low."), _react.default.createElement(_Button.default, {
+    variant: "dark"
+  }, "Learn More"))))), _react.default.createElement(_Row.default, {
+    className: "chopsticks"
+  }, _react.default.createElement(_Col.default, {
+    className: "chops-img",
+    xs: "8",
+    md: "6"
+  }, _react.default.createElement("img", {
+    src: "./assets/images/handChopsticks2.png"
+  })), _react.default.createElement(_Col.default, {
+    className: "chops-text",
+    xs: "12",
+    md: "6"
+  }, _react.default.createElement(_Card.default, {
+    className: "disposable-chops text-center"
+  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
+    className: "card-title"
+  }, "Disposable Chopsticks!"), _react.default.createElement(_Card.default.Subtitle, null, "The Biggest Threat to Tigers in Eastern Russia...."), _react.default.createElement(_Card.default.Text, null, "Deforrestation and habitat destruction due to the insatiable demand for this product, are currently the biggest threat to tigers in the wild."), _react.default.createElement(_Button.default, {
+    variant: "outline-light"
+  }, "The Challenge")))))));
+}
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js"}],"Vision.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Vision;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
+var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  background: white;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n\n  .vision {\n    padding-top: 12rem;\n    padding-bottom: 5rem;\n\n    .cubs-img-col {\n      display: flex;\n      justify-content: flex-end;\n      padding-right: 0;\n\n      img {\n        width: 100%;\n      }\n    }\n\n    .vision-text-col {\n      display: flex;\n      padding-left: 0;\n\n      .card {\n        align-self: center;\n        border-left: .7rem solid #161616;\n        border-radius: 0 !important;\n\n        .card-body {\n          border-radius: none !important;\n        }\n      }\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+// My components...
+// import  from './'
+// Component styles...
+var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
+
+
+function Vision() {
+  return _react.default.createElement(Section, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, {
+    className: "vision"
+  }, _react.default.createElement(_Col.default, {
+    className: "cubs-img-col",
+    xs: "12",
+    md: "8"
+  }, _react.default.createElement("img", {
+    src: "./assets/images/cubs.jpg"
+  })), _react.default.createElement(_Col.default, {
+    className: "vision-text-col",
+    xs: "12",
+    md: "4"
+  }, _react.default.createElement(_Card.default, {
+    className: "text text-left"
+  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
+    className: "card-title"
+  }, "Our Vision"), _react.default.createElement(_Card.default.Subtitle, null, "Saving Tigers, One Tree at a Time.."), _react.default.createElement(_Card.default.Text, null, "With every tree that we plant, we come a step closer to our goal of providing thriving habititat for the tigers of Eastern Russia."), _react.default.createElement(_Button.default, {
+    variant: "outline-dark"
+  }, "Vision")))))));
+}
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js"}],"Values.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48966,76 +49053,6 @@ function Values() {
   }, _react.default.createElement(_Card.default, null, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     icon: _freeSolidSvgIcons.faHeart
   }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Wonder and Awe")))))))));
-}
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","@fortawesome/react-fontawesome":"../../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons":"../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js"}],"Cast.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Values;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
-
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
-
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
-var _reactFontawesome = require("@fortawesome/react-fontawesome");
-
-require("@fortawesome/free-solid-svg-icons");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  /* background: linear-gradient(to bottom, white 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  background: white;\n  padding-top: 2rem;\n  border-top: 1px solid #161616;\n  border-bottom: 1px solid #161616;\n  margin-bottom: 5rem;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-// My components...
-// import  from './'
-// Component styles...
-var Section = _styledComponents.default.section(_templateObject()); // Component markup ....
-
-
-function Values() {
-  return _react.default.createElement(Section, null, _react.default.createElement(_Card.default, {
-    className: "values-card text-center"
-  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    className: "award",
-    icon: faAward
-  }), "\xA0\xA0\xA0Our Values\xA0\xA0\xA0", _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    className: "award",
-    icon: faAward
-  })), _react.default.createElement(_Container.default, {
-    fluid: true
-  }, _react.default.createElement(_Row.default, {
-    className: "values-row"
-  }, _react.default.createElement(_Col.default, {
-    xs: "12",
-    sm: "6",
-    md: "4",
-    lg: "auto"
-  }, _react.default.createElement(_Card.default, {
-    className: "text-center"
-  }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    icon: faHandsHelping
-  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Collaboration")))))))));
 }
 },{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","@fortawesome/react-fontawesome":"../../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons":"../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js"}],"utils/DOM/el.js":[function(require,module,exports) {
 "use strict";

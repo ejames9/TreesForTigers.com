@@ -13,7 +13,7 @@ import React from 'react'
 // Get sc component styling...
 import styled from 'styled-components'
 // get Heart svg..
-import Heart from './Heart'
+import Cast from './Cast'
 
 
 // Cover backdrop
@@ -21,21 +21,22 @@ const bottomOverlay = './assets/images/bottomOverlay.jpg'
 
 
 // The cover component....
-const Image = styled.header`
+const Image = styled.footer`
   position: relative;
   width: 100%;
   height: auto;
   min-height: 35rem;
-  padding: 15rem 0;
+  padding: 1rem 0 5rem;
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url(${bottomOverlay});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 `
 
 export default function BottomLanding() {
   return (
-    <Image/>
+    <Image>
+      <Cast/>
+    </Image>
   )
 }

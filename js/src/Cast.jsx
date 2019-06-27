@@ -28,49 +28,97 @@ const Section = styled.section`
   position: relative;
   height: auto;
   width: 100%;
-  /* background: linear-gradient(to bottom, white 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */
-  background: white;
-  padding-top: 2rem;
-  border-top: 1px solid #161616;
-  border-bottom: 1px solid #161616;
-  margin-bottom: 5rem;
-  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */
+  background: transparent;
+  margin-bottom: 1rem;
+  padding-top: 0;
   overflow: hidden;
 
-  .card {
+  .cast-card {
     background: transparent;
     border: none;
 
-    .card-body {
-      .card-text {
-        color: #909090;
+    > .card-body {
+      > .card-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
       }
+    }
+  }
+
+  .cast-row {
+    justify-content: center;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      border: none;
+
+      .card-title {
+        color: #dedede;
+      }
+      .card-subtitle {
+        color: #898989;
+      }
+    }
+
+    img {
+      width: 75%;
+      border-radius: 50%;
+      border: .5rem solid #161616;
     }
   }
 `
 
 // Component markup ....
-export default function Values() {
+export default function Cast() {
   return (
     <Section>
-      <Card className='values-card text-center'>
+      <Card className='cast-card text-center'>
         <Card.Body>
           <Card.Title>
-            <FontAwesomeIcon className='award' icon={faAward} />
-              &nbsp;&nbsp;&nbsp;Our Values&nbsp;&nbsp;&nbsp;
-            <FontAwesomeIcon className='award' icon={faAward} />
+            Trees For Tigers
           </Card.Title>
           <Container fluid>
-            <Row className='values-row'>
-              <Col xs='12' sm='6' md='4' lg='auto'>
+            <Row className='cast-row'>
+              <Col xs='12' sm='6' md='auto'>
                 <Card className='text-center'>
-                  <FontAwesomeIcon icon={faHandsHelping} />
+                  <Card.Img src='./assets/images/KimVoyle.jpg'/>
                   <Card.Body>
-                    <Card.Title>Collaboration</Card.Title>
+                    <Card.Title>Kim Voyle</Card.Title>
+                    <Card.Subtitle>President</Card.Subtitle>
                   </Card.Body>
                 </Card>
               </Col>
-
+              <Col xs='12' sm='6' md='auto'>
+                <Card className='text-center'>
+                  <Card.Img src='./assets/images/MartinRoyle.jpg'/>
+                  <Card.Body>
+                    <Card.Title>Martin Royle</Card.Title>
+                    <Card.Subtitle>Vice President, UK & Europe</Card.Subtitle>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xs='12' sm='6' md='auto'>
+                <Card className='text-center'>
+                  <Card.Img src='./assets/images/AlexanderBatalov.jpg'/>
+                  <Card.Body>
+                    <Card.Title>Alexander Batalov</Card.Title>
+                    <Card.Subtitle>Vice President, Russia</Card.Subtitle>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xs='12' sm='6' md='auto'>
+                <Card className='text-center'>
+                  <Card.Img src='./assets/images/RobVoyle.jpg'/>
+                  <Card.Body>
+                    <Card.Title>Rob Voyle</Card.Title>
+                    <Card.Subtitle>President's Hubby</Card.Subtitle>
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
           </Container>
         </Card.Body>
