@@ -48918,7 +48918,7 @@ var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  background: white;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n\n  .vision {\n    padding-top: 12rem;\n    padding-bottom: 5rem;\n\n    .cubs-img-col {\n      display: flex;\n      justify-content: flex-end;\n      padding-right: 0;\n\n      img {\n        width: 100%;\n      }\n    }\n\n    .vision-text-col {\n      display: flex;\n      padding-left: 0;\n\n      .card {\n        align-self: center;\n        border-left: .7rem solid #161616;\n        border-radius: 0 !important;\n\n        .card-body {\n          border-radius: none !important;\n        }\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  background: white;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n\n  .vision {\n    padding-top: 12rem;\n    padding-bottom: 5rem;\n\n    .cubs-img-col {\n      display: flex;\n      justify-content: flex-end;\n      padding-right: 0;\n\n      img {\n        width: 100%;\n        height: 100%;\n      }\n    }\n\n    .vision-text-col {\n      display: flex;\n      padding-left: 0;\n\n      .card {\n        align-self: center;\n        border-left: .7rem solid #161616;\n        border-radius: 0 !important;\n\n        .card-body {\n          border-radius: none !important;\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -49559,7 +49559,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55789" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49822" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
