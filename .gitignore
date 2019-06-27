@@ -1,0 +1,4 @@
+# ignore cache files
+.cache
+./.cache
+/.cache
