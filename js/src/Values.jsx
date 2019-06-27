@@ -73,7 +73,7 @@ const Section = styled.section`
       color: #797979;
 
       .award {
-        color: #f5bb14;
+        color: #3668b8;
       }
     }
   }
@@ -95,6 +95,7 @@ export default function Values() {
   return (
     <Section>
       <Card className='values-card text-center'>
+      
         <Card.Body>
           <Card.Title>
             <FontAwesomeIcon className='award' icon={faAward} />

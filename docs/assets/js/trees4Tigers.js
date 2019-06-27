@@ -48754,7 +48754,7 @@ function Cast() {
     className: "text-center"
   }, _react.default.createElement(_Card.default.Img, {
     src: "./assets/images/RobVoyle.jpg"
-  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Rob Voyle"), _react.default.createElement(_Card.default.Subtitle, null, "President's Hubby")))))))));
+  }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Rob Voyle"), _react.default.createElement(_Card.default.Subtitle, null, "Role Unknown")))))))));
 }
 },{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","@fortawesome/react-fontawesome":"../../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons":"../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js"}],"BottomLanding.jsx":[function(require,module,exports) {
 "use strict";
@@ -48985,7 +48985,7 @@ var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  /* background: linear-gradient(to bottom, white 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  background: white;\n  padding-top: 2rem;\n  border-top: 1px solid #161616;\n  border-bottom: 1px solid #161616;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .values-row {\n    justify-content: center;\n    padding: 3rem 2rem 5rem;\n\n    .card {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n\n      svg {\n        color: #161616;\n        height: 80px;\n        width: 80px;\n      }\n    }\n  }\n\n  .values-card {\n    > .card-body > .card-title {\n      font-size: 3.5rem;\n      color: #797979;\n\n      .award {\n        color: #f5bb14;\n      }\n    }\n  }\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  height: auto;\n  width: 100%;\n  /* background: linear-gradient(to bottom, white 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  background: white;\n  padding-top: 2rem;\n  border-top: 1px solid #161616;\n  border-bottom: 1px solid #161616;\n  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */\n  overflow: hidden;\n\n  .values-row {\n    justify-content: center;\n    padding: 3rem 2rem 5rem;\n\n    .card {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n\n      svg {\n        color: #161616;\n        height: 80px;\n        width: 80px;\n      }\n    }\n  }\n\n  .values-card {\n    > .card-body > .card-title {\n      font-size: 3.5rem;\n      color: #797979;\n\n      .award {\n        color: #3668b8;\n      }\n    }\n  }\n\n  .card {\n    background: transparent;\n    border: none;\n\n    .card-body {\n      .card-text {\n        color: #909090;\n      }\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -49559,7 +49559,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49822" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50137" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -115,7 +115,7 @@ export default function Cast() {
                   <Card.Img src='./assets/images/RobVoyle.jpg'/>
                   <Card.Body>
                     <Card.Title>Rob Voyle</Card.Title>
-                    <Card.Subtitle>President's Hubby</Card.Subtitle>
+                    <Card.Subtitle>Role Unknown</Card.Subtitle>
                   </Card.Body>
                 </Card>
               </Col>
