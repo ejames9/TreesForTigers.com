@@ -25,16 +25,10 @@ import NoChopsticks from './NoChopsticks'
 
 // Component for holding level two layout...
 const BigDiv = styled.div`
-  position: absolute;
-  top: 100%;
   height: auto;
   width: 100%;
-  background: #797979;
-  overflow: hidden;
-
-  div {
-    background: #797979;
-  }
+  background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%);
+  /* overflow: hidden; */
 
   .card {
     height: 100%;

@@ -34,12 +34,17 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Carousel from 'react-bootstrap/Carousel'
 // Get modules/components ....
-import T4TLogo from './T4TLogo'
+// import T4TLogo from './T4TLogo'
 import NavBar from './NavBar'
-import LevelTwo from './BigDiv'
-import ScrollIndicator from './ScrollIndicator'
-import BackDrop from './BackDrop'
+// import LevelTwo from './BigDiv'
+// import ScrollIndicator from './ScrollIndicator'
+import Landing from './Landing'
+import BottomLanding from './BottomLanding'
 import GlobalStyle from './GlobalStyles'
+import Challenge from './Challenge'
+import Vision from './Vision'
+import Values from './Values'
+import Cast from './Cast'
 // Utilities...
 import el from './utils/DOM/el'
 import {log, dir} from './utils/Loggers'
@@ -52,76 +57,21 @@ import {addClass, removeClass} from './utils/DOM/classList'
 // The app....
 class App extends React.Component {
 // Ctor ...
-  constructor(props) {
-    super(props)
-// An internal state object that will not trigger a render cycle...
-    this._state = {
-      scroller: null,
-      logo: null,
-      atScrollBottom: false,
-      screenHeight: null
-    }
-
-// Component state object...
-    this.state = {
-      scrollerPaused: false,
-      screenHeight: null,
-      screenWidth: null,
-      navBar: null
-    }
-
-// Create ref for navbar...
-    this.navbar = React.createRef()
-
-// Bind Methods...
-    this.getScrollerNode = this.getScrollerNode.bind(this)
-    this.getLogoNode = this.getLogoNode.bind(this)
+  constructor() {
+    super()
+// Bind onscroll method...
     this.onScroll = this.onScroll.bind(this)
-  }
-
-// Method for grabbing a reference to the scroller node....
-  getScrollerNode(node) {
-// Store the node....
-    this._state.scroller = node
-  }
-
-/// Method for grabbing a reference to the scroller node....
-  getLogoNode(node) {
-// Store the node....
-    this._state.logo = node
   }
 
 /* This method is the app's scroll handler. Places one listener on window,
 and reacts to various conditions...*/
   onScroll(e) {
     window.onscroll =e=> {
-// Check if scroller is offscreen, if so, disable animation
-      if (isOffscreen(this._state.scroller.current)) {
-        for (let child of this._state.scroller.current.childNodes) {
-          child.style.animationPlayState = 'paused'
-          log('Offscreen', ['red', 'black'])
-        }
-// Otherwise, make sure the animation is running...
+// Once the user has scrolled down 45 pixels, add fixed class to navbar...
+      if (window.pageYOffset > 45) {
+        addClass(el('.navbar'), 'fixed')
       } else {
-        for (let child of this._state.scroller.current.childNodes) {
-          child.style.animationPlayState = 'paused'
-          log('Onscreen', ['red', 'blue'])
-        }
-      }
-
-// Check to see if we've hit bottom...
-      if (isBottom()) {
-        // log('Bottom!!!', ['red', 'blue'])
-        addClass(
-          this._state.logo.current,
-          'bottom'
-        )
-      } else {
-        // log('NO bottom!!!', ['red', 'purple'])
-        removeClass(
-          this._state.logo.current,
-          'bottom'
-        )
+        removeClass(el('.navbar'), 'fixed')
       }
     }
   }
@@ -129,14 +79,7 @@ and reacts to various conditions...*/
 // On resize adjustments...
   onResize() {
     document.body.onresize=e=> {
-// Get an updated screen width...
-      let screenWidth = window.innerWidth,
-      screenHeight = window.innerHeight
-// If we're above the 992 breakpoint, ...
-      if (screenWidth > 992) {
-// Reset level two height...
-        el('#levelTwo').style.height = `${screenHeight - this.state.navbarHeight}px`
-      }
+
     }
   }
 
@@ -155,18 +98,6 @@ Event Listeners.....>>>
 */
 // Scroll associated operations....
     this.onScroll()
-// Resize ops...
-    this.onResize()
-// Orientation change listener/callback...
-    this.onOrientationChange()
-
-// Get display dimensions, and height of navbar and store in state obj.....
-    this.setState({
-// Go ahead and set the sreen dimensions...
-      screenHeight: window.innerHeight,
-      screenWidth: window.innerWidth,
-      navbarHeight: this.navbar.current._reactInternalFiber.nextEffect.stateNode.parentNode.previousElementSibling.clientHeight
-    })
   }
 
 // Component markup ...
@@ -174,14 +105,12 @@ Event Listeners.....>>>
     return (
       <React.Fragment>
         <GlobalStyle/>
-        <BackDrop/>
-        <NavBar id='nav' ref={this.navbar}/>
-        <ScrollIndicator scrollerNode={this.getScrollerNode}/>
-        <T4TLogo logoNode={this.getLogoNode}/>
-        {
-          this.state.navbarHeight&&
-            <LevelTwo divHeight={this.state.screenHeight - this.state.navbarHeight}/>
-        }
+        <Landing/>
+        <NavBar/>
+        <Challenge/>
+        <Vision/>
+        <Values/>
+        <BottomLanding/>
       </React.Fragment>
     )
   }
@@ -197,3 +126,10 @@ function render() {
 document.addEventListener('DOMContentLoaded', ()=> {
   render()
 })
+
+
+//
+// {
+//   this.state.navbarHeight&&
+//     <LevelTwo divHeight={this.state.screenHeight - this.state.navbarHeight}/>
+// }

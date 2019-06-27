@@ -64,8 +64,8 @@ const LogoContainer = styled.div`
   @media (min-width: 910px) {
     svg {
       top: 16%;
-      height: 60%;
-      width: 60%;
+      height: 120%;
+      width: 120%;
     }
   }
 
@@ -119,8 +119,8 @@ const LogoContainer = styled.div`
       svg {
         display: block;
         top: 7.7rem;
-        height: 33rem;
-        width: 33rem;
+        height: 83rem;
+        width: 83rem;
       }
   }
 
@@ -130,8 +130,10 @@ const LogoContainer = styled.div`
     and (orientation: landscape) {
       svg {
         top: 6rem;
-        height: 32rem;
-        width: 32rem;
+        height: 82rem;
+        width: 82rem;
+        opacity: .026;
+        display: none;
       }
   }
 

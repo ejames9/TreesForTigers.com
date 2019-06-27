@@ -17,7 +17,7 @@ import {createGlobalStyle} from 'styled-components'
 // Global styles....
 const GlobalStyle = createGlobalStyle`
 // Google fonts...
-  @import url("https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap");
+  @import url("https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nunito|Varela+Round|Dancing+Script:400,700|Gabriela|Just+Another+Hand|Pacifico|Reem+Kufi|Sacramento|Telex&display=swap");
 // Styles ...
   html {
     padding: 0;
@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     height: 100%;
+    font-family: nunito;
   }
 
   // #root {

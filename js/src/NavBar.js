@@ -27,11 +27,41 @@ const heart = './assets/images/heart.svg'
 const NavbarStyles = createGlobalStyle`
   .navbar {
     background: transparent;
-    backdrop-filter: blur(8px) saturate(150%);
-    border-bottom: .0625rem solid #dedede;
     padding-top: 0;
     padding-bottom: 0;
     z-index: 999;
+  }
+
+  .navbar-brand {
+    height: 5rem;
+    width: 5rem;
+    padding: 0;
+
+    div.nav-item {
+      align-self: center;
+    }
+
+/* Logo Text */
+    span {
+      font-family: varela round;
+      font-size: 1.5rem !important;
+      color: #404040;
+      display: none;
+      // text-shadow: 0 -6px 10px white, 0 6px 10px white, 6px 0 10px white, -6px 0 10px white;
+    }
+    span:hover {
+      color: #dedede;
+      /* text-shadow: 0 -6px 10px black, 0 6px 10px black, 6px 0 10px black, -6px 0 10px black; */
+    }
+  }
+
+  .fixed {
+    border-bottom: .0625rem solid #161616;
+    backdrop-filter: blur(8px) saturate(150%);
+
+    .navbar-brand span {
+      display: inline;
+    }
   }
 
   .navbar-collapse {
@@ -49,7 +79,7 @@ const NavbarStyles = createGlobalStyle`
     }
 
     .dropdown-menu {
-      background: #555555;
+      background: #cdcdcd;
 
       a {
         color: #1d1d1d;
@@ -59,28 +89,23 @@ const NavbarStyles = createGlobalStyle`
       }
     }
     .navbar-nav {
-      // > #heartLink {
-      //   > #heart {
-      //     position: relative;
-      //     top: 50px;
-      //   }
-      // }
     }
   }
 
   a {
     font-size: 1.35rem;
-    font-family: telex, reem kufi;
+    font-family: nunito, telex, reem kufi;
     padding-right: 1rem;
     margin-right: 2rem;
+
   }
 
 /* Navbar Links */
   a.nav-link {
-    color: black !important;
+    color: #dedede !important;
     line-height: 1.5rem;
     align-self: center;
-    text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;
+    // text-shadow: 0 -1px 5px #dedede, 0 1px 5px #dedede, 1px 0 5px #dedede, -1px 0 5px #dedede;
     opacity: .6;
   }
 
@@ -92,28 +117,7 @@ const NavbarStyles = createGlobalStyle`
     opacity: 1;
   }
 
-  a.navbar-brand {
-    height: 5rem;
-    width: 5rem;
-    padding: 0;
 
-
-  div.nav-item {
-    align-self: center;
-  }
-
-/* Logo Text */
-    span {
-      font-family: Sacramento, just another hand, covered by your grace;
-      font-size: 2.2rem;
-      color: black;
-      text-shadow: 0 -6px 10px white, 0 6px 10px white, 6px 0 10px white, -6px 0 10px white;
-    }
-    span:hover {
-      color: #dedede;
-      /* text-shadow: 0 -6px 10px black, 0 6px 10px black, 6px 0 10px black, -6px 0 10px black; */
-    }
-  }
 
 /* ***** Targeting iPhone 5/SE ***** */
   @media (min-width: 300px) {
@@ -157,8 +161,22 @@ const NavbarStyles = createGlobalStyle`
         }
 
         #navLogo {
-          height: 5rem;
-          width: 5rem;
+          position: relative;
+          height: 10rem;
+          width: 10rem;
+          transition: left .1s ease-in-out;
+          left: 150%;
+        }
+      }
+
+      .fixed {
+        a.navbar-brand {
+          #navLogo {
+            position: relative;
+            height: 5rem;
+            width: 5rem;
+            left: 0;
+          }
         }
       }
     }
@@ -196,7 +214,7 @@ const NavbarStyles = createGlobalStyle`
 // Component definition....
 class NavBar extends React.Component {
 // Ctor...
-  constructor() {
+  constructor({getNode}) {
     super()
   }
 
@@ -226,9 +244,6 @@ class NavBar extends React.Component {
               <Nav.Link href='#'>Our Vision</Nav.Link>
               <Nav.Link href='#'>The Challenge</Nav.Link>
               <Nav.Link href='#'>The Trees</Nav.Link>
-              <Nav.Link id='heartLink' href='#'>
-                <Heart className='heart'/>
-              </Nav.Link>
               <NavDropdown className='travel' title='Travel' id='basic-nav-dropdown'>
                 <NavDropdown.Item href='#'>Eastern Russia</NavDropdown.Item>
                 <NavDropdown.Item href='#'>Durmiskoye</NavDropdown.Item>
@@ -254,3 +269,9 @@ export default NavBar
 //       alt='Donate'
 //     />
 // </Navbar.Brand>
+
+
+//
+// <Nav.Link id='heartLink' href='#'>
+//   <Heart className='heart'/>
+// </Nav.Link>
