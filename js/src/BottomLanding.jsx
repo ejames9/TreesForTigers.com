@@ -14,6 +14,7 @@ import React from 'react'
 import styled from 'styled-components'
 // get Heart svg..
 import Cast from './Cast'
+import Contact from './Contact'
 
 
 // Cover backdrop
@@ -36,7 +37,7 @@ const Image = styled.footer`
 export default function BottomLanding() {
   return (
     <Image>
-      <Cast/>
+      <Contact/>
     </Image>
   )
 }

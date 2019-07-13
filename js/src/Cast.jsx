@@ -37,11 +37,29 @@ const Section = styled.section`
     background: transparent;
     border: none;
 
-    > .card-body {
-      > .card-title {
+    .card-body {
+      .t4t {
         font-size: 3rem;
         font-weight: 700;
+
+        .t4tLogo {
+          height: 6rem;
+          width: 6rem;
+          fill: #161616;
+        }
+      }
+      .founding {
+        font-size: 1.6rem;
         margin-bottom: 2rem;
+        color: #787878;
+      }
+      .incorporated {
+        font-size: 1.6rem;
+        color: #676767;
+      }
+      .members {
+        font-size: 1.1rem;
+        color: #9a9a9a;
       }
     }
   }
@@ -57,10 +75,10 @@ const Section = styled.section`
       border: none;
 
       .card-title {
-        color: #dedede;
+        color: #ababab;
       }
       .card-subtitle {
-        color: #898989;
+        color: #676767;
       }
     }
 
@@ -78,9 +96,12 @@ export default function Cast() {
     <Section>
       <Card className='cast-card text-center'>
         <Card.Body>
-          <Card.Title>
-            Trees For Tigers
+          <Card.Title className='t4t'>
+            <img className='t4tLogo' src="assets/images/trees4TigersLogo.svg" alt="Trees For Tigers"/>&nbsp;&nbsp;Trees For Tigers
           </Card.Title>
+          <Card.Subtitle className='founding'>
+            Founding Board Members
+          </Card.Subtitle>
           <Container fluid>
             <Row className='cast-row'>
               <Col xs='12' sm='6' md='auto'>
@@ -121,6 +142,14 @@ export default function Cast() {
               </Col>
             </Row>
           </Container>
+          <Card.Title className='incorporated'>
+            Incorporated Board Members
+          </Card.Title>
+          <Card.Subtitle className='members'>
+            Nancy Kluss<br/>
+            Celeste Edinger<br/>
+            Caroline Leonard<br/>
+          </Card.Subtitle>
         </Card.Body>
       </Card>
     </Section>

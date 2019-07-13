@@ -57,7 +57,21 @@ const NavbarStyles = createGlobalStyle`
 
   .fixed {
     border-bottom: .0625rem solid #161616;
-    backdrop-filter: blur(8px) saturate(150%);
+    background: #161616;
+    opacity: .9;
+
+    .navbar-brand {
+      color: #dedede;
+
+      span {
+        display: inline;
+      }
+    }
+  }
+
+  .safari-fixed {
+    border-bottom: .0625rem solid #161616;
+    backdrop-filter: blur(8px);
 
     .navbar-brand span {
       display: inline;
@@ -169,6 +183,7 @@ const NavbarStyles = createGlobalStyle`
         }
       }
 
+      .safari-fixed,
       .fixed {
         a.navbar-brand {
           #navLogo {

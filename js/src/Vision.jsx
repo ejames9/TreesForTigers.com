@@ -27,8 +27,7 @@ const Section = styled.section`
   position: relative;
   height: auto;
   width: 100%;
-  background: white;
-  /* background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%); */
+  background: #fff;
   overflow: hidden;
 
   .card {
@@ -43,7 +42,7 @@ const Section = styled.section`
   }
 
   .vision {
-    padding-top: 12rem;
+    padding-top: 9rem;
     padding-bottom: 5rem;
 
     .cubs-img-col {
@@ -54,6 +53,7 @@ const Section = styled.section`
       img {
         width: 100%;
         height: 100%;
+        border-radius: 2rem;
       }
     }
 
@@ -81,7 +81,7 @@ export default function Vision() {
       <Container>
         <Row className='vision'>
           <Col className='cubs-img-col' xs='12' md='8'>
-            <img src='./assets/images/cubs.jpg'/>
+            <img src='assets/images/cubs-02.jpg'/>
           </Col>
           <Col className='vision-text-col' xs='12' md='4'>
             <Card className='text text-left'>
@@ -91,9 +91,9 @@ export default function Vision() {
                   Saving Tigers, One Tree at a Time..
                 </Card.Subtitle>
                 <Card.Text>
-                  With every tree that we plant, we come a step closer to our goal of providing thriving habititat for the tigers of Eastern Russia.
+                  With every tree that we plant, we come a step closer to our goal of providing thriving habititat for the people and tigers of Eastern Russia.
                 </Card.Text>
-                <Button variant="outline-dark">Vision</Button>
+                <Button href='/page2' variant="outline-dark">Vision</Button>
               </Card.Body>
             </Card>
           </Col>

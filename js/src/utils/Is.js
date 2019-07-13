@@ -99,6 +99,11 @@ class Is {
       window.innerHeight + Math.ceil(window.pageYOffset) >= (levelTwo.offsetTop + levelTwo.offsetHeight) -2
     )
   }
+
+// A function for determining whether or not a user's browser is safari or not...
+  static safari() {
+    return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))
+  }
 }
 
 
@@ -116,6 +121,7 @@ const isArray = Is.array
 const isKin = Is.kin
 const isOffscreen = Is.offscreen
 const isBottom = Is.bottom
+const isSafari = Is.safari
 
 
 export {
@@ -133,7 +139,8 @@ export {
   isArray,
   isKin,
   isOffscreen,
-  isBottom
+  isBottom,
+  isSafari
 }
 
 

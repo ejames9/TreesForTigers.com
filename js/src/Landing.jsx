@@ -8,12 +8,14 @@
 ***/
 
 
-// Get React...
+// Get React.....
 import React from 'react'
 // Get sc component styling...
 import styled from 'styled-components'
 // get Heart svg..
-import Heart from './Heart'
+import Heart from './Heart2'
+// get text...
+import * as text from './textContent'
 
 
 // Cover backdrop
@@ -70,45 +72,22 @@ const Image = styled.header`
     align-self: center;
     transition: opacity .1s ease-in;
     opacity: .7;
+
+    img {
+      height: 5rem;
+      width: 5rem;
+      transform: scale(1);
+      transition: transform .3s ease-out;
+    }
+    img:hover {
+      transform: scale(1.6);
+    }
   }
 
   & a:hover {
     opacity: 1;
   }
 
-  /* *** Targeting iPhone 5/SE 6/7/8 and plus *** */
-    @media (orientation: portrait) {
-
-    }
-
-/* *** Targeting iPhone 5/SE 6/7/8 and plus *** */
-  @media (min-width: 300px) {
-
-  }
-
-/* *** Targeting iPhone X *** */
-  @media (min-width: 360px)
-    and (min-height: 675px){
-
-  }
-
-/* *** Targeting iPhone 5/SE, 6/7/8 LandScape *** */
-  @media (min-width: 560px)
-    and (orientation: landscape) {
-
-  }
-
-/* ***** Targeting iPad ***** */
-  @media (min-width: 670px)
-    and (orientation: portrait) {
-
-  }
-
-/* ***** Targeting iPad ***** */
-  @media (min-width: 760px)
-    and (orientation: portrait) {
-
-  }
 
   @media (min-width: 992px) {
     height: 100vh;
@@ -125,13 +104,6 @@ const Image = styled.header`
     }
   }
 
-/* *** Targeting iPad Pro portrait *** */
-  @media (min-width: 1020px)
-    and (orientation: portrait) {
-
-  }
-
-
   @media (min-width: 1200px) {
     & h1 {
       position: relative;
@@ -145,35 +117,6 @@ const Image = styled.header`
       font-size: 1.3rem;
     }
   }
-/* *** Targeting Desktop No. 2, "1280px X 800px" *** */
-  @media (min-width: 1265px)
-    and (max-height: 810px)
-    and (orientation: landscape) {
-
-  }
-
-/* *** Targeting Desktop No. 4, "1280px X 1024px" *** */
-  @media (min-width: 1265px)
-    and (max-height: 1024px)
-    and (orientation: landscape) {
-  }
-
-/* *** Targeting Desktop No. 1 and above *** */
-  @media (min-width: 1366px)
-    and (orientation: landscape) {
-  }
-
-/* *** Targeting iPad Pro Landscape *** */
-  @media (min-width: 1360px)
-    and (min-height: 1000px)
-    and (max-height: 1050px)
-    and (orientation: landscape) {
-  }
-
-/* *** Targeting Desktop No. 1 and above *** */
-  @media (min-width: 1440px)
-    and (orientation: landscape) {
-  }
 `
 
 export default function Landing() {
@@ -182,7 +125,7 @@ export default function Landing() {
       <div className='container d-flex h-100 align-items-center'>
         <div className='text mx-auto text-center'>
           <h1 className='mx-auto my-0 text-uppercase'>Trees For Tigers</h1>
-          <h2 className='text-white-50 mx-auto mt-2 mb-5'>A Collaborate Partnership to Create Safe, Sustainable Habitats forPeople and Tigers in Eastern Russia.</h2>
+          <h2 className='text-white-50 mx-auto mt-2 mb-5'>{text.trees4Tigers}</h2>
           <a href="">
             <Heart/>
           </a>
