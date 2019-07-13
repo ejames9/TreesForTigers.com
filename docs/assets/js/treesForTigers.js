@@ -39084,12 +39084,12 @@ var Heart = function Heart() {
     xmlSpace: "preserve"
   }, _react.default.createElement("g", null, _react.default.createElement("path", {
     style: {
-      fill: 'orange'
+      fill: 'tomato'
     },
     d: "M358.55,3.91c-45.78,0-86.3,22.55-111.05,57.16v430.02l216.71-264.4 c19.25-23.52,30.79-53.58,30.79-86.34C495,65,433.91,3.91,358.55,3.91z"
   }), _react.default.createElement("path", {
     style: {
-      fill: 'black'
+      fill: 'tomato'
     },
     d: "M136.45,3.91C61.09,3.91,0,65,0,140.35c0,32.76,11.54,62.82,30.79,86.34l216.71,264.4V61.07 C222.75,26.46,182.23,3.91,136.45,3.91z"
   }), _react.default.createElement("text", {
