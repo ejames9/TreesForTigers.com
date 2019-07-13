@@ -120,8 +120,8 @@ export default function About() {
                   At the top of their food chain, tigers can essentially take care of themeselves. That is, provided that they have food
                   (primarily boar, but also deer). So, the focus shifted from <span className='question'>what tigers need to survive</span>,
                   to <span className='question'>what boars need to flourish. </span>
-                  And the answer, is <span>Trees!</span> But not just any trees, more specifically, the following
-                  four species:
+                  And the answer, as mentioned above, is <span>Trees!</span> But not just any trees, more specifically, the following
+                  four species of nut bearing tree:
                 </Card.Text>
                 <ul>
                   <li>Mongolian Oak, <span className='scientific'>Quercus mongolica</span></li>
