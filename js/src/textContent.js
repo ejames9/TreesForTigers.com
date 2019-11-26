@@ -804,7 +804,7 @@ function Strategy() {
       <p>This strategy includes:</p>
       <ul>
         <li>
-          The establishment of Reforestation Teams of local forestry workers to plant seedlings to re-forest the area following loggin acivities.
+          The establishment of Reforestation Teams of local forestry workers to plant seedlings to re-forest the area following logging acivities.
         </li>
         <li>
           The creation of international teams of students engaged in cross-cultural, collaborative activities, including tree-planting.

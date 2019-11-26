@@ -37157,7 +37157,7 @@ function Strategy() {
     className: "crew",
     src: "/images/treePlanting01.jpg",
     alt: "Tree planting crew"
-  }), _react.default.createElement("p", null, "This strategy includes:"), _react.default.createElement("ul", null, _react.default.createElement("li", null, "The establishment of Reforestation Teams of local forestry workers to plant seedlings to re-forest the area following loggin acivities."), _react.default.createElement("li", null, "The creation of international teams of students engaged in cross-cultural, collaborative activities, including tree-planting."), _react.default.createElement("li", null, "The establishment of Academic Forestry Research and Education to create and disseminate the best practices for planting and reforesting logged areas."), _react.default.createElement("li", {
+  }), _react.default.createElement("p", null, "This strategy includes:"), _react.default.createElement("ul", null, _react.default.createElement("li", null, "The establishment of Reforestation Teams of local forestry workers to plant seedlings to re-forest the area following logging acivities."), _react.default.createElement("li", null, "The creation of international teams of students engaged in cross-cultural, collaborative activities, including tree-planting."), _react.default.createElement("li", null, "The establishment of Academic Forestry Research and Education to create and disseminate the best practices for planting and reforesting logged areas."), _react.default.createElement("li", {
     className: "item hide"
   }, "School programs to educate and engage people in the work of conservation, both locally and internationally."), _react.default.createElement("li", {
     className: "item hide"
