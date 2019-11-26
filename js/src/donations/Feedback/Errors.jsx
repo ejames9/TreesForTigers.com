@@ -23,7 +23,7 @@ import Row from 'react-bootstrap/Row'
 import {log, dir} from '../../utils/Loggers'
 import {capitalize, isMobile} from '../../utils/utils'
 import el from '../../utils/DOM/el'
-import windowTool from '../../utils/DOM/domPositioningTools'
+// import windowTool from '../../utils/DOM/domPositioningTools'
 
 
 let modalShow, setModalShow

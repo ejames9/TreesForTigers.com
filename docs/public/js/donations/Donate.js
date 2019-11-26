@@ -43683,145 +43683,7 @@ function (_Component) {
 var _default = (0, _reactStripeElements.injectStripe)(DonationForm);
 
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/InputGroup":"../../node_modules/react-bootstrap/InputGroup.js","react-bootstrap/Modal":"../../node_modules/react-bootstrap/Modal.js","react-stripe-elements":"../../node_modules/react-stripe-elements/es/index.js","./PaymentRequestButton":"donations/PaymentRequestButton.jsx","./CCRotater":"donations/CCRotater.jsx","./styles/DonationFormStyler":"donations/styles/DonationFormStyler.jsx","./CountryField":"donations/CountryField.jsx","../graphics/FormBackDrop":"graphics/FormBackDrop.jsx","../utils/DOM/el":"utils/DOM/el.js","../utils/DOM/classList":"utils/DOM/classList.js","../utils/Loggers":"utils/Loggers.js","../utils/environmentals":"utils/environmentals.js"}],"utils/DOM/domPositioningTools.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-/*
-** domPositioningTools.js
-**
-** domPositioningTools.js is an object that gathers information about screen size
-** and viewport size and position, and also element position and
-** positioning...
-**
-** Eric James Foster, Fostware LLC, MIT License.
-***/
-if (!windowTools) {
-  var windowTools = new Object();
-}
-
-windowTools = {
-  scrollBarPadding: 17,
-  // padding to assume for scroll bars
-  // EXAMPLE METHODS
-  // center an element in the viewport
-  centerElementOnScreen: function centerElementOnScreen(element) {
-    var pageDimensions = this.updateDimensions();
-    element.style.top = this.pageDimensions.verticalOffset() + this.pageDimensions.windowHeight() / 2 - (this.scrollBarPadding + element.offsetHeight / 2) + 'px';
-    element.style.left = this.pageDimensions.windowWidth() / 2 - (this.scrollBarPadding + element.offsetWidth / 2) + 'px';
-    element.style.position = 'absolute';
-  },
-  // INFORMATION GETTERS
-  // load the page size, view port position and vertical scroll offset
-  updateDimensions: function updateDimensions() {
-    this.updatePageSize();
-    this.updateWindowSize();
-    this.updateScrollOffset();
-  },
-  // load page size information
-  updatePageSize: function updatePageSize() {
-    // document dimensions
-    var viewportWidth, viewportHeight;
-
-    if (window.innerHeight && window.scrollMaxY) {
-      viewportWidth = document.body.scrollWidth;
-      viewportHeight = window.innerHeight + window.scrollMaxY;
-    } else if (document.body.scrollHeight > document.body.offsetHeight) {
-      // all but explorer mac
-      viewportWidth = document.body.scrollWidth;
-      viewportHeight = document.body.scrollHeight;
-    } else {
-      // explorer mac...would also work in explorer 6 strict, mozilla and safari
-      viewportWidth = document.body.offsetWidth;
-      viewportHeight = document.body.offsetHeight;
-    }
-
-    this.pageSize = {
-      viewportWidth: viewportWidth,
-      viewportHeight: viewportHeight
-    };
-  },
-  // load window size information
-  updateWindowSize: function updateWindowSize() {
-    // view port dimensions
-    var windowWidth, windowHeight;
-
-    if (self.innerHeight) {
-      // all except explorer
-      windowWidth = self.innerWidth;
-      windowHeight = self.innerHeight;
-    } else if (document.documentElement && document.documentElement.clientHeight) {
-      // explorer 6 strict mode
-      windowWidth = document.documentElement.clientWidth;
-      windowHeight = document.documentElement.clientHeight;
-    } else if (document.body) {
-      // other explorers
-      windowWidth = document.body.clientWidth;
-      windowHeight = document.body.clientHeight;
-    }
-
-    this.windowSize = {
-      windowWidth: windowWidth,
-      windowHeight: windowHeight
-    };
-  },
-  // load scroll offset information
-  updateScrollOffset: function updateScrollOffset() {
-    // viewport vertical scroll offset
-    var horizontalOffset, verticalOffset;
-
-    if (self.pageYOffset) {
-      horizontalOffset = self.pageXOffset;
-      verticalOffset = self.pageYOffset;
-    } else if (document.documentElement && document.documentElement.scrollTop) {
-      // Explorer 6 Strict
-      horizontalOffset = document.documentElement.scrollLeft;
-      verticalOffset = document.documentElement.scrollTop;
-    } else if (document.body) {
-      // all other Explorers
-      horizontalOffset = document.body.scrollLeft;
-      verticalOffset = document.body.scrollTop;
-    }
-
-    this.scrollOffset = {
-      horizontalOffset: horizontalOffset,
-      verticalOffset: verticalOffset
-    };
-  },
-  // INFORMATION CONTAINERS
-  // raw data containers
-  pageSize: {},
-  windowSize: {},
-  scrollOffset: {},
-  // combined dimensions object with bounding logic
-  pageDimensions: {
-    pageWidth: function pageWidth() {
-      return windowTools.pageSize.viewportWidth > windowTools.windowSize.windowWidth ? windowTools.pageSize.viewportWidth : windowTools.windowSize.windowWidth;
-    },
-    pageHeight: function pageHeight() {
-      return windowTools.pageSize.viewportHeight > windowTools.windowSize.windowHeight ? windowTools.pageSize.viewportHeight : windowTools.windowSize.windowHeight;
-    },
-    windowWidth: function windowWidth() {
-      return windowTools.windowSize.windowWidth;
-    },
-    windowHeight: function windowHeight() {
-      return windowTools.windowSize.windowHeight;
-    },
-    horizontalOffset: function horizontalOffset() {
-      return windowTools.scrollOffset.horizontalOffset;
-    },
-    verticalOffset: function verticalOffset() {
-      return windowTools.scrollOffset.verticalOffset;
-    }
-  }
-};
-var _default = windowTools;
-exports.default = _default;
-},{}],"donations/Feedback/Errors.jsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/InputGroup":"../../node_modules/react-bootstrap/InputGroup.js","react-bootstrap/Modal":"../../node_modules/react-bootstrap/Modal.js","react-stripe-elements":"../../node_modules/react-stripe-elements/es/index.js","./PaymentRequestButton":"donations/PaymentRequestButton.jsx","./CCRotater":"donations/CCRotater.jsx","./styles/DonationFormStyler":"donations/styles/DonationFormStyler.jsx","./CountryField":"donations/CountryField.jsx","../graphics/FormBackDrop":"graphics/FormBackDrop.jsx","../utils/DOM/el":"utils/DOM/el.js","../utils/DOM/classList":"utils/DOM/classList.js","../utils/Loggers":"utils/Loggers.js","../utils/environmentals":"utils/environmentals.js"}],"donations/Feedback/Errors.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43849,8 +43711,6 @@ var _Loggers = require("../../utils/Loggers");
 var _utils = require("../../utils/utils");
 
 var _el = _interopRequireDefault(require("../../utils/DOM/el"));
-
-var _domPositioningTools = _interopRequireDefault(require("../../utils/DOM/domPositioningTools"));
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -43910,6 +43770,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+// import windowTool from '../../utils/DOM/domPositioningTools'
 var modalShow, setModalShow;
 exports.setModalShow = setModalShow;
 
@@ -44086,7 +43947,7 @@ function Errors(props) {
     emailerror: props.emailerror
   });
 }
-},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Modal":"../../node_modules/react-bootstrap/Modal.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","../../utils/Loggers":"utils/Loggers.js","../../utils/utils":"utils/utils.js","../../utils/DOM/el":"utils/DOM/el.js","../../utils/DOM/domPositioningTools":"utils/DOM/domPositioningTools.js"}],"donations/Feedback/Success.jsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","react-bootstrap/Modal":"../../node_modules/react-bootstrap/Modal.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","../../utils/Loggers":"utils/Loggers.js","../../utils/utils":"utils/utils.js","../../utils/DOM/el":"utils/DOM/el.js"}],"donations/Feedback/Success.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
