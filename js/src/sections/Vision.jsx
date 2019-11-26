@@ -157,7 +157,7 @@ export default function Vision() {
                   Saving Tigers, One Tree at a Time..
                 </Card.Subtitle>
                 <VisionText/>
-                <Button href='/page2' variant="outline-dark">How You Can Help</Button>
+                <Button href='/donate#how-to-help' variant="outline-dark">How You Can Help</Button>
               </Card.Body>
             </Card>
           </Col>

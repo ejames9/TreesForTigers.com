@@ -21,7 +21,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import {log, dir} from '../../utils/Loggers'
-import {capitalize} from '../../utils/utils'
+import {capitalize, isMobile} from '../../utils/utils'
+import el from '../../utils/DOM/el'
+import windowTool from '../../utils/DOM/domPositioningTools'
 
 
 let modalShow, setModalShow
@@ -31,6 +33,7 @@ const ErrorHeader = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
+  max-width: ${screen.width}px;
 
   h3 {
     display: inline;
@@ -55,6 +58,7 @@ const Section = styled.section`
   border: 1px solid white;
   border-right: none;
   border-left: none;
+  max-width: ${screen.width}px;
 
   h5, p {
     font-size: 1rem;
@@ -105,6 +109,7 @@ const Cancel = styled.img.attrs({
 const Footer = styled.footer`
   padding: 1rem;
   padding-left: 0;
+  max-width: ${screen.width}px;
 
   .message-row {
     width: 100%;
@@ -152,6 +157,8 @@ const Footer = styled.footer`
   }
 `
 
+let errorModal
+
 
 function ErrorModal(props) {
   let message, declinedRE = /declined/,
@@ -169,10 +176,12 @@ function ErrorModal(props) {
 
   return (
     <Modal
+      id='errorModal'
       show={props.show}
       size="md"
       aria-labelledby="error-modal-title"
       centered
+      style={{maxWidth: `${window.innerWidth}px`}}
     >
       <Modal.Header className='header'>
         <Modal.Title id="error-modal-title">
@@ -305,7 +314,11 @@ export default function Errors(props) {
         }
       })
     }
+
+    // document.body.style.transform = 'scale(1)'
   }
+
+
 
 // Component markup...
   return (

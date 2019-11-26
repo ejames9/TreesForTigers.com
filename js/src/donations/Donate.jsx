@@ -6,6 +6,16 @@
 ** Eric James Foster, Fostware LLC, MIT License.
 ***/
 
+
+//TODO DIFFICULT, POSTPONE: zoomout on error, programmatically....
+//TODO: korean pine is stretched on iphone in landscape...
+//TODO: deploy to heroku....
+//TODO: learn how to aquire and apply ssl certificate....
+//TODO: learn how to transfer domain name....
+//TODO: clean up code, get rid of logs, unnecessary images....
+//TODO: fix safari navbar issues...
+//TODO:
+
 // Get react...
 import React, {Component} from 'react'
 // Get reactDOM...
@@ -50,6 +60,7 @@ const Globals = createGlobalStyle`
 // Google fonts...
   // @import url("https://fonts.googleapis.com/css?family=Nunito|Open+Sans|Source+Code+Pro&display=swap");
   body, html {
+    font-size: 16px;
     background: #161616;
   }
 
@@ -478,6 +489,7 @@ class DonationPage extends Component {
       donated: false
     }
 
+    this.componentDidMount = this.componentDidMount.bind(this)
     this.setStateAsync = this. setStateAsync.bind(this)
     this.data = this.data.bind(this)
     this.fetchSecret = this.fetchSecret.bind(this)
@@ -495,6 +507,11 @@ class DonationPage extends Component {
     this.ghost = React.createRef()
 
     this.emailValidation = true
+  }
+
+// Post mounting componnent ops...
+  componentDidMount() {
+    return
   }
 
 
@@ -541,7 +558,12 @@ class DonationPage extends Component {
       })
     }
 
-// Display an error to the user...
+//// Just in case we are on a mobile phone, and are zoomed into the form, we will make sure the
+// zoom level is at 100%....
+    // document.body.style.zoom = '100%'
+
+
+/// Display an error to the user...
     return setErrorShow(true)
   }
 

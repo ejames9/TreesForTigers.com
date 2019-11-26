@@ -141,7 +141,7 @@ const Sky = styled.div`
   /* pointer-events: none; */
 
   img#brush {
-    position: absolute;
+    position: fixed;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -197,7 +197,7 @@ const Tiger = styled.img.attrs({
   display: none;
   z-index: 1004;
 
-  @media (min-width: 768px) {
+  @media (min-width: 813px) {
     display: block;
   }
 `
