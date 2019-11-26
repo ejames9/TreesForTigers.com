@@ -1,0 +1,1 @@
+{"version":3,"sources":["donations/styles/errorModal.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","file":"Donate.css","sourceRoot":"../../../js/src","sourcesContent":["\n\n.modal {\n  width: 90%;\n  background: transparent;\n}\n"]}

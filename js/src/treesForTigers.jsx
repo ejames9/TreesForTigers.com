@@ -8,17 +8,6 @@
 ***/
 
 
-
-//: fIXME [x] Get background image under control, responsively...
-//: fIXME [x] Fix right border....
-//: fIXME [x] Fix Logo sizing, responsively....
-//: fIXME [x] Fix Navbar
-//: fIXME [x] Chopsticks ban...
-//: fIXME [x] Mover scroller...
-//: fIXME [x] Adjust 2nd Level start for collapsed state ...
-//: fIXME [x] fix bottom sensor....
-
-
 // Imports ...
 import React from 'react'
 // Get reactDOM...
@@ -32,28 +21,26 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import Carousel from 'react-bootstrap/Carousel'
 // Get modules/components ....
 // import T4TLogo from './T4TLogo'
-import NavBar from './NavBar'
+import NavBar from './sections/head/NavBar'
 // import LevelTwo from './BigDiv'
 // import ScrollIndicator from './ScrollIndicator'
-import Landing from './Landing'
-import BottomLanding from './BottomLanding'
+import Landing from './sections/head/Landing'
+import BottomLanding from './sections/foot/BottomLanding'
 import GlobalStyle from './GlobalStyles'
-import Challenge from './Challenge'
-import Vision from './Vision'
-import Trees4Tigers from './Trees4Tigers'
-import Cast from './Cast'
-import About from './About'
-import Trees from './Trees'
+import Challenge from './sections/Challenge'
+import Vision from './sections/Vision'
+import T4T from './sections/T4T'
+import Cast from './sections/Cast'
+import About from './sections/About'
+import Trees from './sections/Trees'
+import Foot from './sections/foot/Foot'
 
 // Utilities...
 import el from './utils/DOM/el'
 import {log, dir} from './utils/Loggers'
 import {
-  isOffscreen,
-  isBottom,
   isSafari
 } from './utils/Is'
 import mergeData from './utils/mergeData'
@@ -66,8 +53,9 @@ class App extends React.Component {
 // Ctor ...
   constructor() {
     super()
-// Bind onscroll method...
+// Bind methods...
     this.onScroll = this.onScroll.bind(this)
+    this.onOrientationChange = this.onOrientationChange.bind(this)
   }
 
 /* This method is the app's scroll handler. Places one listener on window,
@@ -77,7 +65,7 @@ and reacts to various conditions...*/
 
     window.onscroll =e=> {
 // Once the user has scrolled down 45 pixels, add fixed class to navbar...
-      if (window.pageYOffset > 45) {
+      if (window.pageYOffset > 10) {
         addClass(el('.navbar'), classMod)
       } else {
         removeClass(el('.navbar'), classMod)
@@ -88,15 +76,25 @@ and reacts to various conditions...*/
 // On resize adjustments...
   onResize() {
     document.body.onresize=e=> {
-
+      reloadCSS()
     }
   }
 
 // Orientation change adjustments...
   onOrientationChange() {
+// CSS reloading function ...
+    function reloadCSS() {
+      let links = el('link')
+      console.dir(links)
+      for (let link in links) {
+        if (link.rel == 'stylesheet') {
+          link.href += ''
+        }
+      }
+    }
 // Reload on o-change....
     window.onorientationchange=e=> {
-      location.reload()
+      reloadCSS()
     }
   }
 
@@ -107,6 +105,8 @@ Event Listeners.....>>>
 */
 // Scroll associated operations....
     this.onScroll()
+// Orientation associated ops...
+    // this.onOrientationChange()
   }
 
 // Component markup ...
@@ -116,12 +116,21 @@ Event Listeners.....>>>
         <GlobalStyle/>
         <Landing/>
         <NavBar/>
+        <a id='challenge' className='anchor blackLine'/>
         <Challenge/>
+        <a id='about' className='anchor'/>
         <About/>
+        <a id='trees' className='anchor'/>
         <Trees/>
+        <a id='vision' className='anchor blackLine'/>
         <Vision/>
-        <Trees4Tigers/>
+        <a id='cast' className='anchor'/>
+        <Cast/>
+        <a id='values' className='anchor'/>
+        <T4T/>
+        <a id='contact' className='anchor'/>
         <BottomLanding/>
+        <Foot/>
       </React.Fragment>
     )
   }
