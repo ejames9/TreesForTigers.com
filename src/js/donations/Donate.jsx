@@ -752,7 +752,7 @@ class DonationPage extends Component {
 
 // Click handler method for the 'Thank You' page back button...
   onBack(e) {
-    const delay = screen.width >= 768? 9500 : 3000
+    const delay = screen.width >= 813? 7500 : 3000
 
     this.data({
       hide: {

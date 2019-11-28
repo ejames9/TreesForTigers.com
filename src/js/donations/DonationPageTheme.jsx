@@ -401,7 +401,7 @@ export default class BackDrop extends Component {
       .to({
         r1: 64, g1: 115, b1: 255,
         r2: 186, g2: 220, b2: 220
-      }, 5000)
+      }, 3000)
       .easing(TWEEN.Easing.Quintic.In)
       .onStart(()=> {
         setTimeout(()=> {
