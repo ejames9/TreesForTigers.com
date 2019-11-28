@@ -1,0 +1,21 @@
+/*
+www
+
+This file serves as an ignition for the treesfortigers.com site. It initiates the
+node/express server, and brings in the needed app and configuration files....
+
+(example usage: node bin/www, or simply node www)
+
+Eric Foster
+*/
+
+
+const app = require('../treesForTigers'),
+   config = require('../config');
+
+
+app.set('port', config.port)
+
+app.listen(config.port, function(){
+  console.log('Express Node Server started on http://localhost:' + app.get('port') + '; Jesus is King!!! Press Ctrl-C to terminate.');
+});
