@@ -68,7 +68,7 @@ const Image = styled.header`
         }
 
         span.for {
-          font-size: 7rem;
+          font-size: 2.8rem;
           background: -webkit-linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
           -webkit-text-fill-color: transparent;
           -webkit-background-clip: text;
@@ -122,6 +122,10 @@ const Image = styled.header`
         .title {
           font-size: 5.5rem;
           line-height: 5.5rem;
+
+          span.for {
+            font-size: 4.7rem;
+          }
         }
       }
     }
@@ -139,6 +143,9 @@ const Image = styled.header`
           font-size: 6.5rem;
           line-height: 6.5rem;
           /* letter-spacing: 0.8rem; */
+          span.for {
+            font-size: 5.8rem;
+          }
         }
         .collaborate {
           max-width: 30rem;
@@ -160,6 +167,9 @@ const Image = styled.header`
           font-size: 6.5rem;
           line-height: 6.5rem;
           /* letter-spacing: 0.8rem; */
+          span.for {
+            font-size: 5.8rem;
+          }
         }
         .collaborate {
           max-width: 30rem;
@@ -178,6 +188,10 @@ const Image = styled.header`
           font-size: 9rem;
           line-height: 9rem;
           letter-spacing: .1rem;
+
+          span.for {
+            font-size: 7rem;
+          }
         }
 
         .collaborate {
@@ -193,6 +207,10 @@ const Image = styled.header`
           font-size: 9.5rem;
           line-height: 9.5rem;
           letter-spacing: .2rem;
+
+          span.for {
+            font-size: 7.5rem;
+          }
         }
       }
     }
