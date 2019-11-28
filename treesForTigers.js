@@ -15,7 +15,7 @@ const express = require('express');
 const app     = express();
 
 //Logging aesthetics..
-const logger  = require('morgan');
+// const logger  = require('morgan');
 //Set the port..
 //This is set up in the bin/www file..
 
