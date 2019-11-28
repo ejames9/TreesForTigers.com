@@ -47099,7 +47099,7 @@ function (_Component) {
         onClick: this.oc
       }, "Together, we can make a new day."), _react.default.createElement("div", {
         className: this.state.donated ? 'invisible div' : 'div'
-      }, _react.default.createElement(HowYouCanHelp, {
+      }, _react.default.createElement(_textContent.HowYouCanHelp, {
         donated: this.state.donated
       }))) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", {
         className: "thanks"

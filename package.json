@@ -1,6 +1,6 @@
 {
-  "name": "Trees4Tigers.com",
-  "description": "Information and Donation site for nonprofit, Trees4Tigers.",
+  "name": "TreesForTigers.com",
+  "description": "Information and Donation site for nonprofit, TreesForTigers.",
   "devDependencies": {
     "@babel/plugin-proposal-async-generator-functions": "^7.2.0",
     "@babel/plugin-transform-async-to-generator": "^7.5.0",

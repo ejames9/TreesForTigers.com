@@ -49,7 +49,8 @@ import mergeData from '../utils/mergeData'
 import {addClass, removeClass} from '../utils/DOM/classList'
 import {
   font,
-  ecoTourism
+  ecoTourism,
+  HowYouCanHelp
 } from '../textContent'
 
 import Firework from '../graphics/fireworks'
