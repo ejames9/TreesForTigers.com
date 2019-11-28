@@ -15,12 +15,12 @@ const express = require('express');
 const app     = express();
 
 //Logging aesthetics..
-// const logger  = require('morgan');
+const logger  = require('./node_modules/morgan');
 //Set the port..
 //This is set up in the bin/www file..
 
 //Set up view engine (handlebars) ..
-const hbs = require('express-handlebars')
+const hbs = require('./node_modules/express-handlebars')
   .create({
          extname: '.hbs',
     defaultLayout: 'main',
