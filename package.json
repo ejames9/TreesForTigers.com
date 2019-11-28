@@ -12,6 +12,12 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
+    "https-localhost": "^4.4.1",
+    "serve-favicon": "^2.5.0",
+    "serve-static": "^1.14.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "body-parser": "^1.19.0",
     "connect": "^3.7.0",
     "connect-rest": "^3.0.29",
@@ -19,13 +25,6 @@
     "cors": "^2.8.5",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
-    "https-localhost": "^4.4.1",
-    "mongoose": "^5.7.5",
-    "serve-favicon": "^2.5.0",
-    "serve-static": "^1.14.1"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
     "@fortawesome/free-regular-svg-icons": "^5.9.0",
@@ -37,6 +36,7 @@
     "clivi": "^0.1.2",
     "css": "^2.2.4",
     "express": "^4.17.1",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "public": "^0.1.5",
     "react": "^16.8.6",
