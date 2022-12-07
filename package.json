@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "connect": "^3.7.0",
     "connect-rest": "^3.0.29",
     "cookie-parser": "^1.4.4",
@@ -35,7 +35,7 @@
     "bowser": "^2.7.0",
     "clivi": "^0.1.2",
     "css": "^2.2.4",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "public": "^0.1.5",
